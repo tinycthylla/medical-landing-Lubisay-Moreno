@@ -1,13 +1,13 @@
 import Header from './components/layout/Header';
+import Hero from './components/layout/Hero';
+import SpecialitySections from './components/layout/SpecialitySections'; // Importamos el nuevo componente
 
 function App() {
   return (
-    <div className="bg-background min-h-screen pt-20">
+    <div className="bg-background min-h-screen overflow-x-hidden">
       <Header />
-      {/* Aquí abajo iremos metiendo el resto de las secciones */}
-      <h1 className="text-center mt-20 text-primary font-headline-sm">
-        ¡El Header está vivo!
-      </h1>
+      <Hero />
+      <SpecialitySections /> 
     </div>
   )
 }

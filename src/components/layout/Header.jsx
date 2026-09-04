@@ -37,8 +37,11 @@ export default function Header() {
             <div className="absolute top-full left-0 w-48 bg-surface border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Control Prenatal</Link>
               <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ecografías</Link>
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ginecología</Link>
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary">Menopausia</Link>
+              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ginecología General y Obstetricia</Link>
+              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Planificación Familiar</Link>
+              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Control Obstetrico</Link>
+              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary">Salud Sexual y Prevención</Link>
+              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary">Bienestar en la Menopausia</Link>
             </div>
           </div>
 
@@ -48,7 +51,7 @@ export default function Header() {
           <Link to="/faq" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Preguntas Frecuentes</Link>
           <Link to="/blog" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Blog</Link>
           
-          <button className="bg-primary-container text-on-secondary px-6 py-2 rounded-full font-label-md hover:opacity-80 transition-all duration-200">
+          <button className="bg-whatsapp text-on-secondary px-6 py-2 rounded-full font-label-md hover:opacity-80 transition-all duration-200">
             Agendar mi cita
           </button>
         </nav>
@@ -79,6 +82,7 @@ export default function Header() {
                 <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Planificación Familiar</Link>
                 <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Control Obstetrico</Link>
                 <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Bienestar en la Menopausia</Link>
+                <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Salud Sexual y Prevención</Link>
               </div>
             )}
           </div>
@@ -89,7 +93,7 @@ export default function Header() {
           <Link to="/faq" className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Preguntas Frecuentes</Link>
           <Link to="/blog" className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Blog</Link>
           
-          <button className="bg-primary-container text-on-secondary px-6 py-3 rounded-full font-label-md w-full mt-4">
+          <button className="bg-whatsapp text-on-secondary px-6 py-3 rounded-full font-label-md w-full mt-4">
             Agendar mi cita
           </button>
         </nav>
