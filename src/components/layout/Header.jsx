@@ -1,19 +1,26 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Header() {
+export default function Header({ onOpenModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // Nuevo state para el acordeón de servicios en el celular
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+
+  // Función para cerrar todo el menú en versión móvil al hacer clic en un link
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setIsServicesOpen(false);
+  };
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md shadow-sm">
       <div className="flex justify-between items-center h-20 px-8 max-w-[1200px] mx-auto">
         
-        <div className="font-headline-sm text-primary tracking-tight">
+        {/* Logo / Nombre */}
+        <Link to="/" className="font-headline-sm text-primary tracking-tight font-bold text-lg hover:opacity-80 transition-opacity">
           Dra. Lubisay Moreno
-        </div>
+        </Link>
 
+        {/* Botón Hamburguesa Mobile */}
         <button 
           className="text-primary p-2 md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -28,30 +35,32 @@ export default function Header() {
           
           {/* Dropdown Servicios */}
           <div className="relative group">
-            <button className="text-on-surface-variant hover:text-primary transition-colors font-body-md flex items-center gap-1 py-4">
+            <Link to="/servicios" className="text-on-surface-variant hover:text-primary transition-colors font-body-md flex items-center gap-1 py-4">
               Servicios
               <span className="material-symbols-outlined text-sm">expand_more</span>
-            </button>
+            </Link>
             
-            {/* Contenido del Dropdown (Invisible por defecto, visible en group-hover) */}
-            <div className="absolute top-full left-0 w-48 bg-surface border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Control Prenatal</Link>
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ecografías</Link>
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ginecología General y Obstetricia</Link>
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Planificación Familiar</Link>
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Control Obstetrico</Link>
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary">Salud Sexual y Prevención</Link>
-              <Link to="/" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary">Bienestar en la Menopausia</Link>
+            {/* Contenido del Dropdown */}
+            <div className="absolute top-full left-0 w-56 bg-surface border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+              <Link to="/servicios#control-prenatal" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Control Prenatal</Link>
+              <Link to="/servicios#ecografias" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ecografías Integrales</Link>
+              <Link to="/servicios#ginecologia" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ginecología General</Link>
+              <Link to="/servicios#planificacion" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Planificación Familiar</Link>
+              <Link to="/servicios#salud-sexual" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Salud Sexual</Link>
+              <Link to="/servicios#menopausia" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary">Bienestar en la Menopausia</Link>
             </div>
           </div>
 
           {/* Resto de los Links */}
           <Link to="/acerca" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Acerca de mí</Link>
           <Link to="/experiencias" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Experiencias</Link>
-          <Link to="/faq" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Preguntas Frecuentes</Link>
+          <Link to="/faq" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Preguntas</Link>
           <Link to="/blog" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Blog</Link>
           
-          <button className="bg-whatsapp text-on-secondary px-6 py-2 rounded-full font-label-md hover:opacity-80 transition-all duration-200">
+          <button 
+            onClick={onOpenModal}
+            className="bg-whatsapp text-on-secondary px-6 py-2 rounded-full font-label-md hover:opacity-80 transition-all duration-200"
+          >
             Agendar mi cita
           </button>
         </nav>
@@ -76,25 +85,31 @@ export default function Header() {
             {/* Opciones internas del Acordeón */}
             {isServicesOpen && (
               <div className="flex flex-col pl-4 mt-2 bg-surface-variant/30 rounded-md">
-                <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Control Prenatal</Link>
-                <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Ecografías</Link>
-                <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Ginecología General y Obstetricia</Link>
-                <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Planificación Familiar</Link>
-                <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Control Obstetrico</Link>
-                <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Bienestar en la Menopausia</Link>
-                <Link to="/" className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Salud Sexual y Prevención</Link>
+                <Link to="/servicios" onClick={closeMenu} className="text-sm font-bold text-primary py-3 border-b border-gray-100/50">Ver todos los servicios</Link>
+                <Link to="/servicios#control-prenatal" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Control Prenatal</Link>
+                <Link to="/servicios#ecografias" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Ecografías</Link>
+                <Link to="/servicios#ginecologia" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Ginecología General</Link>
+                <Link to="/servicios#planificacion" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Planificación Familiar</Link>
+                <Link to="/servicios#menopausia" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-gray-100/50">Menopausia</Link>
               </div>
             )}
           </div>
 
           {/* Resto de los Links */}
-          <Link to="/acerca" className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Acerca de mí</Link>
-          <Link to="/experiencias" className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Experiencias</Link>
-          <Link to="/faq" className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Preguntas Frecuentes</Link>
-          <Link to="/blog" className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Blog</Link>
+          <Link to="/acerca" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Acerca de mí</Link>
+          <Link to="/experiencias" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Experiencias</Link>
+          <Link to="/faq" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Preguntas Frecuentes</Link>
+          <Link to="/blog" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Blog</Link>
           
-          <button className="bg-whatsapp text-on-secondary px-6 py-3 rounded-full font-label-md w-full mt-4">
-            Agendar mi cita
+          <button 
+            onClick={() => {
+              onOpenModal();
+              closeMenu();
+            }}
+            className="bg-whatsapp text-on-secondary px-6 py-3 rounded-full font-label-md w-full mt-4 flex items-center justify-center gap-2"
+          >
+            <span>Agendar mi cita</span>
+            <span className="material-symbols-outlined text-[18px]">calendar_month</span>
           </button>
         </nav>
       )}

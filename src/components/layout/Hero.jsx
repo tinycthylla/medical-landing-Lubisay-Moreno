@@ -1,6 +1,6 @@
 import fotoDoctora from '../../assets/lu_homepage3.png';
 
-export default function Hero() {
+export default function Hero({ onOpenModal }) {
   return (
     <section className="w-full pt-28 px-6 space-y-8 md:space-y-0 md:max-w-[1200px] md:mx-auto md:pt-36 md:grid md:grid-cols-2 md:gap-16 md:items-center">
       
@@ -24,6 +24,7 @@ export default function Hero() {
         {/* Botón CTA (Verde WhatsApp) */}
         <div className="flex flex-col items-center md:items-start gap-5 w-full pt-2">
           <button 
+            onClick={onOpenModal}
             className="w-full max-w-[280px] md:w-auto py-3.5 px-8 rounded-full bg-whatsapp text-white font-label-md text-sm shadow-md hover:opacity-80 active:scale-[0.98] transition-all flex items-center justify-center gap-2" 
             type="button"
           >
