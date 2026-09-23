@@ -53,8 +53,8 @@ export default function Header({ onOpenModal }) {
 
           {/* Resto de los Links */}
           <Link to="/acerca" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Acerca de mí</Link>
-          <Link to="/experiencias" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Experiencias</Link>
-          <Link to="/faq" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Preguntas</Link>
+          <Link to="/#testimonios" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Experiencias</Link>
+          <Link to="/#faq" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Preguntas</Link>
           <Link to="/blog" className="text-on-surface-variant hover:text-primary transition-colors font-body-md">Blog</Link>
           
           <button 
@@ -97,8 +97,8 @@ export default function Header({ onOpenModal }) {
 
           {/* Resto de los Links */}
           <Link to="/acerca" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Acerca de mí</Link>
-          <Link to="/experiencias" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Experiencias</Link>
-          <Link to="/faq" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Preguntas Frecuentes</Link>
+          <Link to="/#testimonios" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Experiencias</Link>
+          <Link to="/#faq" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Preguntas Frecuentes</Link>
           <Link to="/blog" onClick={closeMenu} className="text-on-surface-variant font-body-md py-2 border-b border-gray-100">Blog</Link>
           
           <button 

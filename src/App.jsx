@@ -10,6 +10,7 @@ import BookingModal from './components/layout/BookingModal';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
+import Blog from './pages/Blog';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Home onOpenModal={() => setIsModalOpen(true)} />} />
         <Route path="/acerca" element={<About onOpenModal={() => setIsModalOpen(true)} />} />
         <Route path="/servicios" element={<Services onOpenModal={() => setIsModalOpen(true)} />} />
+        <Route path="/blog" element={<Blog onOpenModal={() => setIsModalOpen(true)} />} />
       </Routes>
       
       <Footer />

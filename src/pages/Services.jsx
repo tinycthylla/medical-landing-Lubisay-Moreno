@@ -1,17 +1,33 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import fotoDoctora from '../assets/lu_homepage3.png';
 import Testimonials from '../components/layout/Testimonials';
 import CtaBanner from '../components/layout/CtaBanner';
 
 export default function Services({ onOpenModal }) {
   
-  // Lista de servicios rápidos para el grid de iconos
+  // Hook para detectar si la URL trae un hash (ej: /servicios#ecografias) y hacer scroll automático
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.replace('#', ''));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [hash]);
+
+  // Lista de servicios rápidos para el grid superior
   const quickServices = [
-    { title: "Control Prenatal", icon: "pregnant_woman" },
-    { title: "Ecografías", icon: "ultrasound" },
-    { title: "Ginecología General", icon: "female" },
-    { title: "Planificación", icon: "calendar_month" },
-    { title: "Menopausia", icon: "spa" },
-    { title: "Salud Sexual", icon: "favorite" }
+    { title: "Control Prenatal", icon: "pregnant_woman", target: "control-prenatal" },
+    { title: "Ecografías Integrales", icon: "ultrasound", target: "ecografias" },
+    { title: "Ginecología General", icon: "female", target: "ginecologia" },
+    { title: "Planificación Familiar", icon: "calendar_month", target: "planificacion" },
+    { title: "Control Obstétrico", icon: "child_care", target: "control-obstetrico" },
+    { title: "Salud Sexual", icon: "favorite", target: "salud-sexual" },
+    { title: "Menopausia", icon: "spa", target: "menopausia" }
   ];
 
   return (
@@ -21,7 +37,6 @@ export default function Services({ onOpenModal }) {
       <section className="px-6 md:max-w-[1200px] md:mx-auto mb-20 md:mb-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          {/* Imagen de la Dra (Estética del Home pero más grande) */}
           <div className="relative w-full max-w-[400px] lg:max-w-[500px] mx-auto aspect-square flex justify-center">
             <div className="absolute bottom-0 w-[95%] h-[95%] bg-pink-50 rounded-full border-4 border-surface shadow-inner z-0"></div>
             <img 
@@ -31,7 +46,6 @@ export default function Services({ onOpenModal }) {
             />
           </div>
 
-          {/* Texto: Qué incluye la consulta */}
           <div className="flex flex-col">
             <h1 className="text-3xl md:text-5xl font-headline-sm font-bold text-on-background mb-6 leading-tight">
               Consulta Ginecológica <span className="text-primary">Integral</span>
@@ -94,27 +108,31 @@ export default function Services({ onOpenModal }) {
         </div>
       </section>
 
-      {/* 2. GRID RÁPIDO DE SERVICIOS */}
+      {/* 2. GRID RÁPIDO DE SERVICIOS (Con saltos interactivos) */}
       <section className="w-full bg-surface-variant/30 py-16">
         <div className="px-6 md:max-w-[1200px] md:mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
             {quickServices.map((service, index) => (
-              <div key={index} className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-50 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-pink-400 mb-4">
-                  <span className="material-symbols-outlined">{service.icon}</span>
+              <a 
+                key={index} 
+                href={`#${service.target}`}
+                className="flex flex-col items-center text-center p-4 bg-white rounded-2xl shadow-sm border border-gray-50 hover:shadow-md hover:border-primary/40 transition-all cursor-pointer group"
+              >
+                <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center text-pink-400 group-hover:bg-primary group-hover:text-white transition-colors mb-3">
+                  <span className="material-symbols-outlined text-[20px]">{service.icon}</span>
                 </div>
-                <h4 className="font-bold text-sm text-on-background">{service.title}</h4>
-              </div>
+                <h4 className="font-bold text-xs text-on-background leading-tight">{service.title}</h4>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. SERVICIOS DETALLADOS (Alternando imagen y texto) */}
+      {/* 3. SERVICIOS DETALLADOS (Estructura en Zigzag con IDs) */}
       <section className="px-6 py-20 md:py-32 md:max-w-[1200px] md:mx-auto space-y-20 md:space-y-32">
         
-        {/* Detalle 1: Control Prenatal (Imagen Izq, Texto Der) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        {/* Detalle 1: Control Prenatal */}
+        <div id="control-prenatal" className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
             <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800&auto=format&fit=crop" alt="Control Prenatal" className="w-full h-full object-cover" />
           </div>
@@ -132,8 +150,8 @@ export default function Services({ onOpenModal }) {
           </div>
         </div>
 
-        {/* Detalle 2: Ecografías (Texto Izq, Imagen Der) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        {/* Detalle 2: Ecografías Integrales */}
+        <div id="ecografias" className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="order-2 lg:order-1 flex flex-col items-start">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-pink-50 text-pink-400 text-xs font-bold mb-4">
               Diagnóstico
@@ -148,6 +166,101 @@ export default function Services({ onOpenModal }) {
           </div>
           <div className="order-1 lg:order-2 w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
             <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" alt="Ecografía" className="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        {/* Detalle 3: Ginecología General */}
+        <div id="ginecologia" className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?q=80&w=800&auto=format&fit=crop" alt="Ginecología General" className="w-full h-full object-cover" />
+          </div>
+          <div className="flex flex-col items-start">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-container/20 text-primary text-xs font-bold mb-4">
+              Prevención
+            </div>
+            <h2 className="text-3xl font-headline-sm font-bold text-on-background mb-4">Ginecología General</h2>
+            <p className="text-on-surface-variant mb-6 leading-relaxed">
+              Evaluación clínica completa para la prevención, diagnóstico y tratamiento de cualquier alteración del sistema reproductor femenino, garantizando tu salud integral a cualquier edad.
+            </p>
+            <button onClick={onOpenModal} className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+              Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Detalle 4: Planificación Familiar */}
+        <div id="planificacion" className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="order-2 lg:order-1 flex flex-col items-start">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-pink-50 text-pink-400 text-xs font-bold mb-4">
+              Salud Reproductiva
+            </div>
+            <h2 className="text-3xl font-headline-sm font-bold text-on-background mb-4">Planificación Familiar</h2>
+            <p className="text-on-surface-variant mb-6 leading-relaxed">
+              Asesoría profesional y sin juicios para elegir el método anticonceptivo que mejor se adapte a tus necesidades biológicas, estilo de vida y planes a futuro.
+            </p>
+            <button onClick={onOpenModal} className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+              Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+          <div className="order-1 lg:order-2 w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173ff9e5fe8?q=80&w=800&auto=format&fit=crop" alt="Planificación Familiar" className="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        {/* Detalle 5: Control Obstétrico */}
+        <div id="control-obstetrico" className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?q=80&w=800&auto=format&fit=crop" alt="Control Obstétrico" className="w-full h-full object-cover" />
+          </div>
+          <div className="flex flex-col items-start">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-container/20 text-primary text-xs font-bold mb-4">
+              Maternidad
+            </div>
+            <h2 className="text-3xl font-headline-sm font-bold text-on-background mb-4">Control Obstétrico</h2>
+            <p className="text-on-surface-variant mb-6 leading-relaxed">
+              Seguimiento clínico especializado durante toda la gestación. Evaluamos los factores de riesgo y garantizamos el desarrollo óptimo de tu embarazo con controles estrictos y humanos.
+            </p>
+            <button onClick={onOpenModal} className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+              Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Detalle 6: Salud Sexual y Prevención */}
+        <div id="salud-sexual" className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="order-2 lg:order-1 flex flex-col items-start">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-pink-50 text-pink-400 text-xs font-bold mb-4">
+              Bienestar
+            </div>
+            <h2 className="text-3xl font-headline-sm font-bold text-on-background mb-4">Salud Sexual y Prevención</h2>
+            <p className="text-on-surface-variant mb-6 leading-relaxed">
+              Espacio informativo y clínico para la prevención y despistaje de infecciones de transmisión sexual (ITS), citologías oportunas y educación orientada a una sexualidad sana y plena.
+            </p>
+            <button onClick={onOpenModal} className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+              Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+          <div className="order-1 lg:order-2 w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=800&auto=format&fit=crop" alt="Salud Sexual" className="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        {/* Detalle 7: Bienestar en la Menopausia */}
+        <div id="menopausia" className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop" alt="Menopausia" className="w-full h-full object-cover" />
+          </div>
+          <div className="flex flex-col items-start">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-container/20 text-primary text-xs font-bold mb-4">
+              Etapa Madura
+            </div>
+            <h2 className="text-3xl font-headline-sm font-bold text-on-background mb-4">Bienestar en la Menopausia</h2>
+            <p className="text-on-surface-variant mb-6 leading-relaxed">
+              Acompañamiento médico especializado para transitar esta nueva etapa con vitalidad. Evaluamos alternativas de manejo sintomático y prevención de riesgos metabólicos y óseos.
+            </p>
+            <button onClick={onOpenModal} className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+              Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
           </div>
         </div>
 
@@ -171,7 +284,6 @@ export default function Services({ onOpenModal }) {
         </div>
       </section>
 
-      {/* 5. PRUEBA SOCIAL Y CTA FINAL (Reutilizamos componentes) */}
       <Testimonials />
       <CtaBanner onOpenModal={onOpenModal} />
 

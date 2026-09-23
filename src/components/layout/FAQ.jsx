@@ -20,7 +20,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="w-full px-6 py-16 md:py-24 md:max-w-[1200px] md:mx-auto">
+    <section id="faq" className="scroll-mt-32 w-full px-6 py-16 md:py-24 md:max-w-[1200px] md:mx-auto">
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
         
@@ -98,7 +98,9 @@ export default function FAQ() {
               </div>
             </div>
             <a 
-              href="#" 
+              href="https://wa.me/584129360494" 
+              target="_blank" 
+              rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-whatsapp text-white font-bold text-sm hover:opacity-80 active:scale-95 transition-all"
             >
               <span>WhatsApp</span>
