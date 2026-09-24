@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 export default function SpecialitySections() {
   const sectionRef = useRef(null);
 
-  // Observador para la animación al hacer scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -12,7 +11,6 @@ export default function SpecialitySections() {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in-up');
             entry.target.classList.remove('opacity-0');
-            // Dejamos de observar una vez que ya apareció
             observer.unobserve(entry.target);
           }
         });
@@ -31,7 +29,6 @@ export default function SpecialitySections() {
     };
   }, []);
 
-  // Array de datos actualizado con el tono verde salvia extraído del CTA
   const services = [
     {
       title: "Control Prenatal",
@@ -39,8 +36,6 @@ export default function SpecialitySections() {
       badge: "Trimestral",
       icon: "pregnant_woman",
       bgIcon: "child_care",
-      colorClass: "bg-primary-container/20 text-primary",
-      badgeColorClass: "bg-[#8E9D82]/20 text-[#57664B]", // Verde Salvia
       link: "/servicios#control-prenatal"
     },
     {
@@ -49,8 +44,6 @@ export default function SpecialitySections() {
       badge: "Alta Definición",
       icon: "monitor_heart",
       bgIcon: "radiology",
-      colorClass: "bg-pink-100 text-pink-300",
-      badgeColorClass: "bg-pink-100 text-pink-600", // Rosado
       link: "/servicios#ecografias"
     },
     {
@@ -59,8 +52,6 @@ export default function SpecialitySections() {
       badge: "Integral",
       icon: "stethoscope",
       bgIcon: "health_and_safety",
-      colorClass: "bg-primary-container/20 text-primary",
-      badgeColorClass: "bg-[#8E9D82]/20 text-[#57664B]", // Verde Salvia
       link: "/servicios#ginecologia"
     },
     {
@@ -69,8 +60,6 @@ export default function SpecialitySections() {
       badge: "Prevención",
       icon: "family_restroom",
       bgIcon: "favorite",
-      colorClass: "bg-pink-100 text-pink-300",
-      badgeColorClass: "bg-pink-100 text-pink-600", // Rosado
       link: "/servicios#planificacion"
     },
     {
@@ -79,8 +68,6 @@ export default function SpecialitySections() {
       badge: "Especializado",
       icon: "baby_changing_station",
       bgIcon: "escalator_warning",
-      colorClass: "bg-primary-container/20 text-primary",
-      badgeColorClass: "bg-[#8E9D82]/20 text-[#57664B]", // Verde Salvia
       link: "/servicios#control-obstetrico"
     },
     {
@@ -89,8 +76,6 @@ export default function SpecialitySections() {
       badge: "Cuidado",
       icon: "diversity_1",
       bgIcon: "healing",
-      colorClass: "bg-pink-100 text-pink-300",
-      badgeColorClass: "bg-pink-100 text-pink-600", // Rosado
       link: "/servicios#salud-sexual"
     },
     {
@@ -99,19 +84,16 @@ export default function SpecialitySections() {
       badge: "Plenitud",
       icon: "psychiatry",
       bgIcon: "self_improvement",
-      colorClass: "bg-primary-container/20 text-primary",
-      badgeColorClass: "bg-[#8E9D82]/20 text-[#57664B]", // Verde Salvia
       link: "/servicios#menopausia"
     }
   ];
 
   return (
-    <section className="w-full px-6 pt-8 pb-20 md:max-w-[1200px] md:mx-auto">
+    <section className="w-full px-6 pt-2 md:pt-12 pb-6 md:pb-20 md:max-w-[1200px] md:mx-auto">
       
       <div ref={sectionRef} className="opacity-0">
         
         <div className="flex flex-col gap-2 md:text-center md:items-center">
-          {/* Título en color neutro (negro) */}
           <h2 className="text-3xl md:text-4xl font-headline-sm font-bold text-on-background">
             Nuestras especialidades
           </h2>
@@ -120,43 +102,60 @@ export default function SpecialitySections() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {services.map((service, index) => (
-            <Link 
-              key={index} 
-              to={service.link}
-              className="group relative p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col gap-4 cursor-pointer"
-            >
-              <div className="flex items-start justify-between">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${service.colorClass}`}>
-                  <span className="material-symbols-outlined text-[26px]">{service.icon}</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 md:mt-12">
+          {services.map((service, index) => {
+            
+            // Lógica para intercalar colores: si el índice es par es rosado, si es impar es verde
+            const isPink = index % 2 === 0;
+            
+            // Variables dinámicas según el tema de la tarjeta
+            const cardBg = isPink ? 'bg-pink-50 hover:bg-pink-100/50 border-pink-100' : 'bg-green-100/40 hover:bg-green-100/70 border-green-200/60';
+            const iconTheme = isPink ? 'bg-pink-100 text-pink-500' : 'bg-green-200/60 text-whatsapp';
+            const badgeTheme = isPink ? 'text-pink-500 border-pink-50' : 'text-whatsapp border-green-100/40';
+            const hoverText = isPink ? 'group-hover:text-pink-500' : 'group-hover:text-whatsapp';
+            const watermarkTheme = isPink ? 'text-pink-200/50' : 'text-green-200/70';
+
+            return (
+              <Link 
+                key={index} 
+                to={service.link}
+                className={`group relative p-6 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col gap-4 cursor-pointer border ${cardBg}`}
+              >
+                <div className="flex items-start justify-between">
+                  
+                  {/* Ícono superior */}
+                  <div className={`w-14 h-14 rounded-full flex items-center justify-center shadow-sm ${iconTheme}`}>
+                    <span className="material-symbols-outlined text-[28px]">{service.icon}</span>
+                  </div>
+                  
+                  {/* Etiqueta */}
+                  <span className={`text-[10px] px-3 py-1.5 rounded-full font-bold bg-white shadow-sm border uppercase tracking-wider ${badgeTheme}`}>
+                    {service.badge}
+                  </span>
                 </div>
-                <span className={`text-[10px] px-3 py-1 rounded-full font-bold ${service.badgeColorClass}`}>
-                  {service.badge}
-                </span>
-              </div>
-              
-              <div className="flex flex-col gap-1 mt-2 flex-grow">
-                <h3 className="text-lg font-bold text-on-background group-hover:text-pink-500 transition-colors duration-150">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-on-surface-variant mt-1">
-                  {service.description}
-                </p>
-              </div>
-              
-              {/* "Conocer más" en color neutro, cambia a rosado en hover */}
-              <div className="pt-4 mt-auto flex items-center justify-between text-on-background group-hover:text-pink-500 font-medium text-sm transition-colors duration-150">
-                <span className="flex items-center gap-1">
-                  Conocer más
-                  <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
-                </span>
-                <span className="material-symbols-outlined text-gray-200 text-3xl opacity-50">
-                  {service.bgIcon}
-                </span>
-              </div>
-            </Link>
-          ))}
+                
+                <div className="flex flex-col gap-1 mt-2 flex-grow">
+                  <h3 className={`text-lg font-bold text-on-background transition-colors duration-150 ${hoverText}`}>
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-on-surface-variant mt-1">
+                    {service.description}
+                  </p>
+                </div>
+                
+                {/* Texto inferior interactivo */}
+                <div className={`pt-4 mt-auto flex items-center justify-between text-on-background font-medium text-sm transition-colors duration-150 ${hoverText}`}>
+                  <span className="flex items-center gap-1">
+                    Conocer más
+                    <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+                  </span>
+                  <span className={`material-symbols-outlined text-4xl opacity-40 ${watermarkTheme}`}>
+                    {service.bgIcon}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
       </div>

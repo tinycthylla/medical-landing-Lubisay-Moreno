@@ -7,18 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        "surface": "#faf9f8",
-        "primary": "#53634b",
-        "primary-container": "#8c9d82",
+        // Fondos y textos base
+        "background": "#F2F2F2",
+        "surface": "#ffffff",
+        "on-background": "#1b1c1c",
         "on-surface-variant": "#444841",
         "on-secondary": "#ffffff",
-        "background": "#faf9f8",
-        "on-background": "#1b1c1c",
-        "whatsapp": "#25D366",
-        "pink-50": "#FFF3F4",
-        "pink-100": "#FFD1D9",
-        "pink-200": "#FF9FB3",
-        "pink-300": "#D85A7A"
+        
+        // Escala de rosas 
+        "pink-50": "#FDF4F8",
+        "pink-100": "#F2D8E6", 
+        "pink-300": "#D98BA7", 
+        "pink-500": "#A65673", 
+        
+        // Escala de verdes para CTA y difuminados
+        "whatsapp": "#0E9F6E", 
+        "green-100": "#D7F7E1", // Verde claro actualizado con mejor contraste
+        "green-200": "#BEE3D3", 
       },
       fontFamily: {
         "body-md": ["Inter", "sans-serif"],
@@ -29,10 +34,8 @@ export default {
         "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
         "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "600" }],
         "label-md": ["14px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "600" }],
-        
       },
-
-    animation: {
+      animation: {
         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
       },
       keyframes: {

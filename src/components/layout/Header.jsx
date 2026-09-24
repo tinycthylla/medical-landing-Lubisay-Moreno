@@ -16,7 +16,7 @@ export default function Header({ onOpenModal }) {
       <div className="flex justify-between items-center h-20 px-8 max-w-[1200px] mx-auto">
         
         {/* Logo / Nombre */}
-        <Link to="/" className="font-headline-sm text-primary tracking-tight font-bold text-lg hover:opacity-80 transition-opacity">
+        <Link to="/" className="font-headline-sm text-[#A65673] tracking-tight font-bold text-lg hover:opacity-80 transition-opacity">
           Dra. Lubisay Moreno
         </Link>
 

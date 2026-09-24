@@ -1,64 +1,93 @@
+import { useState, useEffect, useRef } from 'react';
+import fotoConsulta from '../../assets/lu_consulta.jpg';
+
 export default function FAQ() {
-  // Array de preguntas frecuentes: Fácil de editar y escalar
+  const sectionRef = useRef(null);
+
   const faqs = [
     {
-      question: "¿Qué debo llevar a mi primera ecografía?",
-      answer: "Recomendamos traer tu orden médica, estudios o análisis previos si los tienes, y acudir con ropa cómoda de dos piezas. Para ecografías de primer trimestre no se requiere preparación compleja especial, solo una hidratación normal."
+      question: "¿A qué edad debo ir al ginecólogo por primera vez?",
+      answer: "Lo ideal es entre los 13 y 15 años, o antes si inicias tu vida sexual o presentas irregularidades fuertes en tu periodo. Esta primera visita no siempre requiere un examen físico; es un espacio seguro para educarte sobre tu ciclo, higiene, prevención y aclarar dudas sin tabúes."
     },
     {
-      question: "¿Aceptan seguros médicos?",
-      answer: "Trabajamos con las principales pólizas de reembolso nacional e internacional. Te proporcionamos informe médico detallado y factura timbrada para tramitar tu reintegro de manera ágil."
+      question: "¿Cuál es el mejor método anticonceptivo para mí?",
+      answer: "No existe un método único para todas. La elección depende de tu historial médico, si sufres de ovarios poliquísticos, tu estilo de vida y tu tolerancia a las hormonas. En consulta evaluamos todas las opciones (pastillas, DIU, implantes, parches) para recetar el que mejor se adapte a tu cuerpo."
     },
     {
-      question: "¿Cómo puedo agendar una cita?",
-      answer: "Puedes agendar directamente desde el botón de WhatsApp, o seleccionando el día y turno que prefieras en nuestro calendario en línea."
+      question: "¿Cada cuánto tiempo debo hacerme un chequeo ginecológico?",
+      answer: "La recomendación estándar es una vez al año. Este control anual incluye la citología (Papanicolaou), examen manual de mamas y una ecografía pélvica o transvaginal para asegurar que todo tu sistema reproductivo esté sano."
     },
     {
-      question: "¿Con cuántas semanas se realiza la ecografía morfológica?",
-      answer: "El momento óptimo es entre las semanas 20 y 24 de gestación. Es el período donde las estructuras fetales han alcanzado el desarrollo ideal para una evaluación anatómica detallada."
+      question: "¿Cuándo debo empezar a hacerme exámenes de las mamas?",
+      answer: "Debes realizarte el autoexamen en casa todos los meses a partir de los 20 años (unos días después de tu periodo). En cuanto a los estudios de imagen, la ecografía mamaria y la mamografía anual se indican a partir de los 35 años, o antes si tienes antecedentes directos (madre o hermana) con cáncer de mama."
+    },
+    {
+      question: "¿Es necesario ir depilada?",
+      answer: "No es necesario que te depiles o rasureces. El vello púbico es natural y no interfiere en absoluto con la evaluación médica, la citología o las ecografías; dejarlo o quitarlo es una decisión estrictamente tuya."
+    },
+    {
+      question: "¿Cómo debo vestirme para la consulta?",
+      answer: "Para tu comodidad, te recomiendo llevar ropa de dos piezas (pantalón, short o falda con una blusa). Evita los enterizos, bragas o vestidos muy complicados, ya que tendrás que desvestirte de la cintura para abajo y te resultará mucho más práctico."
     }
   ];
 
+  // Lógica de animación al hacer scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            entry.target.classList.remove('opacity-0');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
   return (
-    <section id="faq" className="scroll-mt-32 w-full px-6 py-16 md:py-24 md:max-w-[1200px] md:mx-auto">
+    <section id="faq" className="scroll-mt-32 w-full px-6 py-16 md:py-24 bg-pink-50 transition-colors duration-500">
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+      {/* Contenedor animado */}
+      <div ref={sectionRef} className="opacity-0 max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         
-        {/* Columna Izquierda: Encabezado y Acordeón */}
         <div className="flex flex-col">
-          {/* Badge */}
           <div className="flex items-center gap-2 mb-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-md text-xs uppercase tracking-wider font-semibold">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 font-label-md text-xs uppercase tracking-wider font-bold shadow-sm">
               <span className="material-symbols-outlined text-[16px]">auto_awesome</span>
               Preguntas Frecuentes
             </span>
           </div>
           
-          {/* Título */}
           <h2 className="text-3xl md:text-4xl font-headline-sm font-bold text-on-background tracking-tight">
             Dudas y Consultas
           </h2>
           <p className="text-sm md:text-base text-on-surface-variant mt-2 mb-8 leading-relaxed">
-            Respuestas claras a las dudas más comunes sobre nuestras consultas y procedimientos ecográficos.
+            Respuestas claras a las dudas más comunes sobre nuestras consultas y procedimientos médicos.
           </p>
 
-          {/* Acordeón de FAQs */}
           <div className="flex flex-col gap-4">
             {faqs.map((faq, index) => (
               <details 
                 key={index} 
-                className="group bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                className="group bg-white border border-pink-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
               >
                 <summary className="flex items-center justify-between p-5 cursor-pointer list-none select-none">
                   <span className="font-bold text-on-background pr-4">
                     {faq.question}
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-surface-variant/30 flex items-center justify-center shrink-0 text-primary group-open:rotate-180 transition-transform duration-300">
+                  <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center shrink-0 text-pink-500 group-open:rotate-180 transition-transform duration-300">
                     <span className="material-symbols-outlined text-[20px]">keyboard_arrow_down</span>
                   </div>
                 </summary>
-                <div className="px-5 pb-5 pt-1">
-                  <p className="text-sm text-on-surface-variant leading-relaxed">
+                <div className="px-5 pb-5 pt-1 border-t border-pink-50/50 mt-2">
+                  <p className="text-sm text-on-surface-variant leading-relaxed pt-2">
                     {faq.answer}
                   </p>
                 </div>
@@ -67,47 +96,47 @@ export default function FAQ() {
           </div>
         </div>
 
-        {/* Columna Derecha: Imagen decorativa y Tarjeta WhatsApp */}
-        <div className="flex flex-col gap-6 md:sticky md:top-24">
-          
-          {/* Imagen Decorativa */}
-          <div className="relative w-full h-56 md:h-72 rounded-3xl overflow-hidden shadow-md group">
-            <div 
-              className="bg-cover bg-center w-full h-full transform transition-transform duration-700 group-hover:scale-105" 
-              style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQNuju541biisAv1jjITBnYCtpUq66ZntJDb8jMCNojqz-kBz3MDivT51pDaIDsLVUoy45Tlc5CxZgfXxw_j5GZD90eGYKOMhJO227V38NtE-7_ljj9IDhqAsdMTyM5eqPr_ZDhlhMsaT6mNpKFu6z2BFXXfavISGkWodESMAXmmHGkueJg13EtuGoolZ5Ui-uxLqmpEwUt-lNOhdykTJ1Q2EryZwfVmBvCkMjxPia1cK3dIKIX7jS')" }}
-            ></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6">
-              <span className="text-white font-headline-sm text-xl md:text-2xl font-bold leading-tight">
-                Tecnología de alta definición
+        <div className="w-full lg:sticky lg:top-24 flex flex-col p-2 lg:p-4">
+          <div 
+            className="relative w-full h-[400px] lg:h-[550px] overflow-hidden shadow-xl border-4 border-white transform transition-transform duration-700 hover:scale-[1.02]"
+            style={{ borderRadius: '40px 120px 40px 120px' }}
+          >
+            <img 
+              src={fotoConsulta} 
+              alt="Dra. Lubisay en consulta" 
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent flex flex-col justify-end p-8 md:p-10">
+              <span className="text-white font-headline-sm text-2xl font-bold leading-tight drop-shadow-md">
+                Atención cercana y empática
               </span>
-              <span className="text-gray-200 text-xs md:text-sm mt-1">
-                Espacio pensado para tu tranquilidad y confort
+              <span className="text-gray-100 text-sm mt-1 drop-shadow-md">
+                Un espacio seguro diseñado para tu bienestar
               </span>
             </div>
           </div>
 
-          {/* Tarjeta de Ayuda Rápida */}
-          <div className="p-5 rounded-3xl bg-white border border-gray-100 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="mt-6 p-5 rounded-3xl bg-white border border-pink-100 shadow-sm flex flex-col xl:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-pink-100 text-pink-300 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-[24px]">chat_bubble_outline</span>
+              <div className="w-10 h-10 rounded-full bg-green-100 text-whatsapp flex items-center justify-center shrink-0">
+                <span className="material-symbols-outlined text-[20px]">forum</span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-base font-bold text-on-background leading-tight">¿Tienes dudas adicionales?</span>
-                <span className="text-xs text-on-surface-variant mt-0.5">Atención directa e inmediata</span>
+              <div className="flex flex-col text-center xl:text-left">
+                <span className="text-sm font-bold text-on-background leading-none">¿Tienes otra pregunta?</span>
+                <span className="text-xs text-on-surface-variant mt-1.5">Atención directa por WhatsApp</span>
               </div>
             </div>
+            
             <a 
               href="https://wa.me/584129360494" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-whatsapp text-white font-bold text-sm hover:opacity-80 active:scale-95 transition-all"
+              className="w-full xl:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-whatsapp text-white font-bold text-sm hover:opacity-90 active:scale-95 transition-all shadow-sm"
             >
-              <span>WhatsApp</span>
-              <span className="material-symbols-outlined text-[18px]">send</span>
+              <span>Preguntar</span>
+              <span className="material-symbols-outlined text-[16px]">send</span>
             </a>
           </div>
-
         </div>
 
       </div>
