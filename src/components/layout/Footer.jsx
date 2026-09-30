@@ -59,7 +59,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Columna 4: Redes Sociales */}
+          {/* Columna 4:  */}
           <div className="flex flex-col gap-5">
             <h4 className="font-bold text-sm text-on-background uppercase tracking-wider">
               Síguenos

@@ -90,6 +90,12 @@ export default function Locations() {
         <div ref={sectionRef} className="opacity-0 md:max-w-[1200px] md:mx-auto">
           
           <div className="flex flex-col px-6 md:items-center md:text-center mb-10">
+         <div className="flex items-center justify-center mb-4">
+  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 font-label-md text-xs uppercase tracking-wider font-bold shadow-sm">
+    <span className="material-symbols-outlined text-[16px]">domain</span>
+    Consultorios
+  </span>
+</div>
             <h2 className="text-3xl md:text-4xl font-headline-sm font-bold text-on-background tracking-tight">
               Ubicación y Contacto
             </h2>
@@ -144,7 +150,7 @@ export default function Locations() {
                     <div className="flex items-start gap-4">
                       <span className="material-symbols-outlined text-pink-500 text-[24px] shrink-0">photo_camera</span>
                       <div className="flex flex-col">
-                        <span className="font-bold text-sm text-on-background mb-1">Redes Sociales</span>
+                        <span className="font-bold text-sm text-on-background mb-1">Instagram</span>
                         <a href={`https://instagram.com/${clinic.instagram.replace('@', '').replace(/ /g, '')}`} target="_blank" rel="noopener noreferrer" className="text-sm text-on-surface-variant hover:text-pink-500 transition-colors">
                           @{clinic.instagram.replace('@', '')}
                         </a>
@@ -160,7 +166,15 @@ export default function Locations() {
                     className="mt-auto w-full py-3.5 rounded-full bg-whatsapp text-white font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-sm"
                   >
                     <span>Cómo llegar</span>
-                    <span className="material-symbols-outlined text-[18px]">directions</span>
+                    <svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  fill="currentColor" 
+  viewBox="0 0 16 16" 
+  className="w-[18px] h-[18px]"
+>
+  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg>
                   </a>
                 </article>
               ))}

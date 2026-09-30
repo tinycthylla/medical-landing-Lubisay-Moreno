@@ -94,6 +94,14 @@ export default function SpecialitySections() {
       <div ref={sectionRef} className="opacity-0">
         
         <div className="flex flex-col gap-2 md:text-center md:items-center">
+          {/* Etiqueta Salud Femenina */}
+      <div className="flex items-center mb-2">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 font-label-md text-xs uppercase tracking-wider font-bold shadow-sm">
+          <span className="material-symbols-outlined text-[16px]">medical_services</span>
+          Tu Salud en Manos Expertas
+        </span>
+      </div>
+      {/* Título y Párrafo */}
           <h2 className="text-3xl md:text-4xl font-headline-sm font-bold text-on-background">
             Nuestras especialidades
           </h2>
