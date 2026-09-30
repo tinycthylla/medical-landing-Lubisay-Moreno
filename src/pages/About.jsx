@@ -92,11 +92,6 @@ export default function About({ onOpenModal }) {
               <span className="font-bold text-sm text-on-surface mt-1">Años de Trayectoria</span>
               <span className="text-xs text-on-surface-variant mt-1">Dedicación exclusiva médica</span>
             </div>
-            <div class="flex flex-col items-center">
-              <span className="font-headline-sm text-4xl text-primary font-bold tracking-tight">+4.5k</span>
-              <span className="font-bold text-sm text-on-surface mt-1">Ecografías Fetal/Gineco</span>
-              <span className="text-xs text-on-surface-variant mt-1">Evaluaciones minuciosas</span>
-            </div>
             <div className="flex flex-col items-center">
               <span className="font-headline-sm text-4xl text-primary font-bold tracking-tight">+1.2k</span>
               <span className="font-bold text-sm text-on-surface mt-1">Familias Acompañadas</span>

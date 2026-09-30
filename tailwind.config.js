@@ -22,7 +22,7 @@ export default {
         
         // Escala de verdes para CTA y difuminados
         "whatsapp": "#0E9F6E", 
-        "green-100": "#D7F7E1", // Verde claro actualizado con mejor contraste
+        "green-100": "#D7F7E1", 
         "green-200": "#BEE3D3", 
       },
       fontFamily: {

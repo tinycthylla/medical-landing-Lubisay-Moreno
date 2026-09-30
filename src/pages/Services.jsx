@@ -10,10 +10,14 @@ import iconPlan from '../assets/icono-plan.svg';
 import iconObste from '../assets/icono-obste.svg';
 import iconSexual from '../assets/icono-sexual.svg';
 import iconMeno from '../assets/icono-meno.svg';
-import fotoPregnant from '../assets/woman_pregnant.jpg';
-import fotoEco from '../assets/ecography.jpg';
-import fotoLu from '../assets/lu_gineco.jpg';
-import fotoUterus from '../assets/ginecology.jpg';
+import fotoPregnant from '../assets/woman_pregnant.webp';
+import fotoEco from '../assets/ecography.webp';
+import fotoLufilosofia from '../assets/lufilosofia.JPG';
+import fotoUterus from '../assets/ginecology.webp';
+import fotoContraceptives from '../assets/contraceptives.webp';
+import fotoObstetricia from '../assets/obstetricia.webp';
+import fotoSex_education from '../assets/sexual_education.webp'
+import FotoMenopause from '../assets/menopause.webp'
 
 export default function Services({ onOpenModal }) {
   
@@ -111,27 +115,27 @@ export default function Services({ onOpenModal }) {
             
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                <span className="material-symbols-outlined text-whatsapp mt-0.5">check_circle</span>
                 <p className="text-sm text-on-surface-variant"><strong className="text-on-background">Cuidado y evaluación de tus mamas:</strong> Un chequeo físico detallado para detectar cualquier anomalía a tiempo y darte tranquilidad.</p>
               </li>
               <li className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                <span className="material-symbols-outlined text-whatsapp mt-0.5">check_circle</span>
                 <p className="text-sm text-on-surface-variant"><strong className="text-on-background">Despistaje de cáncer de cuello uterino:</strong> Realizamos tu citología (Papanicolaou) de forma cuidadosa, un paso clave para prevenir y proteger tu salud a futuro.</p>
               </li>
               <li className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                <span className="material-symbols-outlined text-whatsapp mt-0.5">check_circle</span>
                 <p className="text-sm text-on-surface-variant"><strong className="text-on-background">Examen físico integral:</strong> Una revisión ginecológica completa (externa y con espéculo) hecha con empatía y respetando tu comodidad.</p>
               </li>
               <li className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                <span className="material-symbols-outlined text-whatsapp mt-0.5">check_circle</span>
                 <p className="text-sm text-on-surface-variant"><strong className="text-on-background">Revisión de útero y ovarios:</strong> A través del tacto bimanual, evaluamos el estado de tus órganos reproductivos para asegurarnos de que todo marche bien.</p>
               </li>
               <li className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                <span className="material-symbols-outlined text-whatsapp mt-0.5">check_circle</span>
                 <p className="text-sm text-on-surface-variant"><strong className="text-on-background">Orientación preventiva:</strong> Más allá del chequeo, te guiamos para que conozcas mejor tu cuerpo y sepas cómo cuidarte día a día.</p>
               </li>
               <li className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                <span className="material-symbols-outlined text-whatsapp mt-0.5">check_circle</span>
                 <p className="text-sm text-on-surface-variant"><strong className="text-on-background">Ecografía detallada (Opcional):</strong> Si lo necesitas, complementamos tu chequeo con un ultrasonido pélvico o transvaginal para una visión mucho más profunda y precisa.</p>
               </li>
             </ul>
@@ -264,11 +268,13 @@ export default function Services({ onOpenModal }) {
               </div>
               <div className="order-2 lg:order-2 w-full lg:w-[50%] relative z-10 bg-transparent lg:bg-white p-0 lg:p-12 lg:rounded-3xl lg:shadow-xl mt-5 lg:mt-0 lg:-ml-12 flex flex-col items-start text-left">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 text-xs font-bold uppercase tracking-wider mb-4">
-                  Prevención
+                  Acompañamiento en etapas clave
                 </div>
                 <h2 className="text-2xl md:text-3xl font-headline-sm font-bold text-on-background mb-4">Ginecología General</h2>
                 <p className="text-on-surface-variant mb-6 leading-relaxed">
-                  Evaluación clínica completa para la prevención, diagnóstico y tratamiento de cualquier alteración del sistema reproductor femenino, garantizando tu salud integral a cualquier edad.
+                  Cuidamos tu salud reproductiva a través del chequeo anual preventivo, fundamental en cualquier etapa de tu vida.
+                  Realizamos evaluaciones físicas rutinarias, citologías (Papanicolaou) y despistaje de alteraciones para confirmar que todo esté en orden.
+                  Es el momento ideal para tratar infecciones, revisar síntomas atípicos y asegurarte de estar sana al 100%.
                 </p>
                 <button onClick={onOpenModal} className="text-pink-500 font-bold flex items-center gap-1 hover:gap-2 transition-all">
                   Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -279,7 +285,7 @@ export default function Services({ onOpenModal }) {
             {/* Detalle 4: Imagen Derecha (Desktop) */}
             <div id="planificacion" ref={detailRefs[3]} className="opacity-0 scroll-mt-32 flex flex-col lg:flex-row items-center">
               <div className="order-1 lg:order-2 w-full lg:w-[55%] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm">
-                <img src={fotoUterus} alt="Planificación Familiar" className="w-full h-full object-cover" />
+                <img src={fotoContraceptives} alt="Planificación Familiar" className="w-full h-full object-cover" />
               </div>
               <div className="order-2 lg:order-1 w-full lg:w-[50%] relative z-10 bg-transparent lg:bg-white p-0 lg:p-12 lg:rounded-3xl lg:shadow-xl mt-5 lg:mt-0 lg:-mr-12 flex flex-col items-start text-left">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 text-xs font-bold uppercase tracking-wider mb-4">
@@ -287,7 +293,9 @@ export default function Services({ onOpenModal }) {
                 </div>
                 <h2 className="text-2xl md:text-3xl font-headline-sm font-bold text-on-background mb-4">Planificación Familiar</h2>
                 <p className="text-on-surface-variant mb-6 leading-relaxed">
-                  Asesoría profesional y sin juicios para elegir el método anticonceptivo que mejor se adapte a tus necesidades biológicas, estilo de vida y planes a futuro.
+                  Te orientamos para que elijas el método anticonceptivo que mejor se adapte a tu cuerpo, rutina y planes a futuro. 
+                  Evaluamos opciones como el DIU, pastillas o implantes, explicándote cómo funcionan y sus beneficios.
+                  Tú tienes el control total sobre tu fertilidad; nosotras te brindamos la guía médica para que decidas bien informada.
                 </p>
                 <button onClick={onOpenModal} className="text-pink-500 font-bold flex items-center gap-1 hover:gap-2 transition-all">
                   Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -298,15 +306,17 @@ export default function Services({ onOpenModal }) {
             {/* Detalle 5: Imagen Izquierda (Desktop) */}
             <div id="control-obstetrico" ref={detailRefs[4]} className="opacity-0 scroll-mt-32 flex flex-col lg:flex-row items-center">
               <div className="order-1 lg:order-1 w-full lg:w-[55%] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm">
-                <img src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?q=80&w=800&auto=format&fit=crop" alt="Control Obstétrico" className="w-full h-full object-cover" />
+                <img src={fotoObstetricia} alt="Control Obstétrico" className="w-full h-full object-cover" />
               </div>
               <div className="order-2 lg:order-2 w-full lg:w-[50%] relative z-10 bg-transparent lg:bg-white p-0 lg:p-12 lg:rounded-3xl lg:shadow-xl mt-5 lg:mt-0 lg:-ml-12 flex flex-col items-start text-left">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 text-xs font-bold uppercase tracking-wider mb-4">
-                  Maternidad
+                  Monitoreo y Cuidado Prenatal
                 </div>
                 <h2 className="text-2xl md:text-3xl font-headline-sm font-bold text-on-background mb-4">Control Obstétrico</h2>
                 <p className="text-on-surface-variant mb-6 leading-relaxed">
-                  Seguimiento clínico especializado durante toda la gestación. Evaluamos los factores de riesgo y garantizamos el desarrollo óptimo de tu embarazo con controles estrictos y humanos.
+                  Nos encargamos del seguimiento clínico y la planificación médica integral durante tu gestación. 
+                  Evaluamos tus laboratorios, ecos e historial para diseñar un plan de parto seguro y adaptado a ti.
+                  Estamos aquí para resolver tus dudas médicas, vigilar tu evolución y preparar tu cuerpo para dar a luz en las mejores condiciones.
                 </p>
                 <button onClick={onOpenModal} className="text-pink-500 font-bold flex items-center gap-1 hover:gap-2 transition-all">
                   Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -317,15 +327,17 @@ export default function Services({ onOpenModal }) {
             {/* Detalle 6: Imagen Derecha (Desktop) */}
             <div id="salud-sexual" ref={detailRefs[5]} className="opacity-0 scroll-mt-32 flex flex-col lg:flex-row items-center">
               <div className="order-1 lg:order-2 w-full lg:w-[55%] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm">
-                <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=800&auto=format&fit=crop" alt="Salud Sexual" className="w-full h-full object-cover" />
+                <img src={fotoSex_education} alt="Salud Sexual" className="w-full h-full object-cover" />
               </div>
               <div className="order-2 lg:order-1 w-full lg:w-[50%] relative z-10 bg-transparent lg:bg-white p-0 lg:p-12 lg:rounded-3xl lg:shadow-xl mt-5 lg:mt-0 lg:-mr-12 flex flex-col items-start text-left">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 text-xs font-bold uppercase tracking-wider mb-4">
-                  Bienestar
+                  Salud, prevención y bienestar corporal
                 </div>
                 <h2 className="text-2xl md:text-3xl font-headline-sm font-bold text-on-background mb-4">Salud Sexual y Prevención</h2>
                 <p className="text-on-surface-variant mb-6 leading-relaxed">
-                  Espacio informativo y clínico para la prevención y despistaje de infecciones de transmisión sexual (ITS), citologías oportunas y educación orientada a una sexualidad sana y plena.
+                  Te ofrecemos un espacio seguro, confidencial y sin juicios para hablar abiertamente sobre tu sexualidad.
+                  Resolvemos tus inquietudes sobre prevención de infecciones, higiene, placer y el funcionamiento de tu cuerpo.
+                  Queremos darte herramientas claras y actualizadas para que tomes decisiones libres, responsables y saludables sobre tu vida íntima.
                 </p>
                 <button onClick={onOpenModal} className="text-pink-500 font-bold flex items-center gap-1 hover:gap-2 transition-all">
                   Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -336,15 +348,17 @@ export default function Services({ onOpenModal }) {
             {/* Detalle 7: Imagen Izquierda (Desktop) */}
             <div id="menopausia" ref={detailRefs[6]} className="opacity-0 scroll-mt-32 flex flex-col lg:flex-row items-center">
               <div className="order-1 lg:order-1 w-full lg:w-[55%] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm">
-                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop" alt="Menopausia" className="w-full h-full object-cover" />
+                <img src={FotoMenopause} alt="Menopausia" className="w-full h-full object-cover" />
               </div>
               <div className="order-2 lg:order-2 w-full lg:w-[50%] relative z-10 bg-transparent lg:bg-white p-0 lg:p-12 lg:rounded-3xl lg:shadow-xl mt-5 lg:mt-0 lg:-ml-12 flex flex-col items-start text-left">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 text-xs font-bold uppercase tracking-wider mb-4">
-                  Etapa Madura
+                  Tu salud en la madurez
                 </div>
                 <h2 className="text-2xl md:text-3xl font-headline-sm font-bold text-on-background mb-4">Bienestar en la Menopausia</h2>
                 <p className="text-on-surface-variant mb-6 leading-relaxed">
-                  Acompañamiento médico especializado para transitar esta nueva etapa con vitalidad. Evaluamos alternativas de manejo sintomático y prevención de riesgos metabólicos y óseos.
+                  Te acompañamos en esta transición natural para que la vivas con vitalidad y sin molestias que limiten tu día a día.
+                  Evaluamos tus síntomas físicos y cambios hormonales para ofrecerte tratamientos efectivos y recomendaciones de estilo de vida. 
+                  Enfocamos nuestra atención en proteger tu bienestar a largo plazo para que disfrutes plenamente esta etapa.
                 </p>
                 <button onClick={onOpenModal} className="text-pink-500 font-bold flex items-center gap-1 hover:gap-2 transition-all">
                   Agendar para este servicio <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -359,19 +373,45 @@ export default function Services({ onOpenModal }) {
       {/* =========================================================
           4. BLOQUE DE LA DOCTORA (Filosofía)
       ========================================================= */}
-      <section className="w-full bg-pink-50 py-20 px-6 overflow-hidden">
-        <div ref={philosophyRef} className="opacity-0 md:max-w-[1000px] md:mx-auto grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
-          <div className="md:col-span-2 relative w-56 h-56 md:w-full md:h-auto md:aspect-square mx-auto rounded-full md:rounded-3xl overflow-hidden shadow-xl border-4 border-white">
-             <img src={FotoLuDiu} alt="Dra. Lubisay" className="w-full h-full object-cover bg-gray-100" />
+      <section className="w-full bg-background py-20 px-6 overflow-hidden">
+        <div ref={philosophyRef} className="opacity-0 md:max-w-[1000px] md:mx-auto grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-16 items-center">
+          
+          {/* Columna Izquierda: Imagen */}
+          <div className="md:col-span-2 relative w-[80%] md:w-full max-w-[320px] md:max-w-none mx-auto aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden shadow-xl">
+             <img src={fotoLufilosofia} alt="Dra. Lubisay Moreno" className="w-full h-full object-cover object-top bg-gray-100" />
           </div>
+          
+          {/* Columna Derecha: Textos al estilo editorial */}
           <div className="md:col-span-3 flex flex-col text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-headline-sm font-bold text-on-background mb-4">
-              Medicina basada en la empatía y la ciencia
+            
+            {/* Sobretítulo estilo editorial */}
+            <div className="mb-4">
+              <span className="text-[#a54c6b] text-xs font-bold uppercase tracking-[0.2em]">
+                Atención centrada en ti
+              </span>
+            </div>
+            
+            {/* Titular Principal con quiebres de línea (<br>) para desktop */}
+            <h2 className="text-4xl md:text-5xl lg:text-[56px] font-headline-sm font-bold text-on-background mb-6 leading-[1.15]">
+              Tu salud, <br className="hidden md:block" />
+              {/* Frase resaltada con fuente Serif e Itálica */}
+              <span className="text-[#a54c6b] font-serif italic font-normal tracking-wide">
+                tus decisiones,
+              </span> <br className="hidden md:block" />
+              mi respaldo médico.
             </h2>
-            <p className="text-on-surface-variant text-base md:text-lg leading-relaxed mb-6">
-              "Mi compromiso es brindarte atención médica actualizada sin dejar de lado el calor humano. Quiero que mi consultorio sea tu espacio seguro para hablar sin tabúes, entender tu cuerpo y tomar decisiones informadas sobre tu salud."
+            
+            {/* Párrafo Nuevo */}
+            <p className="text-on-surface-variant text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
+              La salud femenina es evolución constante. Mi objetivo es acompañarte con honestidad y mucha empatía a lo largo de toda tu vida.
+              Quiero que salgas de cada consulta sintiéndote segura, conociendo mejor tu cuerpo y con la confianza de tener a una especialista dedicada a proteger tu bienestar integral, hoy y siempre.
             </p>
-            <p className="font-bold text-lg text-pink-500">- Dra. Lubisay Moreno</p>
+            
+            {/* Firma */}
+            <p className="font-bold text-lg text-on-background">
+              - Dra. Lubisay Moreno
+            </p>
+            
           </div>
         </div>
       </section>

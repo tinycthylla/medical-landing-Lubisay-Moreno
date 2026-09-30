@@ -46,6 +46,7 @@ export default function Header({ onOpenModal }) {
               <Link to="/servicios#ecografias" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ecografías Integrales</Link>
               <Link to="/servicios#ginecologia" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Ginecología General</Link>
               <Link to="/servicios#planificacion" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Planificación Familiar</Link>
+              <Link to="/servicios#control-obstetrico" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Control Obstétrico</Link>
               <Link to="/servicios#salud-sexual" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary border-b border-gray-100">Salud Sexual</Link>
               <Link to="/servicios#menopausia" className="block px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary">Bienestar en la Menopausia</Link>
             </div>
