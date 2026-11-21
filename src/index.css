@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
+@font-face {
+  font-family: 'Carena';
+  src: url('./assets/fonts/Carena-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

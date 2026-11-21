@@ -114,7 +114,7 @@ export default function BookingModal({ isOpen, onClose }) {
         {/* Formulario */}
         <div className="px-8 pb-8 pt-2">
           <div className="text-center mb-6">
-            <h1 className="font-headline-sm text-2xl font-bold text-on-background">Agendar Cita</h1>
+            <h1 className="font-body-md text-2xl font-bold text-on-background">Agendar Cita</h1>
             <p className="text-xs text-on-surface-variant uppercase tracking-widest mt-1">Dra. Lubisay Moreno</p>
           </div>
 

@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import BookingModal from './components/layout/BookingModal';
+import BlogPost from './pages/BlogPost';
 
 // Páginas
 import Home from './pages/Home';
@@ -27,6 +28,7 @@ function App() {
         <Route path="/acerca" element={<About onOpenModal={() => setIsModalOpen(true)} />} />
         <Route path="/servicios" element={<Services onOpenModal={() => setIsModalOpen(true)} />} />
         <Route path="/blog" element={<Blog onOpenModal={() => setIsModalOpen(true)} />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
       
       <Footer />

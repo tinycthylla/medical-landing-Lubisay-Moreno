@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
-import fotoLizaveta from '../../assets/lizaveta_acevedo.jpg';
-import fotoYoleida from '../../assets/yoleida_garcia.jpg';
-import fotoKatiuska from '../../assets/katiuska_rodriguez.jpg';
-import fotoGabriela from '../../assets/gabriela_guzman.jpg';
-import fotoFrancis from '../../assets/francis_pena.jpg';
-import fotoOrianna from '../../assets/orianna_rodriguez.jpg';
-import fotoEliza from '../../assets/elizabeth_de_ponte.jpg';
-import fotoDinora from '../../assets/dinora_rodriguez.jpg';
-import fotoBarbara from '../../assets/barbara_cisneros.jpg';
-import fotoYei from '../../assets/yeilysacosta.jpg';
-import fotoYor from '../../assets/yorlianis.jpg';
+import fotoLizaveta from '../../assets/img/lizaveta_acevedo.jpg';
+import fotoYoleida from '../../assets/img/yoleida_garcia.jpg';
+import fotoKatiuska from '../../assets/img/katiuska_rodriguez.jpg';
+import fotoGabriela from '../../assets/img/gabriela_guzman.jpg';
+import fotoFrancis from '../../assets/img/francis_pena.jpg';
+import fotoOrianna from '../../assets/img/orianna_rodriguez.jpg';
+import fotoEliza from '../../assets/img/elizabeth_de_ponte.jpg';
+import fotoDinora from '../../assets/img/dinora_rodriguez.jpg';
+import fotoBarbara from '../../assets/img/barbara_cisneros.jpg';
+import fotoYei from '../../assets/img/yeilysacosta.jpg';
+import fotoYor from '../../assets/img/yorlianis.jpg';
 
 export default function Testimonials() {
   const sectionRef = useRef(null);
@@ -78,14 +78,13 @@ export default function Testimonials() {
   }, [isHovered, maxIndex]);
 
   return (
-    // Se eliminó el bg-pink-50 para volver al fondo natural
     <section id="testimonios" className="scroll-mt-32 w-full pt-10 md:pt-2 pb-16 md:pb-24 overflow-hidden transition-colors duration-500">
       <div ref={sectionRef} className="opacity-0 w-full max-w-[1300px] mx-auto px-4 md:px-6">
         
-        {/* Cabecera: Forzamos flex-col y items-center para centrar todo en móvil */}
+        {/* Cabecera: */}
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
           
-          {/* Etiquetas: Usamos flex-row y flex-wrap para que se acomoden juntas y centradas */}
+          {/* Etiquetas: */}
           <div className="flex flex-row flex-wrap justify-center items-center gap-2 mb-4">
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white text-pink-500 font-label-md text-[10px] sm:text-xs uppercase tracking-wider font-bold shadow-sm border border-pink-100">
               <span className="material-symbols-outlined text-[14px] sm:text-[16px]">verified</span>
@@ -97,10 +96,10 @@ export default function Testimonials() {
             </div>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-headline-sm font-bold text-on-background tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-body-md font-bold text-on-background tracking-tight">
             Lo que dicen nuestras pacientes
           </h2>
-          <p className="text-sm text-on-surface-variant mt-2 md:mt-4">
+          <p className="text-body-md text-on-surface-variant mt-2 md:mt-4">
             Opiniones reales de nuestra comunidad
           </p>
         </div>
@@ -132,7 +131,7 @@ export default function Testimonials() {
                   className="flex-shrink-0 px-3"
                   style={{ width: `${100 / itemsPerView}%` }} 
                 >
-                  <article className="h-full p-6 rounded-3xl bg-white border border-pink-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-4 text-left cursor-default">
+                  <article className="h-full p-6 rounded-3xl bg-white shadow-md shadow-pink-200/40 hover:shadow-lg hover:shadow-pink-200/60 transition-all duration-300 flex flex-col gap-4 text-left cursor-default">
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-0.5 text-amber-400">
@@ -146,10 +145,9 @@ export default function Testimonials() {
                       </span>
                     </div>
 
-                    <blockquote className="text-sm md:text-base text-on-surface-variant italic leading-relaxed flex-grow">
-                      “{review.quote}”
+                   <blockquote className="text-sm md:text-base text-on-surface-variant font-body-md italic leading-relaxed flex-grow">
+                    “{review.quote}”
                     </blockquote>
-
                     <div className="flex items-center justify-between pt-4 border-t border-pink-50">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full overflow-hidden shadow-sm border border-pink-100 bg-pink-50 flex items-center justify-center shrink-0">
@@ -165,7 +163,7 @@ export default function Testimonials() {
                         </div>
                       </div>
                       
-                      <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-pink-300">
+                      <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-brand-purple">
                         <span className="material-symbols-outlined text-[16px]">thumb_up</span>
                       </div>
                     </div>

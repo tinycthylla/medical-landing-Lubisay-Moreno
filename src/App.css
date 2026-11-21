@@ -182,3 +182,16 @@
     border-right-color: var(--border);
   }
 }
+
+/* Animación de barrido para formas SVG expandidas */
+.svg-draw {
+  clip-path: inset(0 100% 0 0); /* Esconde la imagen empujando desde la derecha */
+  animation: revealWipe 2.5s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes revealWipe {
+  to {
+    clip-path: inset(0 0 0 0); /* Muestra la imagen completa */
+  }
+}
