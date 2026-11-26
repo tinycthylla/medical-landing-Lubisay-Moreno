@@ -6,15 +6,15 @@ import CtaDetailed from '../components/layout/CtaDetailed';
 
 
 // Imágenes
-import FotoLuDiu from '../assets/img/ludiu2.png';
 import fotoPregnant from '../assets/img/woman_pregnant.webp';
 import fotoEco from '../assets/img/ecography.webp';
-import fotoLufilosofia from '../assets/img/lufilosofia.JPG';
 import fotoUterus from '../assets/img/ginecology.webp';
 import fotoContraceptives from '../assets/img/contraceptives.webp';
 import fotoObstetricia from '../assets/img/obstetricia.webp';
 import fotoSex_education from '../assets/img/sexual_education.webp';
 import FotoMenopause from '../assets/img/menopause.webp';
+import fotoLufilosofia2 from '../assets/img/lufilosofia2.png';
+import fotoLusentada2 from '../assets/img/lu_sentada2.JPG';
 
 // Iconos
 import iconPrenatal from '../assets/icons/icono-prenatal.svg';
@@ -167,7 +167,7 @@ export default function Services({ onOpenModal }) {
         
         {/* Imagen de la Dra. Lubisay */}
         <img 
-          src={FotoLuDiu} 
+          src={fotoLufilosofia2} 
           alt="Dra. Lubisay Moreno en consulta" 
           className=" relative z-10 w-full h-auto object-contain drop-shadow-2xl"
         />
@@ -340,33 +340,33 @@ export default function Services({ onOpenModal }) {
           {/* Columna Izquierda: Imagen*/}
           <div className="md:col-span-2 relative w-[80%] sm:w-[70%] md:w-full max-w-[320px] md:max-w-none mx-auto aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden bg-white shadow-md shadow-pink-200/40 hover:shadow-lg hover:shadow-pink-200/60 transition-all duration-300">
             <img 
-              src={fotoLufilosofia} 
+              src={fotoLusentada2} 
               alt="Dra. Lubisay Moreno" 
               className="w-full h-full object-cover object-top" 
             />
           </div>
           
-          {/* Columna Derecha: Textos */}
+         {/* Columna Derecha: Textos */}
           <div className="md:col-span-3 flex flex-col text-center md:text-left font-body-md w-full">
             <div className="mb-4">
               <span className="text-brand-pink font-label-md text-xs font-bold uppercase tracking-[0.2em]">
                 Atención centrada en ti
               </span>
             </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-[56px] font-body-md font-bold text-on-background mb-4 md:mb-6 leading-[1.15]">
+
+            <h2 className="text-4xl md:text-5xl lg:text-[56px] font-body-md font-medium text-on-background mb-4 md:mb-6 leading-[1.15]">
               Tu salud, <br className="hidden md:block" />
-              <span className="text-brand-pink font-body-md italic font-semibold">
+              <span className="text-brand-pink font-body-md italic font-medium">
                 tus decisiones,
               </span> <br className="hidden md:block" />
               mi respaldo médico.
             </h2>
-            
-            <p className="text-on-surface-variant font-body-md text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
+
+            <p className="text-on-surface-variant font-body-md font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
               La salud femenina es evolución constante. Mi objetivo es acompañarte con honestidad y mucha empatía a lo largo de toda tu vida.
               Quiero que salgas de cada consulta sintiéndote segura, conociendo mejor tu cuerpo y con la confianza de tener a una especialista dedicada a proteger tu bienestar integral, hoy y siempre.
             </p>
-            
+
             <p className="font-body-md font-bold text-lg text-on-background">
               - Dra. Lubisay Moreno
             </p>

@@ -7,3 +7,21 @@
   font-style: normal;
   font-display: swap;
 }
+
+@keyframes drawHeartMask {
+  0% {
+    stroke-dashoffset: 1.05;
+  }
+  45%, 60% {
+    stroke-dashoffset: 0;
+  }
+  95%, 100% {
+    stroke-dashoffset: -1.05;
+  }
+}
+
+.heart-guide-path {
+  stroke-dasharray: 1 1.5;
+  stroke-dashoffset: 1.05;
+  animation: drawHeartMask 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}

@@ -1,4 +1,4 @@
-import FAQ from '../components/layout/FAQ';
+import AnimatedNumber from '../components/AnimatedNumber';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import Testimonials from '../components/layout/Testimonials';
 import FotoLuDiu from '../assets/img/ludiu2.png';
@@ -8,7 +8,7 @@ import SiluetaLogo from '../assets/icons/logosimple-3.svg';
 import IconoHeart2 from '../assets/icons/icon-heart2.svg';
 import FotoLuGineco from '../assets/img/lu_gineco.jpg';
 import FotoLuXtremeBike from '../assets/img/lu_xtremebike.jpg';
-import FotoLuEquipo from '../assets/img/lu_equipo.jpeg';
+import FotoLuEquipo from '../assets/img/lu_equipo.webp';
 import { useState, useEffect, useRef } from 'react';
 
 function RevealOnScroll({ children }) {
@@ -296,7 +296,7 @@ export default function About({ onOpenModal }) {
                 </div>
 
                 {/* Título en Poppins (centrado en mobile, izquierda en desktop) */}
-                <h2 className="font-['Poppins'] text-center lg:text-left text-4xl md:text-5xl lg:text-[54px] font-bold text-[#735D83] uppercase tracking-tighter mb-6 leading-tight">
+                <h2 className="font-body-md text-center lg:text-left text-4xl md:text-5xl lg:text-[54px] font-bold text-brand-grape uppercase tracking-tighter mb-6 leading-tight">
                   Conoce más <br className="hidden md:block" /> acerca de mí
                 </h2>
                 
@@ -308,22 +308,33 @@ export default function About({ onOpenModal }) {
                   {/* Grid de Estadísticas / Logros */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 pt-8 border-t border-pink-100/50">
                     <div className="flex flex-col">
-                      <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">+9</span>
+                      <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">
+                        <AnimatedNumber end={9} prefix="+" duration={1200} />
+                      </span>
                       <span className="font-bold text-sm text-on-background mt-1 leading-tight">Años de Trayectoria</span>
                       <span className="text-[11px] text-on-surface-variant mt-1 leading-tight">Dedicación exclusiva médica</span>
                     </div>
+
                     <div className="flex flex-col">
-                      <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">+1.2k</span>
+                      <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">
+                        <AnimatedNumber end={1.2} decimals={1} prefix="+" suffix="k" duration={1500} />
+                      </span>
                       <span className="font-bold text-sm text-on-background mt-1 leading-tight">Familias Acompañadas</span>
                       <span className="text-[11px] text-on-surface-variant mt-1 leading-tight">Parto y seguimiento integral</span>
                     </div>
+
                     <div className="flex flex-col">
-                      <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">99%</span>
+                      <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">
+                        <AnimatedNumber end={99} suffix="%" duration={1600} />
+                      </span>
                       <span className="font-bold text-sm text-on-background mt-1 leading-tight">Satisfacción de Pacientes</span>
                       <span className="text-[11px] text-on-surface-variant mt-1 leading-tight">Opiniones y recomendaciones</span>
                     </div>
+
                     <div className="flex flex-col">
-                      <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">100%</span>
+                      <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">
+                        <AnimatedNumber end={100} suffix="%" duration={1600} />
+                      </span>
                       <span className="font-bold text-sm text-on-background mt-1 leading-tight">Atención Humanizada</span>
                       <span className="text-[11px] text-on-surface-variant mt-1 leading-tight">Espacio seguro y empático</span>
                     </div>
@@ -358,7 +369,7 @@ export default function About({ onOpenModal }) {
       </section>
 
       {/* Más allá de la consulta (Zigzag compacto) */}
-      <section className="w-full bg-[#FDF4F8] py-20 md:py-24 overflow-hidden" id="filosofia">
+      <section className="w-full bg-pink-50 py-20 md:py-24 overflow-hidden" id="filosofia">
         <div className="max-w-[920px] mx-auto px-6 md:px-8">
           
           {/* Encabezado de sección */}
@@ -367,7 +378,7 @@ export default function About({ onOpenModal }) {
               <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-white border border-brand-pink/30 text-brand-pink font-['Poppins'] text-xs font-bold uppercase tracking-wider shadow-sm mb-3">
                 Mi Esencia
               </span>
-              <h2 className="font-['Poppins'] text-3xl md:text-4xl text-[#735D83] mt-2 font-bold tracking-tight">
+              <h2 className="font-body-md text-3xl md:text-4xl text-brand-grape mt-2 font-bold tracking-tight">
                 Vocación, Energía y Cercanía
               </h2>
               <p className="font-body-md text-base text-on-surface-variant mt-3 leading-relaxed">

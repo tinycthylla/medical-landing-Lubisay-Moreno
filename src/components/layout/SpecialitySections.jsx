@@ -134,7 +134,6 @@ export default function SpecialitySections() {
                           <Link 
                             key={index} 
                             to={service.link}
-                            // 2. Aquí quitamos "border" y las sombras genéricas para que tome las de cardBg
                             className={`group relative p-6 rounded-3xl transition-all duration-300 flex flex-col gap-4 cursor-pointer ${cardBg}`}
                           >
                 <div className="flex items-start justify-between">

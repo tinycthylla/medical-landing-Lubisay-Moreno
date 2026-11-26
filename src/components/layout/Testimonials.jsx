@@ -78,7 +78,7 @@ export default function Testimonials() {
   }, [isHovered, maxIndex]);
 
   return (
-    <section id="testimonios" className="scroll-mt-32 w-full pt-10 md:pt-2 pb-16 md:pb-24 overflow-hidden transition-colors duration-500">
+    <section id="testimonios" className="scroll-mt-32 w-full py-16 md:py-24 overflow-hidden transition-colors duration-500">
       <div ref={sectionRef} className="opacity-0 w-full max-w-[1300px] mx-auto px-4 md:px-6">
         
         {/* Cabecera: */}

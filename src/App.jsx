@@ -12,6 +12,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Blog from './pages/Blog';
+import ScrollToTop from './components/ScrollToTop';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,6 +22,7 @@ function App() {
     <div className="bg-background min-h-screen overflow-x-hidden flex flex-col relative">
       
       {/* El Header y el Footer siempre se renderizan, sin importar la página */}
+      <ScrollToTop />
       <Header onOpenModal={() => setIsModalOpen(true)} />
       
       {/* Aquí es donde cambia el contenido según la URL */}
@@ -28,7 +31,9 @@ function App() {
         <Route path="/acerca" element={<About onOpenModal={() => setIsModalOpen(true)} />} />
         <Route path="/servicios" element={<Services onOpenModal={() => setIsModalOpen(true)} />} />
         <Route path="/blog" element={<Blog onOpenModal={() => setIsModalOpen(true)} />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
+       <Route path="/blog/:slug" element={<BlogPost onOpenModal={() => setIsModalOpen(true)} />} />
+        <Route path="/privacidad" element={<PrivacyPolicy />} />
+        
       </Routes>
       
       <Footer />

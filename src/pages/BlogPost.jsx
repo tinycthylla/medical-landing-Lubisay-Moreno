@@ -5,6 +5,7 @@ import { PortableText } from '@portabletext/react';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import FAQ from '../components/layout/FAQ';
 import FotoLuConsultorio from '../assets/img/lu_consultorio.jpg';
+import BlogLoader from '../components/UI/BlogLoader';
 
 const slugify = (text) =>
   text
@@ -27,7 +28,7 @@ const setMetaTag = (attr, key, content) => {
   element.setAttribute('content', content);
 };
 
-// Reemplaza con los enlaces reales de la Dra.
+// Social links
 const SOCIAL_LINKS = {
   instagram: 'https://www.instagram.com/dra.lubisaymoreno',
   tiktok: 'https://www.tiktok.com/@lubimorenoo',
@@ -142,16 +143,37 @@ export default function BlogPost({ onOpenModal }) {
         </ol>
       ),
     },
+    marks: {
+      link: ({ children, value }) => {
+        const href = value?.href || '';
+        const isExternal = href.startsWith('http');
+        return (
+          <a
+            href={href}
+            target={isExternal ? '_blank' : undefined}
+            rel={isExternal ? 'noopener noreferrer' : undefined}
+            className="text-brand-pink font-medium underline underline-offset-2 hover:text-[#735D83] transition-colors break-words"
+          >
+            {children}
+          </a>
+        );
+      },
+    },
   };
 
+  // Evita que al recargar el navegador restaure el scroll al final (Footer)
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
     const fetchData = async () => {
       setIsLoading(true);
       try {
         const postQuery = `*[_type == "post" && slug.current == $slug][0]{
-          title, mainImage, publishedAt, _updatedAt, body, readTime, excerpt,
+          title, mainImage, publishedAt, _updatedAt, body, excerpt,
+          "readTime": round(length(pt::text(body)) / 5 / 200),
           "category": categories[0]->title
         }`;
         const currentPost = await client.fetch(postQuery, { slug });
@@ -165,7 +187,8 @@ export default function BlogPost({ onOpenModal }) {
           setToc(headings);
 
           const recentQuery = `*[_type == "post" && slug.current != $slug] | order(publishedAt desc)[0...3]{
-            _id, title, "slug": slug.current, mainImage, publishedAt, readTime, excerpt,
+            _id, title, "slug": slug.current, mainImage, publishedAt, excerpt,
+            "readTime": round(length(pt::text(body)) / 5 / 200),
             "category": categories[0]->title
           }`;
           const recent = await client.fetch(recentQuery, { slug });
@@ -179,7 +202,22 @@ export default function BlogPost({ onOpenModal }) {
     };
 
     fetchData();
+
+    return () => {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
   }, [slug]);
+
+  // Asegura quedar arriba del todo justo al terminar de renderizar el post
+  useEffect(() => {
+    if (!isLoading) {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      });
+    }
+  }, [isLoading, slug]);
 
   useEffect(() => {
     if (!post) return;
@@ -217,6 +255,18 @@ export default function BlogPost({ onOpenModal }) {
     };
   }, [post]);
 
+  // Scroll suave hacia cada H2 desde el índice "En este artículo"
+  const handleScrollToHeading = (e, heading) => {
+    e.preventDefault();
+    const target = document.getElementById(slugify(heading));
+    if (target) {
+      const navbarOffset = 112;
+      const targetPosition =
+        target.getBoundingClientRect().top + window.scrollY - navbarOffset;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    }
+  };
+
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
@@ -234,18 +284,7 @@ export default function BlogPost({ onOpenModal }) {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center bg-surface-variant/30">
-        <span className="material-symbols-outlined text-brand-pink text-4xl animate-spin mb-4">
-          progress_activity
-        </span>
-        <p className="font-['Poppins'] text-sm text-brand-purple font-medium">
-          Cargando artículo...
-        </p>
-      </div>
-    );
-  }
+  if (isLoading) return <BlogLoader text="Cargando artículo..." />;
 
   if (!post) {
     return (
@@ -285,7 +324,7 @@ export default function BlogPost({ onOpenModal }) {
           '@type': 'Person',
           name: 'Dra. Lubisay Moreno',
           jobTitle: 'Médico Especialista en Ginecología y Obstetricia',
-          url: `${origin}/sobre-mi`,
+          url: `${origin}/acerca`,
         },
         publisher: {
           '@type': 'Organization',
@@ -311,53 +350,59 @@ export default function BlogPost({ onOpenModal }) {
       />
 
       <div className="max-w-[1140px] mx-auto px-6 md:px-8 py-8 md:py-12 w-full">
-        {/* Breadcrumb / Ruta de exploración */}
-        <nav aria-label="Ruta de exploración" className="py-3 mb-7 border-b border-pink-100">
-          <ol className="flex flex-wrap items-center gap-1.5 text-on-surface-variant font-label-md text-xs uppercase tracking-wider font-bold">
-            <li>
-              <Link to="/" className="hover:text-brand-pink transition-colors">
-                Inicio
-              </Link>
-            </li>
-            <li aria-hidden="true">
-              <span className="material-symbols-outlined text-[14px] align-middle">chevron_right</span>
-            </li>
-            <li>
-              <Link to="/blog" className="hover:text-brand-pink transition-colors">
-                Blog Médico
-              </Link>
-            </li>
-            <li aria-hidden="true">
-              <span className="material-symbols-outlined text-[14px] align-middle">chevron_right</span>
-            </li>
-            {post.category && (
-              <>
-                <li className="text-brand-purple">{post.category}</li>
-                <li aria-hidden="true">
-                  <span className="material-symbols-outlined text-[14px] align-middle">chevron_right</span>
-                </li>
-              </>
-            )}
-            <li
-              aria-current="page"
-              className="text-on-background truncate max-w-[220px] md:max-w-[420px]"
-            >
-              {post.title}
-            </li>
-          </ol>
-        </nav>
+        {/* Breadcrumb / Ruta de exploración (sin línea inferior, morado del título y activo en rosado) */}
+        <RevealOnScroll key={`breadcrumb-${slug}`}>
+          <nav aria-label="Ruta de exploración" className="py-3 mb-7">
+            <ol className="flex flex-wrap items-center gap-1.5 text-on-background font-label-md text-xs uppercase tracking-wider font-bold">
+              <li>
+                <Link to="/" className="hover:text-brand-pink transition-colors">
+                  Inicio
+                </Link>
+              </li>
+              <li aria-hidden="true" className="opacity-60">
+                <span className="material-symbols-outlined text-[14px] align-middle">
+                  chevron_right
+                </span>
+              </li>
+              <li>
+                <Link to="/blog" className="hover:text-brand-pink transition-colors">
+                  Blog Médico
+                </Link>
+              </li>
+              <li aria-hidden="true" className="opacity-60">
+                <span className="material-symbols-outlined text-[14px] align-middle">
+                  chevron_right
+                </span>
+              </li>
+              {post.category && (
+                <>
+                  <li>{post.category}</li>
+                  <li aria-hidden="true" className="opacity-60">
+                    <span className="material-symbols-outlined text-[14px] align-middle">
+                      chevron_right
+                    </span>
+                  </li>
+                </>
+              )}
+              <li
+                aria-current="page"
+                className="text-brand-pink truncate max-w-[220px] md:max-w-[420px]"
+              >
+                {post.title}
+              </li>
+            </ol>
+          </nav>
+        </RevealOnScroll>
 
         {/* Layout Principal de 2 Columnas */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          
           {/* COLUMNA IZQUIERDA: Artículo */}
           <article className="lg:col-span-8">
             <RevealOnScroll key={`header-${slug}`}>
               <header className="mb-7">
                 <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-4">
                   {post.category && (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-brand-pink border border-pink-100 shadow-sm font-label-md text-xs uppercase tracking-wider font-bold">
-                      <span className="material-symbols-outlined text-[14px]">medical_services</span>
+                    <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-white text-brand-pink border border-pink-100 shadow-sm font-label-md text-xs uppercase tracking-wider font-bold">
                       {post.category}
                     </span>
                   )}
@@ -376,7 +421,7 @@ export default function BlogPost({ onOpenModal }) {
                   )}
                   <span className="text-on-surface-variant font-label-md text-xs font-semibold flex items-center gap-1">
                     <span className="material-symbols-outlined text-[14px]">schedule</span>
-                    {post.readTime || '5 min de lectura'}
+                    {Math.max(1, post.readTime || 1)} min de lectura
                   </span>
                 </div>
 
@@ -407,7 +452,7 @@ export default function BlogPost({ onOpenModal }) {
                 <PortableText value={post.body} components={textComponents} />
               </div>
 
-              {/* Barra para Compartir (sin líneas y solo íconos) */}
+              {/* Barra para Compartir */}
               <div className="mt-10 flex flex-wrap items-center gap-5">
                 <span className="font-['Poppins'] text-xs font-medium uppercase tracking-widest text-[#735D83]">
                   Compartir:
@@ -485,12 +530,11 @@ export default function BlogPost({ onOpenModal }) {
           {/* COLUMNA DERECHA (Sidebar Sticky): Sobre la Dra. + Índice + Agendar */}
           <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
             <RevealOnScroll key={`sidebar-${slug}`} delay={160} className="space-y-6">
-
               {/* Tarjeta Editorial de la Dra. */}
               <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(68,45,82,0.08)] text-center">
                 {/* 1. Foto compacta */}
                 <Link
-                  to="/sobre-mi"
+                  to="/acerca"
                   className="block w-full max-w-[210px] aspect-square mx-auto mb-4 group rounded-2xl overflow-hidden bg-pink-50"
                 >
                   <img
@@ -504,7 +548,7 @@ export default function BlogPost({ onOpenModal }) {
 
                 {/* 2. Nombre de la Dra. */}
                 <Link
-                  to="/sobre-mi"
+                  to="/acerca"
                   className="inline-flex items-center justify-center gap-1.5 group"
                 >
                   <h2 className="font-['Poppins'] text-lg font-semibold text-[#442D52] group-hover:text-brand-pink transition-colors">
@@ -518,15 +562,15 @@ export default function BlogPost({ onOpenModal }) {
                   </span>
                 </Link>
 
-                {/* 3. Especialidad */}
+                {/* 3. Especialidad y filosofía */}
                 <p className="font-['Poppins'] text-xs font-medium text-on-surface-variant mt-0.5">
                   Ginecóloga y Obstetra
                 </p>
-                  {/* Filosofia */}
-                  <p className="font-['Poppins'] text-xs text-on-surface-variant leading-[1.45] mt-3 mb-4">
-                    Medicina basada en evidencia con trato cercano, empático y sin tabúes para acompañarte en cada etapa de tu vida.
-                    </p>
-                {/* 4. Redes Sociales (solo íconos, sin fondo) */}
+                <p className="font-['Poppins'] text-xs text-on-surface-variant leading-[1.45] mt-3 mb-4">
+                  Medicina basada en evidencia con trato cercano, empático y sin tabúes para acompañarte en cada etapa de tu vida.
+                </p>
+
+                {/* 4. Redes Sociales */}
                 <div className="flex items-center justify-center gap-5 my-5">
                   <a
                     href={SOCIAL_LINKS.instagram}
@@ -577,30 +621,28 @@ export default function BlogPost({ onOpenModal }) {
                   </a>
                 </div>
 
-                {/* 5. Botón estilo Locations */}
+                {/* 5. Botón hacia /acerca */}
                 <Link
-                  to="/sobre-mi"
-                  className="block w-full py-3 px-5 rounded-full bg-[#442D52] text-white font-['Poppins'] text-sm font-semibold hover:bg-brand-pink transition-colors shadow-sm"
+                  to="/acerca"
+                  className="block w-full py-3 px-5 rounded-full bg-brand-purple text-white font-label-md text-sm font-semibold hover:bg-brand-pink transition-colors shadow-sm"
                 >
                   Conoce más sobre mí
                 </Link>
               </div>
 
-              {/* Índice del Artículo (Solo Desktop) */}
+              {/* Índice del Artículo (Solo Desktop — blanco limpio, sin ícono ni borde, scroll suave) */}
               {toc.length > 0 && (
-                <div className="hidden lg:block p-6 bg-white rounded-3xl shadow-sm border border-pink-100">
-                  <div className="flex items-center gap-2 pb-3 mb-2">
-                    <span className="material-symbols-outlined text-brand-pink text-[19px]">list_alt</span>
-                    <p className="font-['Poppins'] font-medium text-xs text-brand-purple uppercase tracking-wider">
-                      En este artículo
-                    </p>
-                  </div>
+                <div className="hidden lg:block p-6 bg-white rounded-3xl shadow-[0_10px_30px_rgba(68,45,82,0.08)]">
+                  <p className="font-['Poppins'] text-sm font-semibold text-[#442D52] mb-3 px-2">
+                    En este artículo
+                  </p>
                   <ul className="space-y-1.5 font-['Poppins'] text-xs">
                     {toc.map((heading, index) => (
                       <li key={index}>
                         <a
                           href={`#${slugify(heading)}`}
-                          className="block py-1 px-2 rounded-lg text-on-surface-variant hover:bg-pink-50 hover:text-brand-pink transition-all"
+                          onClick={(e) => handleScrollToHeading(e, heading)}
+                          className="block py-1.5 px-2 rounded-xl text-on-surface-variant hover:bg-pink-50 hover:text-brand-pink hover:translate-x-1 transition-all duration-300"
                         >
                           {heading}
                         </a>
@@ -610,30 +652,34 @@ export default function BlogPost({ onOpenModal }) {
                 </div>
               )}
 
-              {/* Widget Compacto para Agendar */}
-              <div className="p-6 rounded-3xl bg-[#FDF4F8] border border-pink-100 shadow-sm text-center">
-                <span className="material-symbols-outlined text-brand-pink text-[28px] mb-2">
-                  calendar_month
-                </span>
-                <p className="font-['Poppins'] text-base font-medium text-[#735D83] mb-1.5">
-                  ¿Tienes dudas sobre este tema?
-                </p>
-                <p className="font-['Poppins'] text-xs text-on-surface-variant mb-4 leading-[1.45]">
-                  Agenda tu consulta ginecológica o ecografía en un espacio seguro y sin prisas.
-                </p>
-                <button
-                  type="button"
-                  onClick={onOpenModal}
-                  className="w-full py-2.5 bg-[#735D83] text-white font-['Poppins'] text-xs uppercase tracking-wider font-medium rounded-full hover:bg-brand-pink transition-colors cursor-pointer"
-                >
-                  Agendar Cita
-                </button>
+              {/* Widget Compacto para Agendar (estilo CTA morado oscuro, sin ícono, botón blanco) */}
+              <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-[#442D52] via-[#3A2447] to-[#4A2E5C] shadow-[0_10px_30px_rgba(68,45,82,0.16)] text-center">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -top-12 -left-12 w-36 h-36 rounded-full bg-[#735D83]/30 blur-2xl"
+                />
+                <div className="relative z-10">
+                  <p className="font-['Poppins'] text-lg font-semibold text-white mb-2 leading-snug">
+                    ¿Tienes dudas sobre este tema?
+                  </p>
+                  <p className="font-['Poppins'] text-xs text-white/85 mb-5 leading-[1.5]">
+                    Agenda tu consulta ginecológica o ecografía en un espacio seguro y sin prisas.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={onOpenModal}
+                    className="group w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full 
+                    bg-white text-brand-purple font-label-md font-semibold text-sm hover:bg-brand-pink-light active:scale-[0.98] 
+                    transition-all shadow-md hover:shadow-lg cursor-pointer">
+                    Agendar Cita
+                  </button>
+                </div>
               </div>
             </RevealOnScroll>
           </aside>
         </div>
 
-        {/* Últimos Posts Más Recientes (sin línea divisoria superior) */}
+        {/* Últimos Posts Más Recientes */}
         {recentPosts.length > 0 && (
           <RevealOnScroll key={`recent-${slug}`}>
             <section className="mt-16 pt-4" aria-labelledby="recent-posts-heading">
@@ -718,12 +764,15 @@ export default function BlogPost({ onOpenModal }) {
         )}
       </div>
 
-      {/* Componentes Globales Finales */}
-      <div className="max-w-[1200px] mx-auto w-full">
-        <FAQ />
-      </div>
-      <CtaDetailed onOpenModal={onOpenModal} />
-      
+      {/* Componentes Globales Finales con transición */}
+      <RevealOnScroll key={`faq-${slug}`}>
+        <div className="max-w-[1200px] mx-auto w-full">
+          <FAQ />
+        </div>
+      </RevealOnScroll>
+      <RevealOnScroll key={`cta-${slug}`}>
+        <CtaDetailed onOpenModal={onOpenModal} />
+      </RevealOnScroll>
     </main>
   );
 }

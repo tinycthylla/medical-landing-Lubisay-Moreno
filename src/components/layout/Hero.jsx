@@ -16,7 +16,7 @@ export default function Hero({ onOpenModal }) {
         </div>
 
           {/* Título Principal: */}
-          <h1 className="text-4xl md:text-6xl lg:text-[65px] font-body-md font-bold text-on-background leading-[1.05] tracking-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-[65px] font-body-md font-black text-on-background leading-[1.08] tracking-tight">
             Acompañamiento <br className="hidden md:block" />
             médico desde tu <br className="hidden md:block" />
             primera consulta
@@ -28,9 +28,9 @@ export default function Hero({ onOpenModal }) {
 
           {/* Botón CTA y Checkmarks */}
           <div className="flex flex-col items-center md:items-start gap-3 w-full">
-            <button 
+            <button
               onClick={onOpenModal}
-              className="w-full max-w-[280px] md:w-auto py-3.5 px-8 rounded-full bg-whatsapp text-white font-label-md text-sm shadow-md hover:opacity-80 active:scale-[0.98] transition-all flex items-center justify-center gap-2" 
+              className="w-full max-w-[280px] md:w-auto py-3.5 px-8 rounded-full bg-whatsapp text-white font-['Poppins'] font-semibold text-sm shadow-md hover:opacity-80 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
               type="button"
             >
               <span>Agendar mi cita</span>

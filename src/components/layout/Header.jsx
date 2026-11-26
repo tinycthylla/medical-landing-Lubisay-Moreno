@@ -69,9 +69,9 @@ export default function Header({ onOpenModal }) {
 
         {/* 3. DERECHA: Botón Agendar */}
         <div className="shrink-0">
-          <button 
+          <button
             onClick={onOpenModal}
-            className="bg-whatsapp text-on-secondary px-4 py-2 md:px-6 md:py-2.5 rounded-full font-label-md hover:opacity-80 transition-all duration-200 flex items-center gap-1 shadow-md"
+            className="bg-whatsapp text-on-secondary px-4 py-2 md:px-6 md:py-2.5 rounded-full font-['Poppins'] font-semibold hover:opacity-80 transition-all duration-200 flex items-center gap-1 shadow-md"
           >
             <span className="hidden md:inline">Agendar mi cita</span>
             <span className="md:hidden text-xs">Agendar cita</span>

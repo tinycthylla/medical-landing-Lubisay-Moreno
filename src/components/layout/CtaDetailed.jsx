@@ -19,7 +19,7 @@ export default function CtaDetailed({ onOpenModal }) {
               Agenda tu cita hoy y vive una experiencia médica diferente
             </h2>
             
-            <p className="font-body-md text-pink-50/90 text-sm md:text-base leading-relaxed max-w-xl mb-8">
+            <p className="font-body-md text-brand-pink-light/90 text-sm md:text-base leading-relaxed max-w-xl mb-8">
               Permíteme acompañarte con calidez, tiempo exclusivo y la más avanzada precisión diagnóstica en un entorno diseñado para tu bienestar y serenidad.
             </p>
 
@@ -27,18 +27,18 @@ export default function CtaDetailed({ onOpenModal }) {
             <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
               {/* Botón de Llamar */}
               <a 
-                href="tel:+582129852244"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-brand-purple font-label-md font-bold text-sm hover:bg-pink-50 active:scale-[0.98] transition-all shadow-md hover:shadow-lg"
+                href="tel:+584129360494"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-brand-purple font-label-md font-semibold text-sm hover:bg-brand-pink-light active:scale-[0.98] transition-all shadow-md hover:shadow-lg"
               >
                 <span className="material-symbols-outlined text-[18px]">call</span>
-                <span>+58 (212) 985-2244</span>
+                <span>+58 412 936 0494</span>
               </a>
 
               {/* Botón de WhatsApp con el SVG oficial */}
               <button 
                 onClick={onOpenModal}
                 type="button"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/20 font-label-md font-semibold text-sm active:scale-[0.98] transition-all shadow-sm backdrop-blur-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/20 font-label-md font-semibold text-sm active:scale-[0.98] transition-all shadow-sm backdrop-blur-sm cursor-pointer"
               >
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -54,22 +54,24 @@ export default function CtaDetailed({ onOpenModal }) {
             </div>
           </div>
           
-          {/* Columna Derecha: Tarjeta de Horarios, Correo y Ubicación */}
+          {/* Columna Derecha: Tarjeta de Horarios, Correo y Ubicaciones */}
           <div className="lg:col-span-5 w-full">
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-white/15 flex flex-col gap-6 text-left shadow-inner">
+            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-white/15 flex flex-col gap-5 text-left shadow-inner">
               
-              {/* Horario de Consulta */}
+              {/* Horarios de Consulta */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-pink-200 mt-0.5">
                   <span className="material-symbols-outlined text-[20px]">schedule</span>
                 </div>
                 <div className="flex flex-col">
                   <h3 className="font-headline-sm font-normal text-white text-base leading-snug">
-                    Horario de Consulta Privada
+                    Horarios de Consulta
                   </h3>
-                  <p className="font-body-md text-xs sm:text-sm text-pink-100/80 mt-1">
-                    Lunes a Viernes: 8:00 AM – 5:00 PM
-                  </p>
+                  <ul className="font-body-md text-xs sm:text-sm text-pink-100/85 mt-1.5 space-y-1">
+                    <li><strong className="text-white font-medium">Lunes:</strong> 9:00 AM – 4:00 PM (Niña Madre)</li>
+                    <li><strong className="text-white font-medium">Jueves:</strong> 1:00 PM (Impremer Salud)</li>
+                    <li><strong className="text-white font-medium">Vie 2:00 PM y Sáb:</strong> previa cita (Médicos DR)</li>
+                  </ul>
                 </div>
               </div>
 
@@ -83,26 +85,49 @@ export default function CtaDetailed({ onOpenModal }) {
                     Consultas & Resultados
                   </h3>
                   <a 
-                    href="mailto:consulta@dralubisaymoreno.com" 
-                    className="font-body-md text-xs sm:text-sm text-pink-100/80 mt-1 hover:text-white underline-offset-2 hover:underline transition-colors break-all"
+                    href="mailto:morenolubisay@gmail.com" 
+                    className="font-body-md text-xs sm:text-sm text-pink-100/85 mt-1 hover:text-white underline-offset-2 hover:underline transition-colors break-all"
                   >
-                    consulta@dralubisaymoreno.com
+                    morenolubisay@gmail.com
                   </a>
                 </div>
               </div>
 
-              {/* Ubicación */}
+              {/* Ubicaciones (con enlaces a Google Maps) */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-pink-200 mt-0.5">
                   <span className="material-symbols-outlined text-[20px]">location_on</span>
                 </div>
                 <div className="flex flex-col">
                   <h3 className="font-headline-sm font-normal text-white text-base leading-snug">
-                    Ubicación
+                    Ubicaciones
                   </h3>
-                  <p className="font-body-md text-xs sm:text-sm text-pink-100/80 mt-1">
-                    Suite 402, Centro San Gabriel, Caracas
-                  </p>
+                  <div className="font-body-md text-xs sm:text-sm text-pink-100/85 mt-1.5 flex flex-col gap-1">
+                    <a
+                      href="https://maps.app.goo.gl/tT9hDW28kp9aR4Nx8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white underline-offset-2 hover:underline transition-colors"
+                    >
+                      A.C. Niña Madre · Coche, Caracas
+                    </a>
+                    <a
+                      href="https://maps.app.goo.gl/3DKzT48KWtroA9nw5"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white underline-offset-2 hover:underline transition-colors"
+                    >
+                      Impremer Salud · C.E. Coliseo, San Antonio
+                    </a>
+                    <a
+                      href="https://maps.app.goo.gl/3cn21aB2vvQgNEha9"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white underline-offset-2 hover:underline transition-colors"
+                    >
+                      Servicios Médicos DR · Perimetral, San Antonio
+                    </a>
+                  </div>
                 </div>
               </div>
 
