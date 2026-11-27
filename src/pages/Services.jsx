@@ -3,25 +3,10 @@ import { useLocation } from 'react-router-dom';
 import Testimonials from '../components/layout/Testimonials';
 import Locations from '../components/layout/Locations';
 import CtaDetailed from '../components/layout/CtaDetailed';
+import { SERVICES } from '../data/services';
 
-
-import fotoPregnant from '../assets/img/woman_pregnant.webp';
-import fotoEco from '../assets/img/ecography.webp';
-import fotoUterus from '../assets/img/ginecology.webp';
-import fotoContraceptives from '../assets/img/contraceptives.webp';
-import fotoObstetricia from '../assets/img/obstetricia.webp';
-import fotoSex_education from '../assets/img/sexual_education.webp';
-import FotoMenopause from '../assets/img/menopause.webp';
 import fotoLufilosofia2 from '../assets/img/lufilosofia2.png';
 import fotoLusentada2 from '../assets/img/lu_sentada2.webp';
-
-import iconPrenatal from '../assets/icons/icono-prenatal.svg';
-import iconEco from '../assets/icons/icono-eco.svg';
-import iconGineco from '../assets/icons/icono-gineco.svg';
-import iconPlan from '../assets/icons/icono-plan.svg';
-import iconObste from '../assets/icons/icono-obste.svg';
-import iconSexual from '../assets/icons/icono-sexual.svg';
-import iconMeno from '../assets/icons/icono-meno.svg';
 
 const consultationIncludes = [
   {
@@ -47,68 +32,6 @@ const consultationIncludes = [
   {
     title: "Ecografía detallada (Opcional):",
     text: "Si lo necesitas, complementamos tu chequeo con un ultrasonido pélvico o transvaginal para una visión mucho más profunda y precisa."
-  }
-];
-
-const quickServices = [
-  { title: "Control Prenatal", image: iconPrenatal, target: "control-prenatal" },
-  { title: "Ecografías Integrales", image: iconEco, target: "ecografias" },
-  { title: "Ginecología General", image: iconGineco, target: "ginecologia" },
-  { title: "Planificación Familiar", image: iconPlan, target: "planificacion" },
-  { title: "Control Obstétrico", image: iconObste, target: "control-obstetrico" },
-  { title: "Salud Sexual", image: iconSexual, target: "salud-sexual" },
-  { title: "Menopausia", image: iconMeno, target: "menopausia" }
-];
-
-const detailedServices = [
-  {
-    id: "control-prenatal",
-    title: "Control Prenatal Humanizado",
-    description: "Acompañamos cada etapa de tu embarazo para asegurar tu bienestar físico y el de tu bebé. Realizamos los chequeos mensuales necesarios, monitoreando el crecimiento fetal y previniendo cualquier complicación. Nuestro objetivo es que vivas esta etapa con total tranquilidad, sintiéndote segura y respaldada hasta el día del parto.",
-    image: fotoPregnant,
-    alt: "Control Prenatal"
-  },
-  {
-    id: "ecografias",
-    title: "Ecografías Integrales",
-    description: "Utilizamos tecnología de ultrasonido avanzado para obtener imágenes precisas de tu sistema reproductivo. Este estudio rápido y sin dolor nos permite evaluar la salud de tu útero y ovarios, detectar quistes o hacer seguimiento gestacional. Es una herramienta clave para darte un diagnóstico certero y mantener tu salud preventiva al día.",
-    image: fotoEco,
-    alt: "Ecografía Integral"
-  },
-  {
-    id: "ginecologia",
-    title: "Ginecología General",
-    description: "Cuidamos tu salud reproductiva a través del chequeo anual preventivo, fundamental en cualquier etapa de tu vida. Realizamos evaluaciones físicas rutinarias, citologías (Papanicolaou) y despistaje de alteraciones para confirmar que todo esté en orden. Es el momento ideal para tratar infecciones, revisar síntomas atípicos y asegurarte de estar sana al 100%.",
-    image: fotoUterus,
-    alt: "Ginecología General"
-  },
-  {
-    id: "planificacion",
-    title: "Planificación Familiar",
-    description: "Te orientamos para que elijas el método anticonceptivo que mejor se adapte a tu cuerpo, rutina y planes a futuro. Evaluamos opciones como el DIU, pastillas o implantes, explicándote cómo funcionan y sus beneficios. Tú tienes el control total sobre tu fertilidad; nosotras te brindamos la guía médica para que decidas bien informada.",
-    image: fotoContraceptives,
-    alt: "Planificación Familiar"
-  },
-  {
-    id: "control-obstetrico",
-    title: "Control Obstétrico",
-    description: "Nos encargamos del seguimiento clínico y la planificación médica integral durante tu gestación. Evaluamos tus laboratorios, ecos e historial para diseñar un plan de parto seguro y adaptado a ti. Estamos aquí para resolver tus dudas médicas, vigilar tu evolución y preparar tu cuerpo para dar a luz en las mejores condiciones.",
-    image: fotoObstetricia,
-    alt: "Control Obstétrico"
-  },
-  {
-    id: "salud-sexual",
-    title: "Salud Sexual y Prevención",
-    description: "Te ofrecemos un espacio seguro, confidencial y sin juicios para hablar abiertamente sobre tu sexualidad. Resolvemos tus inquietudes sobre prevención de infecciones, higiene, placer y el funcionamiento de tu cuerpo. Queremos darte herramientas claras y actualizadas para que tomes decisiones libres, responsables y saludables sobre tu vida íntima.",
-    image: fotoSex_education,
-    alt: "Salud Sexual"
-  },
-  {
-    id: "menopausia",
-    title: "Bienestar en la Menopausia",
-    description: "Te acompañamos en esta transición natural para que la vivas con vitalidad y sin molestias que limiten tu día a día. Evaluamos tus síntomas físicos y cambios hormonales para ofrecerte tratamientos efectivos y recomendaciones de estilo de vida. Enfocamos nuestra atención en proteger tu bienestar a largo plazo para que disfrutes plenamente esta etapa.",
-    image: FotoMenopause,
-    alt: "Menopausia"
   }
 ];
 
@@ -219,17 +142,17 @@ export default function Services({ onOpenModal }) {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-8 md:gap-4 mb-10">
-              {quickServices.map((service, index) => (
+              {SERVICES.map((service) => (
                 <a 
-                  key={index} 
-                  href={`#${service.target}`}
+                  key={service.id} 
+                  href={`#${service.id}`}
                   className="flex flex-col items-center text-center p-2 hover:-translate-y-2 transition-transform cursor-pointer group"
                 >
                   <div className="w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-4">
-                    <img src={service.image} alt={service.title} className="w-full h-full object-contain" />
+                    <img src={service.icon} alt={service.quickLabel} className="w-full h-full object-contain" />
                   </div>
                   <h3 className="font-bold text-sm md:text-base text-on-background leading-snug group-hover:text-brand-pink transition-colors">
-                    {service.title}
+                    {service.quickLabel}
                   </h3>
                 </a>
               ))}
@@ -262,7 +185,7 @@ export default function Services({ onOpenModal }) {
           </div>
 
           <div className="space-y-12 lg:space-y-20">
-            {detailedServices.map((service, index) => {
+            {SERVICES.map((service, index) => {
               const isEven = index % 2 === 0;
 
               return (
@@ -290,11 +213,11 @@ export default function Services({ onOpenModal }) {
                     }`}
                   >
                     <h3 className="text-2xl md:text-3xl font-body-md font-bold text-on-background mb-3 md:mb-4">
-                      {service.title}
+                      {service.detailedTitle}
                     </h3>
                     
                     <p className="text-sm md:text-base font-body-md text-on-surface-variant mb-6 md:mb-8 leading-relaxed">
-                      {service.description}
+                      {service.detailedDescription}
                     </p>
                     
                     <button 

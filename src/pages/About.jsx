@@ -10,6 +10,8 @@ import FotoLuGineco from '../assets/img/lu_gineco.JPG';
 import FotoLuXtremeBike from '../assets/img/lu_xtremebike.webp';
 import FotoLuEquipo from '../assets/img/lu_equipo.webp';
 import { useState, useEffect, useRef } from 'react';
+import { DOCTOR_INFO } from '../data/clinicInfo';
+import { CurvedArrowLeftIcon, CurvedArrowRightIcon } from '../components/UI/Icons';
 
 function RevealOnScroll({ children }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -118,9 +120,7 @@ export default function About({ onOpenModal }) {
                   <span className="font-light">Soy médico</span><br />
                   <span className="font-bold">Ginecólogo y Obstetra</span>
                 </p>
-                <svg className="w-14 sm:w-16 h-auto fill-white mt-2 mr-1" viewBox="0 0 387.35 266.61">
-                  <path d="m382.27,253.77c-31.65-7.05-60.93-24.29-82.45-48.55-5.71-6.44-11.22-13.69-16.54-20.69-15.25-20.06-31.01-40.81-55.62-49.23-27.23-9.31-55.02-.27-81.9,8.47-3.13,1.02-6.25,2.03-9.34,3.01-24.91,7.86-58.72,13.22-78.4-5.84-7.36-7.13-12.52-17.41-16.25-32.35-4.96-19.88-5.92-41.03-2.85-61.65l19.98,15.4c-7.46-17.29-11.61-42.67-12.5-62.34C34.23,15.49,16.12,33.74,0,43.49l26.45-.99c-3.78,23.09-2.88,46.89,2.69,69.23,4.34,17.4,10.64,29.64,19.82,38.54,19.21,18.62,50.8,21.7,91.35,8.91,3.13-.99,6.28-2.01,9.45-3.04,24.85-8.08,50.55-16.44,73.67-8.53,20.86,7.14,34.76,25.43,49.48,44.79,5.47,7.2,11.13,14.64,17.17,21.45,23.32,26.29,55.05,44.97,89.35,52.61.48.11.95.16,1.42.16,2.98,0,5.66-2.06,6.34-5.09.78-3.5-1.43-6.98-4.93-7.76Z"/>
-                </svg>
+                <CurvedArrowLeftIcon className="w-14 sm:w-16 h-auto fill-white mt-2 mr-1" />
               </div>
 
               <div className="absolute left-1/2 bottom-0 -translate-x-1/2 h-[92%] md:h-[105%] w-max z-10 flex justify-center items-end">
@@ -138,9 +138,7 @@ export default function About({ onOpenModal }) {
                   <span className="font-bold">control prenatal</span><br />
                   <span className="font-bold">y la salud hormonal.</span>
                 </p>
-                <svg className="w-20 sm:w-24 h-auto fill-white mr-20 -mt-2" viewBox="0 0 598.78 347.61">
-                  <path d="m598.78,304.41c-12.56-14.04-24.53-36.79-31.61-55.17-6.61,18.54-18.01,41.59-30.21,55.94l22.37-8.41c-9.52,24.6-33.37,39.18-63.28,37.74h-.24s-.24,0-.24,0c-50.44,1.37-123.42-72.15-200.7-149.99-49.16-49.52-99.99-100.72-149-136.58C89.08,6.37,42.85-7.95,4.54,4.14,1.12,5.22-.78,8.88.3,12.3c1.08,3.42,4.73,5.32,8.16,4.24,34.08-10.76,76.52,2.94,129.73,41.88,48.18,35.26,98.64,86.09,147.45,135.25,78.53,79.1,152.74,153.85,208.61,153.85.48,0,.96,0,1.43-.02,1.5.07,2.98.1,4.46.1,18.29,0,34.79-5.17,47.96-15.07,12.24-9.2,20.93-21.89,25.37-36.93l25.32,8.8Z"/>
-                </svg>
+                <CurvedArrowRightIcon className="w-20 sm:w-24 h-auto fill-white mr-20 -mt-2" />
               </div>
 
               {/* Atributos Desktop */}
@@ -161,9 +159,7 @@ export default function About({ onOpenModal }) {
                   <span className="font-bold">general hasta el control prenatal</span><br />
                   <span className="font-bold">y la salud hormonal.</span>
                 </p>
-                <svg className="w-16 lg:w-[85px] h-auto fill-white mt-2 -mr-10" viewBox="0 0 387.35 266.61">
-                  <path d="m382.27,253.77c-31.65-7.05-60.93-24.29-82.45-48.55-5.71-6.44-11.22-13.69-16.54-20.69-15.25-20.06-31.01-40.81-55.62-49.23-27.23-9.31-55.02-.27-81.9,8.47-3.13,1.02-6.25,2.03-9.34,3.01-24.91,7.86-58.72,13.22-78.4-5.84-7.36-7.13-12.52-17.41-16.25-32.35-4.96-19.88-5.92-41.03-2.85-61.65l19.98,15.4c-7.46-17.29-11.61-42.67-12.5-62.34C34.23,15.49,16.12,33.74,0,43.49l26.45-.99c-3.78,23.09-2.88,46.89,2.69,69.23,4.34,17.4,10.64,29.64,19.82,38.54,19.21,18.62,50.8,21.7,91.35,8.91,3.13-.99,6.28-2.01,9.45-3.04,24.85-8.08,50.55-16.44,73.67-8.53,20.86,7.14,34.76,25.43,49.48,44.79,5.47,7.2,11.13,14.64,17.17,21.45,23.32,26.29,55.05,44.97,89.35,52.61.48.11.95.16,1.42.16,2.98,0,5.66-2.06,6.34-5.09.78-3.5-1.43-6.98-4.93-7.76Z"/>
-                </svg>
+                <CurvedArrowLeftIcon className="w-16 lg:w-[85px] h-auto fill-white mt-2 -mr-10" />
               </div>
 
               <div className="hidden md:flex flex-col items-end absolute bottom-[12%] left-[5%] lg:left-[8%] z-20">
@@ -205,9 +201,7 @@ export default function About({ onOpenModal }) {
               </div>
 
               <div className="hidden md:flex items-end absolute bottom-[12%] right-[5%] lg:right-[8%] z-20">
-                <svg className="w-24 lg:w-[115px] h-auto fill-white mr-2 translate-y-4" viewBox="0 0 598.78 347.61">
-                  <path d="m598.78,304.41c-12.56-14.04-24.53-36.79-31.61-55.17-6.61,18.54-18.01,41.59-30.21,55.94l22.37-8.41c-9.52,24.6-33.37,39.18-63.28,37.74h-.24s-.24,0-.24,0c-50.44,1.37-123.42-72.15-200.7-149.99-49.16-49.52-99.99-100.72-149-136.58C89.08,6.37,42.85-7.95,4.54,4.14,1.12,5.22-.78,8.88.3,12.3c1.08,3.42,4.73,5.32,8.16,4.24,34.08-10.76,76.52,2.94,129.73,41.88,48.18,35.26,98.64,86.09,147.45,135.25,78.53,79.1,152.74,153.85,208.61,153.85.48,0,.96,0,1.43-.02,1.5.07,2.98.1,4.46.1,18.29,0,34.79-5.17,47.96-15.07,12.24-9.2,20.93-21.89,25.37-36.93l25.32,8.8Z"/>
-                </svg>
+                <CurvedArrowRightIcon className="w-24 lg:w-[115px] h-auto fill-white mr-2 translate-y-4" />
                 <p className="text-white text-left text-sm lg:text-[17px] leading-snug">
                   <span className="font-light">Cuidar tu cuerpo por dentro</span><br />
                   <span className="font-light">y por fuera es</span><br />
@@ -224,7 +218,7 @@ export default function About({ onOpenModal }) {
                 className="w-24 sm:w-28 md:w-36 h-auto brightness-0 invert mb-1 md:mb-0"
               />
               <span className="text-white/90 font-bold text-[8px] sm:text-[10px] md:text-xs tracking-[0.08em] md:tracking-[0.12em] uppercase">
-                M.P.P.S. 128037 | C.M.D.M.C. 37329
+                {DOCTOR_INFO.credentials}
               </span>
             </div>
 

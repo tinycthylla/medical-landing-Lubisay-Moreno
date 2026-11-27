@@ -1,40 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import logoFullColor from '../../assets/icons/logofullcolor.svg';
-
-const SEDES_INFO = {
-  nina_madre: {
-    name: 'Asociación Civil Niña Madre',
-    shortName: 'Niña Madre',
-    shortDays: 'Lunes',
-    schedule: 'Lunes · 9:00 am a 4:00 pm',
-    allowedDays: [1], // 0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb
-  },
-  dr: {
-    name: 'Servicios Médicos DR',
-    shortName: 'Médicos DR',
-    shortDays: 'Vie y Sáb',
-    schedule: 'Viernes 2:00 pm · Sábados previa cita',
-    allowedDays: [5, 6],
-  },
-  impremer: {
-    name: 'Impremer Salud',
-    shortName: 'Impremer',
-    shortDays: 'Jueves',
-    schedule: 'Jueves · 1:00 pm',
-    allowedDays: [4],
-  },
-};
-
-const MOTIVOS = [
-  { value: 'Control Prenatal', label: 'Control Prenatal' },
-  { value: 'Ecografía Obstétrica', label: 'Ecografías' },
-  { value: 'Ginecología General', label: 'Ginecología General' },
-  { value: 'Planificación Familiar', label: 'Planificación Familiar' },
-  { value: 'Control Obstétrico', label: 'Control Obstétrico' },
-  { value: 'Salud Sexual', label: 'Salud Sexual y Prevención' },
-  { value: 'Menopausia', label: 'Menopausia' },
-  { value: 'Otro', label: 'Otro' },
-];
+import { CLINICS, CLINICS_BY_ID, DOCTOR_INFO } from '../../data/clinicInfo';
+import { BOOKING_REASONS } from '../../data/services';
 
 const MONTHS_ES = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -50,7 +17,7 @@ function getTomorrowStart() {
 }
 
 function getFirstAvailableMonth(sedeKey) {
-  const allowed = SEDES_INFO[sedeKey].allowedDays;
+  const allowed = CLINICS_BY_ID[sedeKey].allowedDays;
   const tomorrow = getTomorrowStart();
   const year = tomorrow.getFullYear();
   const month = tomorrow.getMonth();
@@ -169,19 +136,19 @@ export default function BookingModal({ isOpen, onClose }) {
       return;
     }
 
-    const sedeName = SEDES_INFO[formData.sede].name;
+    const sedeName = CLINICS_BY_ID[formData.sede].name;
     const readableDate = formatReadableDate(formData.fecha);
 
     const text = `Hola Dra. Lubisay, quiero agendar una cita.\n\n*Nombre:* ${formData.nombre}\n*Edad:* ${formData.edad}\n*Cédula:* ${formData.cedula}\n*Sede:* ${sedeName}\n*Motivo:* ${formData.motivo}\n*Fecha deseada:* ${readableDate}`;
 
     const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/584129360494?text=${encodedText}`;
+    const whatsappUrl = `${DOCTOR_INFO.whatsappUrl}?text=${encodedText}`;
 
     window.open(whatsappUrl, '_blank');
     handleClose();
   };
 
-  const selectedSede = formData.sede ? SEDES_INFO[formData.sede] : null;
+  const selectedSede = formData.sede ? CLINICS_BY_ID[formData.sede] : null;
   const inputBaseClass =
     'w-full rounded-xl bg-brand-pink-light/40 border border-brand-purple/10 px-3.5 py-2.5 text-sm font-body-md text-brand-purple placeholder:text-brand-grape/50 focus:outline-none focus:border-brand-pink focus:bg-white transition-all';
 
@@ -247,13 +214,13 @@ export default function BookingModal({ isOpen, onClose }) {
                 </label>
 
                 <div className="grid grid-cols-3 gap-2 mb-3">
-                  {Object.entries(SEDES_INFO).map(([key, info]) => {
-                    const isSelected = formData.sede === key;
+                  {CLINICS.map((info) => {
+                    const isSelected = formData.sede === info.id;
                     return (
                       <button
-                        key={key}
+                        key={info.id}
                         type="button"
-                        onClick={() => handleSelectSede(key)}
+                        onClick={() => handleSelectSede(info.id)}
                         className={`px-2 py-2 rounded-2xl text-center transition-all border cursor-pointer ${
                           isSelected
                             ? 'bg-brand-purple text-white border-brand-purple shadow-md'
@@ -462,7 +429,7 @@ export default function BookingModal({ isOpen, onClose }) {
                       <option value="" disabled>
                         Seleccionar motivo...
                       </option>
-                      {MOTIVOS.map((m) => (
+                      {BOOKING_REASONS.map((m) => (
                         <option key={m.value} value={m.value}>
                           {m.label}
                         </option>

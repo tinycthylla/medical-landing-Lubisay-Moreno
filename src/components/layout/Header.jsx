@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoIcon from "../../assets/icons/isotipo_rosa.svg";
 import logoText from "../../assets/icons/logotipo_lila.svg";
+import { SERVICES } from '../../data/services';
 
 export default function Header({ onOpenModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,13 +39,17 @@ export default function Header({ onOpenModal }) {
   </Link>
   
   <div className="absolute top-full left-1/2 -translate-x-1/2 w-56 bg-surface border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
-    <Link to="/servicios#control-prenatal" className="block px-4 py-3 font-body-md text-sm text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink border-b border-gray-100 transition-colors">Control Prenatal</Link>
-    <Link to="/servicios#ecografias" className="block px-4 py-3 font-body-md text-sm text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink border-b border-gray-100 transition-colors">Ecografías Integrales</Link>
-    <Link to="/servicios#ginecologia" className="block px-4 py-3 font-body-md text-sm text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink border-b border-gray-100 transition-colors">Ginecología General</Link>
-    <Link to="/servicios#planificacion" className="block px-4 py-3 font-body-md text-sm text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink border-b border-gray-100 transition-colors">Planificación Familiar</Link>
-    <Link to="/servicios#control-obstetrico" className="block px-4 py-3 font-body-md text-sm text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink border-b border-gray-100 transition-colors">Control Obstétrico</Link>
-    <Link to="/servicios#salud-sexual" className="block px-4 py-3 font-body-md text-sm text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink border-b border-gray-100 transition-colors">Salud Sexual</Link>
-    <Link to="/servicios#menopausia" className="block px-4 py-3 font-body-md text-sm text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink transition-colors">Bienestar en la Menopausia</Link>
+    {SERVICES.map((service, index) => (
+      <Link
+        key={service.id}
+        to={service.href}
+        className={`block px-4 py-3 font-body-md text-sm text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink transition-colors${
+          index < SERVICES.length - 1 ? ' border-b border-gray-100' : ''
+        }`}
+      >
+        {service.headerDesktopLabel}
+      </Link>
+    ))}
   </div>
 </div>
 
@@ -82,13 +87,18 @@ export default function Header({ onOpenModal }) {
             {isServicesOpen && (
               <div className="flex flex-col pl-4 mt-2 bg-pink-50 rounded-md">
                 <Link to="/servicios" onClick={closeMenu} className="text-sm font-bold text-pink-500 py-3 border-b border-white">Ver todos los servicios</Link>
-                <Link to="/servicios#control-prenatal" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Control Prenatal</Link>
-                <Link to="/servicios#ecografias" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Ecografías</Link>
-                <Link to="/servicios#ginecologia" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Ginecología General</Link>
-                <Link to="/servicios#planificacion" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Planificación Familiar</Link>
-                <Link to="/servicios#control-obstetrico" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Control Obstétrico</Link>
-                <Link to="/servicios#salud-sexual" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Salud Sexual</Link>
-                <Link to="/servicios#menopausia" onClick={closeMenu} className="text-sm text-on-surface-variant py-3">Menopausia</Link>
+                {SERVICES.map((service, index) => (
+                  <Link
+                    key={service.id}
+                    to={service.href}
+                    onClick={closeMenu}
+                    className={`text-sm text-on-surface-variant py-3${
+                      index < SERVICES.length - 1 ? ' border-b border-white' : ''
+                    }`}
+                  >
+                    {service.headerMobileLabel}
+                  </Link>
+                ))}
               </div>
             )}
           </div>

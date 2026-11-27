@@ -1,12 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import iconPrenatal from '../../assets/icons/icono-prenatal.svg';
-import iconEco from '../../assets/icons/icono-eco.svg';
-import iconGineco from '../../assets/icons/icono-gineco.svg';
-import iconPlan from '../../assets/icons/icono-plan.svg';
-import iconObste from '../../assets/icons/icono-obste.svg';
-import iconSexual from '../../assets/icons/icono-sexual.svg';
-import iconMeno from '../../assets/icons/icono-meno.svg';
+import { SERVICES } from '../../data/services';
 
 export default function SpecialitySections() {
   const sectionRef = useRef(null);
@@ -36,58 +30,6 @@ export default function SpecialitySections() {
     };
   }, []);
 
-  const services = [
-    {
-      title: "Control Prenatal",
-      description: "Seguimiento completo de tu embarazo para asegurar el bienestar de ambos en cada trimestre.",
-      badge: "Trimestral",
-      icon: iconPrenatal,
-      link: "/servicios#control-prenatal"
-    },
-    {
-      title: "Ecografías",
-      description: "Estudios ecográficos detallados de alta resolución obstétricos y ginecológicos.",
-      badge: "Alta Definición",
-      icon: iconEco,
-      link: "/servicios#ecografias"
-    },
-    {
-      title: "Ginecología General",
-      description: "Chequeos rutinarios, Papanicolaou, citología y cuidado preventivo integral.",
-      badge: "Integral",
-      icon: iconGineco,
-      link: "/servicios#ginecologia"
-    },
-    {
-      title: "Planificación Familiar",
-      description: "Asesoría médica especializada para elegir el método anticonceptivo que mejor se adapte a ti.",
-      badge: "Prevención",
-      icon: iconPlan,
-      link: "/servicios#planificacion"
-    },
-    {
-      title: "Control Obstétrico",
-      description: "Atención especializada durante la gestación, el parto y el puerperio.",
-      badge: "Especializado",
-      icon: iconObste,
-      link: "/servicios#control-obstetrico"
-    },
-    {
-      title: "Salud Sexual y Prevención",
-      description: "Orientación, diagnóstico y tratamiento para una vida íntima segura y saludable.",
-      badge: "Cuidado",
-      icon: iconSexual,
-      link: "/servicios#salud-sexual"
-    },
-    {
-      title: "Bienestar en la Menopausia",
-      description: "Manejo integral de los síntomas para una mejor calidad de vida y bienestar hormonal.",
-      badge: "Plenitud",
-      icon: iconMeno,
-      link: "/servicios#menopausia"
-    }
-  ];
-
   return (
     <section className="w-full px-6 pt-2 md:pt-12 pb-6 md:pb-20 md:max-w-[1200px] md:mx-auto">
       <div ref={sectionRef} className="opacity-0">
@@ -109,7 +51,7 @@ export default function SpecialitySections() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 md:mt-12">
-          {services.map((service, index) => {
+          {SERVICES.map((service, index) => {
             const isPink = index % 2 === 0;
 
                         const cardBg = isPink 
@@ -130,14 +72,14 @@ export default function SpecialitySections() {
 
                         return (
                           <Link 
-                            key={index} 
-                            to={service.link}
+                            key={service.id} 
+                            to={service.href}
                             className={`group relative p-6 rounded-3xl transition-all duration-300 flex flex-col gap-4 cursor-pointer ${cardBg}`}
                           >
                 <div className="flex items-start justify-between">
                   <img 
                     src={service.icon} 
-                    alt={`Ícono de ${service.title}`} 
+                    alt={`Ícono de ${service.cardTitle}`} 
                     className="w-14 h-14 object-contain transition-transform duration-300 group-hover:scale-110" 
                   />
 
@@ -148,10 +90,10 @@ export default function SpecialitySections() {
 
                 <div className="flex flex-col gap-1 mt-2 flex-grow">
                   <h3 className={`text-lg font-bold text-on-background font-body-md transition-colors duration-150 ${hoverText}`}>
-                    {service.title}
+                    {service.cardTitle}
                   </h3>
                   <p className="text-sm text-on-surface-variant mt-1 font-body-md">
-                    {service.description}
+                    {service.cardDescription}
                   </p>
                 </div>
 

@@ -6,6 +6,14 @@ import CtaDetailed from '../components/layout/CtaDetailed';
 import FAQ from '../components/layout/FAQ';
 import FotoLuConsultorio from '../assets/img/lu_consultorio.webp';
 import BlogLoader from '../components/UI/BlogLoader';
+import { SOCIAL_LINKS } from '../data/clinicInfo';
+import {
+  FacebookIcon,
+  InstagramIcon,
+  TikTokIcon,
+  WhatsAppIcon,
+  XIcon,
+} from '../components/UI/Icons';
 
 const slugify = (text) =>
   text
@@ -26,14 +34,6 @@ const setMetaTag = (attr, key, content) => {
     document.head.appendChild(element);
   }
   element.setAttribute('content', content);
-};
-
-
-const SOCIAL_LINKS = {
-  instagram: 'https://www.instagram.com/dra.lubisaymoreno',
-  tiktok: 'https://www.tiktok.com/@lubimorenoo',
-  facebook: 'https://www.facebook.com/profile.php?id=61593076585177',
-  whatsapp: 'https://wa.me/584129360494',
 };
 
 function RevealOnScroll({ children, className = '', delay = 0 }) {
@@ -474,9 +474,7 @@ export default function BlogPost({ onOpenModal }) {
                     title="Compartir en WhatsApp"
                     className="text-[#735D83] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12.031 2C6.502 2 2 6.502 2 12.031c0 1.766.462 3.49 1.34 5.012L2 22l5.095-1.335a9.986 9.986 0 0 0 4.936 1.298h.004c5.528 0 10.03-4.502 10.03-10.032C22.065 6.502 17.56 2 12.031 2zm5.838 14.236c-.246.693-1.44 1.326-1.984 1.404-.506.073-1.15.104-1.855-.12-.43-.136-.98-.32-1.682-.623-2.96-1.278-4.892-4.274-5.04-4.47-.147-.196-1.203-1.6-1.203-3.052 0-1.452.762-2.165 1.032-2.46.27-.295.59-.368.786-.368.197 0 .394.002.565.01.182.008.426-.069.666.508.246.59.836 2.04.91 2.187.074.148.123.32.025.517-.098.196-.148.32-.295.492-.147.172-.31.384-.442.516-.147.147-.3.307-.13.602.172.295.764 1.26 1.64 2.04 1.128 1.005 2.078 1.318 2.373 1.465.295.148.467.123.64-.073.172-.197.737-.86.934-1.155.197-.295.394-.246.664-.148.27.098 1.722.812 2.017.96.295.147.492.22.566.344.073.123.073.713-.173 1.406z" />
-                    </svg>
+                    <WhatsAppIcon className="w-5 h-5 fill-current" />
                   </a>
 
                   <a
@@ -487,9 +485,7 @@ export default function BlogPost({ onOpenModal }) {
                     title="Compartir en Facebook"
                     className="text-[#735D83] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z" />
-                    </svg>
+                    <FacebookIcon className="w-5 h-5 fill-current" />
                   </a>
 
                   <a
@@ -500,9 +496,7 @@ export default function BlogPost({ onOpenModal }) {
                     title="Compartir en X"
                     className="text-[#735D83] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
+                    <XIcon className="size-4.5 fill-current" />
                   </a>
 
                   <button
@@ -576,9 +570,7 @@ export default function BlogPost({ onOpenModal }) {
                     aria-label="Instagram de la Dra. Lubisay Moreno"
                     className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
+                    <InstagramIcon className="size-4.5 fill-current" />
                   </a>
 
                   <a
@@ -588,9 +580,7 @@ export default function BlogPost({ onOpenModal }) {
                     aria-label="TikTok de la Dra. Lubisay Moreno"
                     className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-                    </svg>
+                    <TikTokIcon className="size-4.5 fill-current" />
                   </a>
 
                   <a
@@ -600,9 +590,7 @@ export default function BlogPost({ onOpenModal }) {
                     aria-label="Facebook de la Dra. Lubisay Moreno"
                     className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z" />
-                    </svg>
+                    <FacebookIcon className="size-4.5 fill-current" />
                   </a>
 
                   <a
@@ -612,9 +600,7 @@ export default function BlogPost({ onOpenModal }) {
                     aria-label="WhatsApp de la Dra. Lubisay Moreno"
                     className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12.031 2C6.502 2 2 6.502 2 12.031c0 1.766.462 3.49 1.34 5.012L2 22l5.095-1.335a9.986 9.986 0 0 0 4.936 1.298h.004c5.528 0 10.03-4.502 10.03-10.032C22.065 6.502 17.56 2 12.031 2zm5.838 14.236c-.246.693-1.44 1.326-1.984 1.404-.506.073-1.15.104-1.855-.12-.43-.136-.98-.32-1.682-.623-2.96-1.278-4.892-4.274-5.04-4.47-.147-.196-1.203-1.6-1.203-3.052 0-1.452.762-2.165 1.032-2.46.27-.295.59-.368.786-.368.197 0 .394.002.565.01.182.008.426-.069.666.508.246.59.836 2.04.91 2.187.074.148.123.32.025.517-.098.196-.148.32-.295.492-.147.172-.31.384-.442.516-.147.147-.3.307-.13.602.172.295.764 1.26 1.64 2.04 1.128 1.005 2.078 1.318 2.373 1.465.295.148.467.123.64-.073.172-.197.737-.86.934-1.155.197-.295.394-.246.664-.148.27.098 1.722.812 2.017.96.295.147.492.22.566.344.073.123.073.713-.173 1.406z" />
-                    </svg>
+                    <WhatsAppIcon className="size-4.5 fill-current" />
                   </a>
                 </div>
 

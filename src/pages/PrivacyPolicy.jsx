@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
+import { DOCTOR_INFO } from '../data/clinicInfo';
 
 const SECTIONS = [
   {
     icon: 'verified_user',
     title: '1. Responsable del sitio web',
-    content:
-      'Este sitio web informativo pertenece a la Dra. Lubisay Moreno, médico especialista en Ginecología y Obstetricia (M.P.P.S. 128037 | C.M.D.M.C. 37329), con consulta presencial en Caracas y San Antonio de los Altos, Venezuela.',
+    content: `Este sitio web informativo pertenece a la ${DOCTOR_INFO.name}, médico especialista en ${DOCTOR_INFO.specialty} (${DOCTOR_INFO.credentials}), con consulta presencial en Caracas y San Antonio de los Altos, Venezuela.`,
   },
   {
     icon: 'chat',
@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
           </h1>
 
           <p className="font-body-md text-sm text-brand-grape mt-3">
-            Dra. Lubisay Moreno · M.P.P.S. 128037 | C.M.D.M.C. 37329
+            {DOCTOR_INFO.name} · {DOCTOR_INFO.credentials}
           </p>
           <p className="font-body-md text-xs text-brand-grape/70 mt-1">
             Última actualización: noviembre de 2026
@@ -94,10 +94,10 @@ export default function PrivacyPolicy() {
                   Si tienes alguna duda sobre este aviso o deseas solicitar la actualización o
                   eliminación de conversaciones previas por correo o mensajería, puedes escribir a{' '}
                   <a
-                    href="mailto:morenolubisay@gmail.com"
+                    href={DOCTOR_INFO.emailHref}
                     className="font-semibold text-brand-purple underline hover:text-brand-pink transition-colors break-all"
                   >
-                    morenolubisay@gmail.com
+                    {DOCTOR_INFO.email}
                   </a>
                   .
                 </p>
