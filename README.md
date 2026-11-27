@@ -1,58 +1,93 @@
-# Dra. Lubisay Moreno - Landing Page Médica
+# Dra. Lubisay Moreno — Sitio Web y Blog Médico
 
-Landing page moderna y profesional para la consulta de la Dra. Lubisay Moreno, especializada en ginecología y obstetricia. Una plataforma web diseñada para ofrecer información médica, facilitar la agenda de citas y mejorar la experiencia del paciente.
+Aplicación web y blog educativo de la **Dra. Lubisay Moreno**, especialista en Ginecología y Obstetricia. Presenta sus servicios médicos, perfil profesional, testimonios, preguntas frecuentes, sedes de consulta, un modal interactivo de agendamiento vía WhatsApp y un blog clínico gestionado con Sanity CMS.
 
-## 🚀 Características
+## Stack Tecnológico
 
-- **Diseño moderno y responsive** - Adaptado a todos los dispositivos
-- **Navegación intuitiva** - Menú desplegable y acordeón para servicios
-- **Paleta de colores médicos** - Usando Material Design 3
-- **Performance optimizada** - Construido con Vite + React
-- **Tailwind CSS** - Estilización rápida y consistente
-- **SEO amigable** - Estructura semántica y optimizada
-- **Accesible** - Cumple con estándares WCAG
+- **React** `19.2` (`react`, `react-dom`)
+- **Vite** `8.2` (`@vitejs/plugin-react` `6.1`)
+- **React Router DOM** `7.18`
+- **Tailwind CSS** `4.3` (`@tailwindcss/postcss`, `postcss` `8.5`, con tokens de marca en `tailwind.config.js`)
+- **Sanity CMS** (`@sanity/client` `8.15`, `@sanity/image-url` `2.1`, `@portabletext/react` `8.0`)
+- **Oxlint** `1.79` (configurado en `.oxlintrc.json` con plugins `react` y `oxc`)
+- **Tipografía e iconos**: `Poppins` y `Material Symbols Outlined` (Google Fonts), más la fuente local `Carena` (`src/assets/fonts/Carena-Regular.otf`)
 
-## 🛠️ Tecnologías
+## Funcionalidades Principales
 
-- **Frontend:** React 19 + Vite
-- **Estilos:** Tailwind CSS + Material Design 3
-- **Enrutamiento:** React Router DOM
-- **Linting:** Oxlint
-- **Build Tool:** Vite
-- **PostCSS:** Autoprefixer
+- **Rutas de la aplicación** (`src/App.jsx`):
+  - `/` (`Home`): sección hero, resumen de especialidades, carrusel de testimonios, preguntas frecuentes, sedes y banner CTA.
+  - `/acerca` (`About`): perfil de la especialista, estadísticas con contadores animados (`AnimatedNumber`), sección de filosofía, testimonios y CTA detallado.
+  - `/servicios` (`Services`): desglose de la consulta ginecológica integral, accesos rápidos y descripción detallada de los 7 servicios con navegación por `#hash`.
+  - `/blog` (`Blog`): listado dinámico desde Sanity con búsqueda en tiempo real (insensible a tildes), filtro automático por categorías y paginación incremental.
+  - `/blog/:slug` (`BlogPost`): artículo completo con Portable Text, índice interactivo de encabezados `H2` (TOC), barra para compartir y copiar enlace, tarjeta editorial, artículos recientes, actualización dinámica de meta tags (Open Graph, Twitter, `canonical`) y datos estructurados JSON-LD (`BlogPosting` y `BreadcrumbList`).
+  - `/privacidad` (`PrivacyPolicy`): aviso de privacidad, descargo de responsabilidad médica y contacto.
+- **Agendamiento de citas (`BookingModal`)**: modal responsive (2 pasos en móvil y 2 columnas en escritorio) con selección de sede, calendario filtrado según los días de atención de cada consultorio y envío directo del resumen prellenado hacia WhatsApp, sin almacenamiento en base de datos propia.
+- **Datos e iconos centralizados**: contacto, credenciales, sedes, horarios, servicios y SVGs compartidos consumidos desde una única fuente de verdad.
+- **Animaciones y navegación**: aparición progresiva al hacer scroll mediante `useInView` (`IntersectionObserver`) y `RevealOnScroll`, junto con gestión centralizada de scroll al cambiar de ruta o `#hash` en `useScrollToTop`.
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
-```
+```text
 medical-landing/
-├── public/           # Archivos estáticos
+├── public/
+│   └── icon-heart2.svg            # Favicon del sitio
 ├── src/
-│   ├── assets/       # Imágenes y recursos
-│   ├── components/   # Componentes React
-│   │   ├── common/   # Componentes reutilizables
-│   │   ├── layout/   # Componentes de layout (Header, Footer, etc.)
-│   │   └── specific/ # Componentes específicos de secciones
-│   ├── hooks/        # Custom hooks
-│   ├── pages/        # Páginas/views
-│   ├── App.jsx       # Componente principal
-│   ├── App.css       # Estilos globales
-│   ├── index.css     # Estilos base
-│   └── main.jsx      # Punto de entrada
-├── tailwind.config.js # Configuración de Tailwind
-├── vite.config.js    # Configuración de Vite
-└── package.json      # Dependencias y scripts
+│   ├── assets/
+│   │   ├── fonts/                 # Fuente local Carena-Regular.otf
+│   │   ├── icons/                 # Logotipos e íconos SVG de servicios
+│   │   └── img/                   # Fotografías (WebP / JPG / PNG)
+│   ├── components/
+│   │   ├── layout/                # Header, Footer, BookingModal y secciones reutilizables
+│   │   │   ├── BookingModal.jsx
+│   │   │   ├── CtaBanner.jsx
+│   │   │   ├── CtaDetailed.jsx
+│   │   │   ├── FAQ.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── Hero.jsx
+│   │   │   ├── Locations.jsx
+│   │   │   ├── SpecialitySections.jsx
+│   │   │   └── Testimonials.jsx
+│   │   └── ui/                    # Primitivos de interfaz reutilizables
+│   │       ├── AnimatedNumber.jsx
+│   │       ├── BlogLoader.jsx
+│   │       ├── Icons.jsx
+│   │       └── RevealOnScroll.jsx
+│   ├── data/
+│   │   ├── clinicInfo.js          # Contacto, credenciales, redes y sedes
+│   │   └── services.js            # Lista única de los 7 servicios y motivos de consulta
+│   ├── hooks/
+│   │   ├── useInView.js           # Hook reutilizable de IntersectionObserver
+│   │   └── useScrollToTop.js      # Gestión centralizada de scroll y #hash entre rutas
+│   ├── pages/
+│   │   ├── About.jsx
+│   │   ├── Blog.jsx
+│   │   ├── BlogPost.jsx
+│   │   ├── Home.jsx
+│   │   ├── PrivacyPolicy.jsx
+│   │   └── Services.jsx
+│   ├── App.jsx                    # Definición de rutas y layout global
+│   ├── index.css                  # Import de Tailwind v4, @font-face y animaciones base
+│   ├── main.jsx                   # Punto de entrada con BrowserRouter
+│   └── sanityClient.js            # Cliente de Sanity y helper urlFor
+├── .oxlintrc.json                 # Reglas de linting
+├── index.html                     # Documento base HTML (lang="es", fuentes y favicon)
+├── package.json                   # Dependencias y scripts
+├── postcss.config.js              # Plugin @tailwindcss/postcss
+├── tailwind.config.js             # Tokens de paleta de marca, tipografía y animaciones
+└── vite.config.js                 # Configuración de Vite
 ```
 
-## 🚀 Instalación y Uso
+## Instalación y Desarrollo Local
 
 ### Prerrequisitos
 
-- Node.js 18+ 
-- npm o yarn
+- Node.js 20+ (recomendado para Vite 8)
+- npm
 
-### Instalación
+### Pasos
 
-1. Clonar el repositorio:
+1. Clonar el repositorio e ingresar al proyecto:
    ```bash
    git clone https://github.com/tinycthylla/medical-landing-Lubisay-Moreno.git
    cd medical-landing
@@ -61,130 +96,42 @@ medical-landing/
 2. Instalar dependencias:
    ```bash
    npm install
-   # o
-   yarn install
    ```
 
-3. Ejecutar en modo desarrollo:
+3. Iniciar el servidor de desarrollo:
    ```bash
    npm run dev
-   # o
-   yarn dev
    ```
 
-4. Abrir en navegador:
-   ```
-   http://localhost:5173
-   ```
+### Configuración de Sanity CMS
 
-### Comandos Disponibles
+El cliente de lectura pública del blog se configura en `src/sanityClient.js`. Actualmente las consultas son de solo lectura sobre un dataset público mediante CDN, por lo que no se requieren variables de entorno (`.env`) ni tokens privados para levantar el proyecto en local.
 
-```bash
-npm run dev      # Inicia servidor de desarrollo
-npm run build    # Construye para producción
-npm run lint     # Ejecuta linter
-npm run preview  # Vista previa de producción
+Si deseas conectar el frontend a otra instancia de Sanity, actualiza los parámetros en `src/sanityClient.js`:
+
+```js
+export const client = createClient({
+  projectId: '<tu-project-id>',
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2024-01-01',
+});
 ```
 
-## 🎨 Diseño y Estilos
+> Nunca incluyas tokens de escritura ni secretos privados en el código del frontend.
 
-### Paleta de Colores (Material Design 3)
-- **Primary:** Azul médico (#2563EB)
-- **Surface:** Fondo principal (#FFFFFF)
-- **Surface Variant:** Fondo secundario (#F1F5F9)
-- **On Surface:** Texto principal (#1E293B)
-- **On Surface Variant:** Texto secundario (#64748B)
+### Scripts Disponibles
 
-### Tipografía
-- **Headline:** Inter Bold (Títulos)
-- **Body:** Inter Regular (Texto general)
-- **Label:** Inter Medium (Botones y etiquetas)
+| Script | Comando | Descripción |
+| :--- | :--- | :--- |
+| Desarrollo | `npm run dev` | Levanta el servidor local de Vite con HMR |
+| Producción | `npm run build` | Genera el bundle optimizado en `dist/` |
+| Linting | `npm run lint` | Ejecuta Oxlint sobre el código fuente |
+| Vista previa | `npm run preview` | Sirve localmente el build generado en `dist/` |
 
-### Componentes Implementados
+## Mantenimiento Rápido
 
-#### Header
-- Menú responsive con diseño mobile-first
-- Dropdown de servicios para desktop
-- Acordeón de servicios para mobile
-- Navegación clara y accesible
-- Botón de "Agendar cita" prominente
-
-## 📱 Secciones Planeadas
-
-1. **Hero Section** - Presentación principal con CTA
-2. **Servicios** - Detalle de especialidades médicas
-3. **Acerca de mí** - Perfil profesional
-4. **Testimonios** - Experiencias de pacientes
-5. **FAQ** - Preguntas frecuentes
-6. **Blog** - Artículos médicos educativos
-7. **Contacto** - Formulario y ubicación
-8. **Footer** - Información legal y contacto
-
-## 🔧 Configuración Personalizada
-
-### Tailwind CSS
-El proyecto usa Tailwind CSS v4 con configuración personalizada en `tailwind.config.js`. Los colores y tipografías están basados en Material Design 3.
-
-### Variables CSS
-Las variables CSS personalizadas están definidas en `src/index.css` para mantener consistencia en toda la aplicación.
-
-## 📝 Scripts de Desarrollo
-
-### Linting
-```bash
-npm run lint
-```
-Usa Oxlint para mantener la calidad del código.
-
-### Build para Producción
-```bash
-npm run build
-```
-Genera archivos optimizados en la carpeta `dist/`.
-
-### Preview de Producción
-```bash
-npm run preview
-```
-Sirve la versión de producción localmente para testing.
-
-## 🌐 Deployment
-
-El proyecto está listo para deployment en:
-
-- **Vercel:** `vercel deploy`
-- **Netlify:** `netlify deploy`
-- **GitHub Pages:** `npm run build && gh-pages -d dist`
-- **Servidor estático:** Cualquier servidor que sirva archivos estáticos
-
-## 🤝 Contribuir
-
-1. Fork el repositorio
-2. Crear una rama feature (`git checkout -b feature/AmazingFeature`)
-3. Commit cambios (`git commit -m 'Add AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo licencia MIT. Ver `LICENSE` para más detalles.
-
-## 👩‍⚕️ Sobre la Dra. Lubisay Moreno
-
-Especialista en ginecología y obstetricia con enfoque en:
-- Control prenatal y obstetricia
-- Ecografías ginecológicas y obstétricas
-- Planificación familiar
-- Bienestar en la menopausia
-- Ginecología general
-
-## 📞 Contacto
-
-- **Email:** contacto@dralubisaymoreno.com
-- **Teléfono:** +XX XXX XXX XXXX
-- **Ubicación:** Ciudad, País
-- **Horarios:** Lunes a Viernes 9:00-18:00
-
----
-
-*Desarrollado con ❤️ para mejorar la experiencia digital de los pacientes.*
+- **Datos de contacto, credenciales, redes sociales y sedes/horarios**: editar `src/data/clinicInfo.js` (se refleja automáticamente en `Footer`, `Locations`, `BookingModal`, `CtaDetailed`, `FAQ`, `About`, `BlogPost` y `PrivacyPolicy`).
+- **Servicios médicos, descripciones, `#slug` y motivos del modal**: editar `src/data/services.js` (alimenta `Header`, `Footer`, `SpecialitySections`, `Services` y `BookingModal`).
+- **Íconos SVG compartidos**: agregar o actualizar componentes en `src/components/ui/Icons.jsx`.
+- **Tokens de marca y tipografía**: definidos en `tailwind.config.js` (`brand-purple`, `brand-pink`, `brand-pink-light`, `brand-lilac`, `brand-grape`, etc.) y `src/index.css`.
