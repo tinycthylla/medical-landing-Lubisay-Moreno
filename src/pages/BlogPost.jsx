@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { client, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
 import CtaDetailed from '../components/layout/CtaDetailed';
@@ -39,6 +39,7 @@ const setMetaTag = (attr, key, content) => {
 
 export default function BlogPost({ onOpenModal }) {
   const { slug } = useParams();
+  const { hash } = useLocation();
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState([]);
   const [toc, setToc] = useState([]);
@@ -133,14 +134,8 @@ export default function BlogPost({ onOpenModal }) {
     [post?.title]
   );
 
-  // Evita que al recargar el navegador restaure el scroll al final (Footer)
   useEffect(() => {
     let isCancelled = false;
-
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
     const fetchData = async () => {
       setIsLoading(true);
@@ -181,9 +176,6 @@ export default function BlogPost({ onOpenModal }) {
 
     return () => {
       isCancelled = true;
-      if ('scrollRestoration' in window.history) {
-        window.history.scrollRestoration = 'auto';
-      }
     };
   }, [slug]);
 
@@ -193,14 +185,23 @@ export default function BlogPost({ onOpenModal }) {
     };
   }, []);
 
-  // Asegura quedar arriba del todo justo al terminar de renderizar el post
+  // Tras la carga asíncrona de Sanity, ubica el #hash del artículo o asegura quedar arriba
   useEffect(() => {
-    if (!isLoading) {
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      });
-    }
-  }, [isLoading, slug]);
+    if (isLoading || !post) return;
+
+    const frameId = requestAnimationFrame(() => {
+      if (hash) {
+        const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [isLoading, post, hash]);
 
   useEffect(() => {
     if (!post) return;

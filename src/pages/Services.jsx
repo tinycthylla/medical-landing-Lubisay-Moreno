@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import Testimonials from '../components/layout/Testimonials';
 import Locations from '../components/layout/Locations';
 import CtaDetailed from '../components/layout/CtaDetailed';
@@ -51,19 +49,6 @@ const consultationIncludes = [
 ];
 
 export default function Services({ onOpenModal }) {
-  const { hash } = useLocation();
-
-  useEffect(() => {
-    if (hash) {
-      const element = document.getElementById(hash.replace('#', ''));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [hash]);
-
   return (
     <main className="grow pt-20 md:pt-24 font-body-md">
   <section className="w-full py-12 md:py-16">

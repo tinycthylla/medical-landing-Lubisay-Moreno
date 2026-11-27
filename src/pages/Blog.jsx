@@ -23,8 +23,6 @@ export default function Blog({ onOpenModal }) {
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-
     const fetchPosts = async () => {
       try {
         const query = `*[_type == "post"] | order(publishedAt desc) {
