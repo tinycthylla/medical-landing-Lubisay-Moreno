@@ -1,38 +1,13 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { SERVICES } from '../../data/services';
+import useInView from '../../hooks/useInView';
 
 export default function SpecialitySections() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-            entry.target.classList.remove('opacity-0');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  const [sectionRef, isInView] = useInView({ threshold: 0.1 });
 
   return (
     <section className="w-full px-6 pt-2 md:pt-12 pb-6 md:pb-20 md:max-w-[1200px] md:mx-auto">
-      <div ref={sectionRef} className="opacity-0">
+      <div ref={sectionRef} className={isInView ? 'animate-fade-in-up' : 'opacity-0'}>
         
         <div className="flex flex-col gap-2 md:text-center md:items-center">
           <div className="flex items-center mb-2">

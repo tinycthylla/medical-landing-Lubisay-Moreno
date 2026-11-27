@@ -1,8 +1,9 @@
-import { useEffect, useState, useRef, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import Locations from '../components/layout/Locations';
 import BlogLoader from '../components/UI/BlogLoader';
+import RevealOnScroll from '../components/UI/RevealOnScroll';
 import { client, urlFor } from '../sanityClient';
 
 const POSTS_PER_PAGE = 6;
@@ -13,38 +14,6 @@ const normalizeText = (text = '') =>
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
-
-function RevealOnScroll({ children, className = '', delay = 0 }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.01 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 export default function Blog({ onOpenModal }) {
   const [articles, setArticles] = useState([]);

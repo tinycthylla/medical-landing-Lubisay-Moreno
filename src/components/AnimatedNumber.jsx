@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import useInView from '../hooks/useInView';
 
 export default function AnimatedNumber({
   end,
@@ -8,27 +9,7 @@ export default function AnimatedNumber({
   decimals = 0,
 }) {
   const [value, setValue] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  const ref = useRef(null);
-
-  // Detecta cuando el número entra en pantalla
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasStarted(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const [ref, hasStarted] = useInView({ threshold: 0.2 });
 
   // Ejecuta el conteo suave (ease-out: arranca rápido y frena al final)
   useEffect(() => {

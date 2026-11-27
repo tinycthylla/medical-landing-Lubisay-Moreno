@@ -6,6 +6,7 @@ import CtaDetailed from '../components/layout/CtaDetailed';
 import FAQ from '../components/layout/FAQ';
 import FotoLuConsultorio from '../assets/img/lu_consultorio.webp';
 import BlogLoader from '../components/UI/BlogLoader';
+import RevealOnScroll from '../components/UI/RevealOnScroll';
 import { SOCIAL_LINKS } from '../data/clinicInfo';
 import {
   FacebookIcon,
@@ -35,38 +36,6 @@ const setMetaTag = (attr, key, content) => {
   }
   element.setAttribute('content', content);
 };
-
-function RevealOnScroll({ children, className = '', delay = 0 }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.01 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 export default function BlogPost({ onOpenModal }) {
   const { slug } = useParams();

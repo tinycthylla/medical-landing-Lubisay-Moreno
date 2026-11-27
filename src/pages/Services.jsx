@@ -4,9 +4,24 @@ import Testimonials from '../components/layout/Testimonials';
 import Locations from '../components/layout/Locations';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import { SERVICES } from '../data/services';
+import useInView from '../hooks/useInView';
 
 import fotoLufilosofia2 from '../assets/img/lufilosofia2.png';
 import fotoLusentada2 from '../assets/img/lu_sentada2.webp';
+
+function FadeInBlock({ as: Tag = 'div', className = '', children, ...props }) {
+  const [ref, isInView] = useInView({ threshold: 0.1 });
+
+  return (
+    <Tag
+      ref={ref}
+      className={`${isInView ? 'animate-fade-in-up' : 'opacity-0'} ${className}`}
+      {...props}
+    >
+      {children}
+    </Tag>
+  );
+}
 
 const consultationIncludes = [
   {
@@ -49,32 +64,10 @@ export default function Services({ onOpenModal }) {
     }
   }, [hash]);
 
-  useEffect(() => {
-    const elements = document.querySelectorAll('[data-animate]');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-            entry.target.classList.remove('opacity-0');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <main className="flex-grow pt-20 md:pt-24 font-body-md">
   <section className="w-full bg-surface-variant/30 py-12 md:py-16">
-  <div 
-    data-animate
-    className="opacity-0 px-6 md:max-w-[1200px] md:mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center"
-  >
+  <FadeInBlock className="px-6 md:max-w-[1200px] md:mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center">
     <div className="relative w-full flex items-center justify-center">
       <div className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[600px] flex items-center justify-center lg:-translate-y-8">
         <div className="absolute inset-x-4 top-8 bottom-4 bg-gray-200/90 rounded-full shadow-inner z-0" />
@@ -128,13 +121,13 @@ export default function Services({ onOpenModal }) {
             <span>Agendar mi consulta</span>
           </button>
             </div>
-            </div>
+            </FadeInBlock>
       </section>
 
       <section className="w-full bg-surface-variant/30 pt-4 pb-8 md:pt-12 md:pb-20">
         <div className="px-6 md:max-w-[1200px] md:mx-auto">
           
-          <div data-animate className="opacity-0">
+          <FadeInBlock>
             <div className="flex flex-col items-center text-center mb-8 md:mb-12">
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-white border border-pink-100 text-brand-pink font-label-md text-[10px] sm:text-xs uppercase tracking-wider font-bold shadow-sm">
                 Nuestros Servicios
@@ -167,7 +160,7 @@ export default function Services({ onOpenModal }) {
                 <span>Agendar alguno de estos servicios</span>
               </button>
             </div>
-          </div>
+          </FadeInBlock>
 
         </div>
       </section>
@@ -175,25 +168,25 @@ export default function Services({ onOpenModal }) {
       <section className="w-full bg-pink-50 pt-8 pb-16 md:pt-12 md:pb-24 overflow-hidden">
         <div className="px-6 md:max-w-[1200px] md:mx-auto">
 
-          <div data-animate className="opacity-0 flex flex-col items-center text-center mb-12 md:mb-20">
+          <FadeInBlock className="flex flex-col items-center text-center mb-12 md:mb-20">
             <h2 className="text-3xl md:text-5xl font-body-md font-bold text-on-background mb-4 md:mb-6 tracking-tight">
               Guía de nuestras <span className="text-brand-pink">especialidades médicas</span>
             </h2>
             <p className="text-sm md:text-lg font-body-md text-on-surface-variant leading-relaxed max-w-3xl">
               Te explicamos de forma sencilla de qué trata cada especialidad para que sepas exactamente qué necesitas antes de tu consulta.
             </p>
-          </div>
+          </FadeInBlock>
 
           <div className="space-y-12 lg:space-y-20">
             {SERVICES.map((service, index) => {
               const isEven = index % 2 === 0;
 
               return (
-                <article 
+                <FadeInBlock
+                  as="article"
                   key={service.id}
-                  id={service.id} 
-                  data-animate
-                  className="group opacity-0 scroll-mt-32 flex flex-col lg:flex-row items-center"
+                  id={service.id}
+                  className="group scroll-mt-32 flex flex-col lg:flex-row items-center"
                 >
                   <div 
                     className={`order-1 w-full lg:w-[55%] aspect-[4/3] rounded-3xl overflow-hidden shadow-md shadow-pink-200/40 ${
@@ -231,7 +224,7 @@ export default function Services({ onOpenModal }) {
                       </span>
                     </button>
                   </div>
-                </article>
+                </FadeInBlock>
               );
             })}
           </div>
@@ -240,7 +233,7 @@ export default function Services({ onOpenModal }) {
       </section>
 
       <section className="w-full bg-background pt-4 pb-16 md:pt-6 md:pb-20 px-6 overflow-hidden">
-        <div data-animate className="opacity-0 md:max-w-[1000px] md:mx-auto flex flex-col-reverse md:grid md:grid-cols-5 gap-8 md:gap-10 lg:gap-16 items-center">
+        <FadeInBlock className="md:max-w-[1000px] md:mx-auto flex flex-col-reverse md:grid md:grid-cols-5 gap-8 md:gap-10 lg:gap-16 items-center">
           <div className="md:col-span-2 relative w-[80%] sm:w-[70%] md:w-full max-w-[320px] md:max-w-none mx-auto aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden bg-white shadow-md shadow-pink-200/40 hover:shadow-lg hover:shadow-pink-200/60 transition-all duration-300">
             <img 
               src={fotoLusentada2} 
@@ -274,7 +267,7 @@ export default function Services({ onOpenModal }) {
             </p>
           </div>
           
-        </div>
+        </FadeInBlock>
       </section>
 
       <Testimonials />

@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import useInView from '../../hooks/useInView';
 import fotoLizaveta from '../../assets/img/lizaveta_acevedo.jpg';
 import fotoYoleida from '../../assets/img/yoleida_garcia.jpg';
 import fotoKatiuska from '../../assets/img/katiuska_rodriguez.jpg';
@@ -12,7 +13,7 @@ import fotoYei from '../../assets/img/yeilysacosta.jpg';
 import fotoYor from '../../assets/img/yorlianis.jpg';
 
 export default function Testimonials() {
-  const sectionRef = useRef(null);
+  const [sectionRef, isInView] = useInView({ threshold: 0.1 });
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
@@ -31,25 +32,6 @@ export default function Testimonials() {
     { name: "Yeilys Acosta.", time: "Hace 1 mes", image: fotoYei, quote: "La Dra. Lubisay llevó el control de todo mi embarazo. Sus ecos son súper detallados y siempre nos explicó cada avance con mucha paciencia. Me dio muchísima tranquilidad." },
     { name: "Yorlianys López.", time: "Hace 6 meses", image: fotoYor, quote: "Era mi primera consulta ginecológica y estaba bastante nerviosa. La doctora me hizo sentir cómoda y segura desde el primer momento." }
   ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-            entry.target.classList.remove('opacity-0');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -82,7 +64,12 @@ export default function Testimonials() {
 
   return (
     <section id="testimonios" className="scroll-mt-32 w-full py-16 md:py-24 overflow-hidden transition-colors duration-500">
-      <div ref={sectionRef} className="opacity-0 w-full max-w-[1300px] mx-auto px-4 md:px-6">
+      <div
+        ref={sectionRef}
+        className={`w-full max-w-[1300px] mx-auto px-4 md:px-6 ${
+          isInView ? 'animate-fade-in-up' : 'opacity-0'
+        }`}
+      >
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
           <div className="flex flex-row flex-wrap justify-center items-center gap-2 mb-4">
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white text-pink-500 font-label-md text-[10px] sm:text-xs uppercase tracking-wider font-bold shadow-sm border border-pink-100">

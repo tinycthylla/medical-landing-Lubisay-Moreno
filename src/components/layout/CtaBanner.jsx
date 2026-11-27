@@ -1,29 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
 import { WhatsAppOutlineIcon } from '../UI/Icons';
+import useInView from '../../hooks/useInView';
 
 export default function CtaBanner({ onOpenModal }) {
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const currentEl = sectionRef.current;
-    if (!currentEl) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-
-    observer.observe(currentEl);
-    return () => observer.disconnect();
-  }, []);
+  const [sectionRef, isVisible] = useInView({ threshold: 0.05 });
 
   return (
     <section className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20">

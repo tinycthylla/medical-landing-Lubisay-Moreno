@@ -1,31 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { CLINICS } from '../../data/clinicInfo';
 import { WhatsAppOutlineIcon } from '../UI/Icons';
+import useInView from '../../hooks/useInView';
 
 export default function Locations() {
-  const sectionRef = useRef(null);
+  const [sectionRef, isInView] = useInView({ threshold: 0.1 });
 
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-            entry.target.classList.remove('opacity-0');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
 
   const handleScroll = () => {
     if (scrollRef.current) {
@@ -60,7 +42,12 @@ export default function Locations() {
       `}</style>
 
       <section id="ubicacion" className="w-full py-16 md:pt-8 md:pb-24 overflow-hidden">
-  <div ref={sectionRef} className="opacity-0 md:max-w-[1200px] md:mx-auto">
+  <div
+    ref={sectionRef}
+    className={`md:max-w-[1200px] md:mx-auto ${
+      isInView ? 'animate-fade-in-up' : 'opacity-0'
+    }`}
+  >
     
     <div className="flex flex-col px-6 items-center text-center mb-10">
       <div className="flex items-center justify-center mb-4">

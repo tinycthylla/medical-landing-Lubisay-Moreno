@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
 import fotoConsulta from '../../assets/img/lu_consulta.jpg';
 import { SOCIAL_LINKS } from '../../data/clinicInfo';
 import { WhatsAppOutlineIcon } from '../UI/Icons';
+import useInView from '../../hooks/useInView';
 
 export default function FAQ() {
-  const sectionRef = useRef(null);
+  const [sectionRef, isInView] = useInView({ threshold: 0.1 });
 
   const faqs = [
     {
@@ -33,28 +33,14 @@ export default function FAQ() {
     }
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-            entry.target.classList.remove('opacity-0');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
-
   return (
     <section id="faq" className="scroll-mt-32 w-full px-6 pt-6 pb-16 md:pt-10 md:pb-24 bg-pink-50 transition-colors duration-500">
-      <div ref={sectionRef} className="opacity-0 max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div
+        ref={sectionRef}
+        className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start ${
+          isInView ? 'animate-fade-in-up' : 'opacity-0'
+        }`}
+      >
         
           <div className="flex flex-col items-center md:items-start text-center md:text-left w-full mb-8">
           <div className="flex justify-center md:justify-start w-full mb-4">

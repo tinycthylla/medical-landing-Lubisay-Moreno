@@ -9,47 +9,10 @@ import IconoHeart2 from '../assets/icons/icon-heart2.svg';
 import FotoLuGineco from '../assets/img/lu_gineco.JPG';
 import FotoLuXtremeBike from '../assets/img/lu_xtremebike.webp';
 import FotoLuEquipo from '../assets/img/lu_equipo.webp';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { DOCTOR_INFO } from '../data/clinicInfo';
 import { CurvedArrowLeftIcon, CurvedArrowRightIcon } from '../components/UI/Icons';
-
-function RevealOnScroll({ children }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.15,
-      }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) observer.unobserve(ref.current);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-[1200ms] ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
+import RevealOnScroll from '../components/UI/RevealOnScroll';
 
 const aboutHighlights = [
   {
@@ -228,7 +191,11 @@ export default function About({ onOpenModal }) {
 
       <section className="w-full bg-white py-16 md:py-24 overflow-hidden">
         <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-          <RevealOnScroll>
+          <RevealOnScroll
+            threshold={0.15}
+            durationClass="duration-[1200ms]"
+            hiddenClass="opacity-0 translate-y-12"
+          >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               
           <div className="lg:col-span-7 relative flex flex-col justify-center lg:self-start">
@@ -336,7 +303,11 @@ export default function About({ onOpenModal }) {
       <section className="w-full bg-pink-50 py-20 md:py-24 overflow-hidden" id="filosofia">
         <div className="max-w-[920px] mx-auto px-6 md:px-8">
           
-          <RevealOnScroll>
+          <RevealOnScroll
+            threshold={0.15}
+            durationClass="duration-[1200ms]"
+            hiddenClass="opacity-0 translate-y-12"
+          >
             <div className="text-center max-w-xl mx-auto mb-14 md:mb-16">
               <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-white border border-brand-pink/30 text-brand-pink font-['Poppins'] text-xs font-bold uppercase tracking-wider shadow-sm mb-3">
                 Mi Esencia
@@ -355,7 +326,12 @@ export default function About({ onOpenModal }) {
               const isReversed = index % 2 === 1;
 
               return (
-                <RevealOnScroll key={item.title}>
+                <RevealOnScroll
+                  key={item.title}
+                  threshold={0.15}
+                  durationClass="duration-[1200ms]"
+                  hiddenClass="opacity-0 translate-y-12"
+                >
                   <div
                     className={`flex flex-col items-center justify-center ${
                       isReversed ? 'md:flex-row-reverse' : 'md:flex-row'
