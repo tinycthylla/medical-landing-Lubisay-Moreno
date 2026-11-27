@@ -1,4 +1,4 @@
-import fotoDoctora from '../../assets/img/lu_homepage3.png';
+import fotoDoctora from '../../assets/img/lu_homepage3.webp';
 export default function Hero({ onOpenModal }) {
   return (
     <section className="w-full bg-background pt-28 px-6 md:pt-44 pb-12 md:pb-16 overflow-hidden">

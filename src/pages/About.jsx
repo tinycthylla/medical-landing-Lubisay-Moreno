@@ -1,13 +1,13 @@
 import AnimatedNumber from '../components/AnimatedNumber';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import Testimonials from '../components/layout/Testimonials';
-import FotoLuDiu from '../assets/img/ludiu2.png';
-import FotoLuConsultorio from '../assets/img/lu_consultorio.jpg';
+import FotoLuDiu from '../assets/img/ludiu2.webp';
+import FotoLuConsultorio from '../assets/img/lu_consultorio.webp';
 import LogoSimple from '../assets/icons/logosimple.svg';
 import SiluetaLogo from '../assets/icons/logosimple-3.svg';
 import IconoHeart2 from '../assets/icons/icon-heart2.svg';
 import FotoLuGineco from '../assets/img/lu_gineco.jpg';
-import FotoLuXtremeBike from '../assets/img/lu_xtremebike.jpg';
+import FotoLuXtremeBike from '../assets/img/lu_xtremebike.webp';
 import FotoLuEquipo from '../assets/img/lu_equipo.webp';
 import { useState, useEffect, useRef } from 'react';
 

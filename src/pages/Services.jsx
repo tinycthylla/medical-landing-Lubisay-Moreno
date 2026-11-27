@@ -13,7 +13,7 @@ import fotoObstetricia from '../assets/img/obstetricia.webp';
 import fotoSex_education from '../assets/img/sexual_education.webp';
 import FotoMenopause from '../assets/img/menopause.webp';
 import fotoLufilosofia2 from '../assets/img/lufilosofia2.png';
-import fotoLusentada2 from '../assets/img/lu_sentada2.JPG';
+import fotoLusentada2 from '../assets/img/lu_sentada2.webp';
 
 import iconPrenatal from '../assets/icons/icono-prenatal.svg';
 import iconEco from '../assets/icons/icono-eco.svg';
