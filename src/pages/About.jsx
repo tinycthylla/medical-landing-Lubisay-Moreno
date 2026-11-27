@@ -6,7 +6,7 @@ import FotoLuConsultorio from '../assets/img/lu_consultorio.webp';
 import LogoSimple from '../assets/icons/logosimple.svg';
 import SiluetaLogo from '../assets/icons/logosimple-3.svg';
 import IconoHeart2 from '../assets/icons/icon-heart2.svg';
-import FotoLuGineco from '../assets/img/lu_gineco.jpg';
+import FotoLuGineco from '../assets/img/lu_gineco.JPG';
 import FotoLuXtremeBike from '../assets/img/lu_xtremebike.webp';
 import FotoLuEquipo from '../assets/img/lu_equipo.webp';
 import { useState, useEffect, useRef } from 'react';
@@ -80,7 +80,10 @@ export default function About({ onOpenModal }) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const frameId = requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+    return () => cancelAnimationFrame(frameId);
   }, []);
 
   return (
@@ -112,8 +115,8 @@ export default function About({ onOpenModal }) {
               {/* Atributos Mobile */}
               <div className="flex flex-col items-end md:hidden absolute top-[15%] left-[4%] sm:left-[10%] z-20">
                 <p className="text-white text-right text-[11px] sm:text-xs leading-snug">
-                  <span className="font-light">Soy medico</span><br />
-                  <span className="font-bold">Ginecologo y Obstetra</span>
+                  <span className="font-light">Soy médico</span><br />
+                  <span className="font-bold">Ginecólogo y Obstetra</span>
                 </p>
                 <svg className="w-14 sm:w-16 h-auto fill-white mt-2 mr-1" viewBox="0 0 387.35 266.61">
                   <path d="m382.27,253.77c-31.65-7.05-60.93-24.29-82.45-48.55-5.71-6.44-11.22-13.69-16.54-20.69-15.25-20.06-31.01-40.81-55.62-49.23-27.23-9.31-55.02-.27-81.9,8.47-3.13,1.02-6.25,2.03-9.34,3.01-24.91,7.86-58.72,13.22-78.4-5.84-7.36-7.13-12.52-17.41-16.25-32.35-4.96-19.88-5.92-41.03-2.85-61.65l19.98,15.4c-7.46-17.29-11.61-42.67-12.5-62.34C34.23,15.49,16.12,33.74,0,43.49l26.45-.99c-3.78,23.09-2.88,46.89,2.69,69.23,4.34,17.4,10.64,29.64,19.82,38.54,19.21,18.62,50.8,21.7,91.35,8.91,3.13-.99,6.28-2.01,9.45-3.04,24.85-8.08,50.55-16.44,73.67-8.53,20.86,7.14,34.76,25.43,49.48,44.79,5.47,7.2,11.13,14.64,17.17,21.45,23.32,26.29,55.05,44.97,89.35,52.61.48.11.95.16,1.42.16,2.98,0,5.66-2.06,6.34-5.09.78-3.5-1.43-6.98-4.93-7.76Z"/>
@@ -143,8 +146,8 @@ export default function About({ onOpenModal }) {
               {/* Atributos Desktop */}
               <div className="hidden md:flex items-center absolute top-[8%] left-[10%] lg:left-[15%] z-20">
                 <p className="text-white text-right text-sm lg:text-[17px] leading-snug">
-                  <span className="font-light">Soy medico</span><br />
-                  <span className="font-bold">Ginecologo y Obstetra</span>
+                  <span className="font-light">Soy médico</span><br />
+                  <span className="font-bold">Ginecólogo y Obstetra</span>
                 </p>
                 <svg className="w-14 lg:w-[70px] h-auto fill-white ml-3 translate-y-4" viewBox="0 0 312.67 203.98">
                   <path d="m311.96,194.52c-7.4-14.51-17.78-32.76-32.42-45.23-8.4-7.15-17.38-11.68-26.88-13.59,4.02-21.14-1.91-43.2-18.11-64.19-20.98-27.18-56.66-48.36-95.47-56.67-39.19-8.39-76.41-2.88-106.05,15.46L21.37,0l-3.49,24.87c-.98,6.99-4.69,17.12-9.46,25.8L0,66.04l16.41-6.16c9.28-3.48,19.86-5.75,26.89-5.7l25.1.07-25.86-14.45c58.91-33.83,144.85-8.12,181.72,39.65,14.11,18.29,19.11,37.17,15.21,55.27-5.39.26-10.93,1.29-16.6,3.09-21.03,3.18-32.68,5.01-39.79,15.78-9.15,13.47-5.83,27.13,1.52,34.7,8.02,8.25,20.39,9.33,30.78,2.68l.54-.39c16.21-12.87,27.29-27.23,33.12-42.31,23.34,4.02,38.92,27.81,51.34,52.14,1.15,2.25,3.43,3.55,5.8,3.55.99,0,2-.23,2.95-.71,3.2-1.63,4.47-5.55,2.84-8.74Zm-103.84-14.33c-5.2,3.21-10.48,2.86-14.19-.96-3.68-3.79-5.13-10.93-.07-18.36l.06-.09c3.83-5.82,11.9-7.25,31.42-10.2l.53-.08.51-.17c2.91-.95,5.71-1.63,8.43-2.06-5.34,11.22-14.26,21.98-26.7,31.91Z"/>
@@ -166,9 +169,9 @@ export default function About({ onOpenModal }) {
               <div className="hidden md:flex flex-col items-end absolute bottom-[12%] left-[5%] lg:left-[8%] z-20">
                 <p className="text-white text-right text-sm lg:text-[17px] leading-snug">
                   <span className="font-light italic">Disfruto la </span>
-                  <span className="font-bold">buena musica</span><span className="font-light italic">,</span><br />
+                  <span className="font-bold">buena música</span><span className="font-light italic">,</span><br />
                   <span className="font-light italic">los </span>
-                  <span className="font-bold">retos fisicos</span><br />
+                  <span className="font-bold">retos físicos</span><br />
                   <span className="font-light italic">y </span>
                   <span className="font-bold">ayudar a otras mujeres</span><br />
                   <span className="font-light italic">a sentirse fuertes</span>

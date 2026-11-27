@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { client, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import FAQ from '../components/layout/FAQ';
-import FotoLuConsultorio from '../assets/img/lu_consultorio.jpg';
+import FotoLuConsultorio from '../assets/img/lu_consultorio.webp';
 import BlogLoader from '../components/UI/BlogLoader';
 
 const slugify = (text) =>
@@ -32,7 +32,7 @@ const setMetaTag = (attr, key, content) => {
 const SOCIAL_LINKS = {
   instagram: 'https://www.instagram.com/dra.lubisaymoreno',
   tiktok: 'https://www.tiktok.com/@lubimorenoo',
-  facebook: 'https://www.facebook.com/share/1Dm9iADoGe/',
+  facebook: 'https://www.facebook.com/profile.php?id=61593076585177',
   whatsapp: 'https://wa.me/584129360494',
 };
 
@@ -75,93 +75,99 @@ export default function BlogPost({ onOpenModal }) {
   const [toc, setToc] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const copyTimeoutRef = useRef(null);
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const textComponents = {
-    types: {
-      image: ({ value }) => {
-        if (!value?.asset) return null;
-        return (
-          <figure className="my-7">
-            <img
-              src={urlFor(value).width(800).auto('format').quality(85).url()}
-              alt={value.alt || post?.title || 'Imagen ilustrativa del artículo'}
-              loading="lazy"
-              decoding="async"
-              className="w-full rounded-2xl object-cover shadow-sm border border-pink-100"
-            />
-            {value.caption && (
-              <figcaption className="text-center font-['Poppins'] text-xs text-on-surface-variant mt-2">
-                {value.caption}
-              </figcaption>
-            )}
-          </figure>
-        );
+  const textComponents = useMemo(
+    () => ({
+      types: {
+        image: ({ value }) => {
+          if (!value?.asset) return null;
+          return (
+            <figure className="my-7">
+              <img
+                src={urlFor(value).width(800).auto('format').quality(85).url()}
+                alt={value.alt || post?.title || 'Imagen ilustrativa del artículo'}
+                loading="lazy"
+                decoding="async"
+                className="w-full rounded-2xl object-cover shadow-sm border border-pink-100"
+              />
+              {value.caption && (
+                <figcaption className="text-center font-['Poppins'] text-xs text-on-surface-variant mt-2">
+                  {value.caption}
+                </figcaption>
+              )}
+            </figure>
+          );
+        },
       },
-    },
-    block: {
-      h2: ({ children, value }) => {
-        const text = value.children?.map((child) => child.text).join('') || '';
-        return (
-          <h2
-            id={slugify(text)}
-            className="font-['Poppins'] font-medium text-2xl md:text-[28px] text-brand-purple mt-8 mb-3 scroll-mt-28 leading-snug tracking-tight"
-          >
+      block: {
+        h2: ({ children, value }) => {
+          const text = value.children?.map((child) => child.text).join('') || '';
+          return (
+            <h2
+              id={slugify(text)}
+              className="font-['Poppins'] font-medium text-2xl md:text-[28px] text-brand-purple mt-8 mb-3 scroll-mt-28 leading-snug tracking-tight"
+            >
+              {children}
+            </h2>
+          );
+        },
+        h3: ({ children }) => (
+          <h3 className="font-['Poppins'] font-medium text-xl md:text-[22px] text-on-background mt-6 mb-2.5 leading-snug">
             {children}
-          </h2>
-        );
-      },
-      h3: ({ children }) => (
-        <h3 className="font-['Poppins'] font-medium text-xl md:text-[22px] text-on-background mt-6 mb-2.5 leading-snug">
-          {children}
-        </h3>
-      ),
-      normal: ({ children }) => (
-        <p className="font-['Poppins'] font-normal text-[15px] text-on-surface-variant leading-[1.45] mb-3.5">
-          {children}
-        </p>
-      ),
-      blockquote: ({ children }) => (
-        <blockquote className="my-7 p-6 rounded-2xl bg-[#FDF4F8] border-l-4 border-brand-pink text-on-surface-variant italic">
-          <p className="font-['Poppins'] font-medium text-base md:text-[17px] mb-0 leading-[1.45]">
+          </h3>
+        ),
+        normal: ({ children }) => (
+          <p className="font-['Poppins'] font-normal text-[15px] text-on-surface-variant leading-[1.45] mb-3.5">
             {children}
           </p>
-        </blockquote>
-      ),
-    },
-    list: {
-      bullet: ({ children }) => (
-        <ul className="list-disc pl-6 mb-4 text-on-surface-variant space-y-1.5 font-['Poppins'] text-[15px] leading-[1.45]">
-          {children}
-        </ul>
-      ),
-      number: ({ children }) => (
-        <ol className="list-decimal pl-6 mb-4 text-on-surface-variant space-y-1.5 font-['Poppins'] text-[15px] leading-[1.45]">
-          {children}
-        </ol>
-      ),
-    },
-    marks: {
-      link: ({ children, value }) => {
-        const href = value?.href || '';
-        const isExternal = href.startsWith('http');
-        return (
-          <a
-            href={href}
-            target={isExternal ? '_blank' : undefined}
-            rel={isExternal ? 'noopener noreferrer' : undefined}
-            className="text-brand-pink font-medium underline underline-offset-2 hover:text-[#735D83] transition-colors break-words"
-          >
-            {children}
-          </a>
-        );
+        ),
+        blockquote: ({ children }) => (
+          <blockquote className="my-7 p-6 rounded-2xl bg-[#FDF4F8] border-l-4 border-brand-pink text-on-surface-variant italic">
+            <p className="font-['Poppins'] font-medium text-base md:text-[17px] mb-0 leading-[1.45]">
+              {children}
+            </p>
+          </blockquote>
+        ),
       },
-    },
-  };
+      list: {
+        bullet: ({ children }) => (
+          <ul className="list-disc pl-6 mb-4 text-on-surface-variant space-y-1.5 font-['Poppins'] text-[15px] leading-[1.45]">
+            {children}
+          </ul>
+        ),
+        number: ({ children }) => (
+          <ol className="list-decimal pl-6 mb-4 text-on-surface-variant space-y-1.5 font-['Poppins'] text-[15px] leading-[1.45]">
+            {children}
+          </ol>
+        ),
+      },
+      marks: {
+        link: ({ children, value }) => {
+          const href = value?.href || '';
+          const isExternal = href.startsWith('http');
+          return (
+            <a
+              href={href}
+              target={isExternal ? '_blank' : undefined}
+              rel={isExternal ? 'noopener noreferrer' : undefined}
+              className="text-brand-pink font-medium underline underline-offset-2 hover:text-[#735D83] transition-colors wrap-break-word"
+            >
+              {children}
+            </a>
+          );
+        },
+      },
+    }),
+    [post?.title]
+  );
 
   // Evita que al recargar el navegador restaure el scroll al final (Footer)
   useEffect(() => {
+    let isCancelled = false;
+
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
@@ -176,6 +182,7 @@ export default function BlogPost({ onOpenModal }) {
           "category": categories[0]->title
         }`;
         const currentPost = await client.fetch(postQuery, { slug });
+        if (isCancelled) return;
         setPost(currentPost);
 
         if (currentPost) {
@@ -191,23 +198,31 @@ export default function BlogPost({ onOpenModal }) {
             "category": categories[0]->title
           }`;
           const recent = await client.fetch(recentQuery, { slug });
+          if (isCancelled) return;
           setRecentPosts(recent);
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        if (!isCancelled) console.error('Error fetching data:', error);
       } finally {
-        setIsLoading(false);
+        if (!isCancelled) setIsLoading(false);
       }
     };
 
     fetchData();
 
     return () => {
+      isCancelled = true;
       if ('scrollRestoration' in window.history) {
         window.history.scrollRestoration = 'auto';
       }
     };
   }, [slug]);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(copyTimeoutRef.current);
+    };
+  }, []);
 
   // Asegura quedar arriba del todo justo al terminar de renderizar el post
   useEffect(() => {
@@ -268,18 +283,15 @@ export default function BlogPost({ onOpenModal }) {
 
   const handleCopyLink = async () => {
     try {
+      if (!navigator.clipboard?.writeText) {
+        throw new Error('Clipboard API unavailable');
+      }
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      clearTimeout(copyTimeoutRef.current);
+      copyTimeoutRef.current = setTimeout(() => setCopied(false), 2500);
     } catch {
-      const input = document.createElement('input');
-      input.value = shareUrl;
-      document.body.appendChild(input);
-      input.select();
-      document.execCommand('copy');
-      document.body.removeChild(input);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      window.prompt('Copia el enlace del artículo:', shareUrl);
     }
   };
 
@@ -345,7 +357,9 @@ export default function BlogPost({ onOpenModal }) {
     <main className="w-full pt-20 md:pt-24 bg-surface-variant/30 min-h-screen">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+        }}
       />
 
       <div className="max-w-[1140px] mx-auto px-6 md:px-8 py-8 md:py-12 w-full">
@@ -428,7 +442,7 @@ export default function BlogPost({ onOpenModal }) {
 
               {post.mainImage && (
                 <figure className="mb-9">
-                  <div className="w-full max-w-[740px] aspect-[16/10] max-h-[440px] rounded-3xl overflow-hidden shadow-md border border-pink-100/70 bg-white">
+                  <div className="w-full max-w-[740px] aspect-16/10 max-h-[440px] rounded-3xl overflow-hidden shadow-md border border-pink-100/70 bg-white">
                     <img
                       src={urlFor(post.mainImage).width(960).auto('format').quality(85).url()}
                       alt={post.mainImage.alt || post.title}
@@ -486,7 +500,7 @@ export default function BlogPost({ onOpenModal }) {
                     title="Compartir en X"
                     className="text-[#735D83] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                   </a>
@@ -562,7 +576,7 @@ export default function BlogPost({ onOpenModal }) {
                     aria-label="Instagram de la Dra. Lubisay Moreno"
                     className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                     </svg>
                   </a>
@@ -574,7 +588,7 @@ export default function BlogPost({ onOpenModal }) {
                     aria-label="TikTok de la Dra. Lubisay Moreno"
                     className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
                     </svg>
                   </a>
@@ -586,7 +600,7 @@ export default function BlogPost({ onOpenModal }) {
                     aria-label="Facebook de la Dra. Lubisay Moreno"
                     className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z" />
                     </svg>
                   </a>
@@ -598,7 +612,7 @@ export default function BlogPost({ onOpenModal }) {
                     aria-label="WhatsApp de la Dra. Lubisay Moreno"
                     className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
-                    <svg className="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="size-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12.031 2C6.502 2 2 6.502 2 12.031c0 1.766.462 3.49 1.34 5.012L2 22l5.095-1.335a9.986 9.986 0 0 0 4.936 1.298h.004c5.528 0 10.03-4.502 10.03-10.032C22.065 6.502 17.56 2 12.031 2zm5.838 14.236c-.246.693-1.44 1.326-1.984 1.404-.506.073-1.15.104-1.855-.12-.43-.136-.98-.32-1.682-.623-2.96-1.278-4.892-4.274-5.04-4.47-.147-.196-1.203-1.6-1.203-3.052 0-1.452.762-2.165 1.032-2.46.27-.295.59-.368.786-.368.197 0 .394.002.565.01.182.008.426-.069.666.508.246.59.836 2.04.91 2.187.074.148.123.32.025.517-.098.196-.148.32-.295.492-.147.172-.31.384-.442.516-.147.147-.3.307-.13.602.172.295.764 1.26 1.64 2.04 1.128 1.005 2.078 1.318 2.373 1.465.295.148.467.123.64-.073.172-.197.737-.86.934-1.155.197-.295.394-.246.664-.148.27.098 1.722.812 2.017.96.295.147.492.22.566.344.073.123.073.713-.173 1.406z" />
                     </svg>
                   </a>
@@ -619,7 +633,7 @@ export default function BlogPost({ onOpenModal }) {
                   </p>
                   <ul className="space-y-1.5 font-['Poppins'] text-xs">
                     {toc.map((heading, index) => (
-                      <li key={index}>
+                      <li key={`${slugify(heading)}-${index}`}>
                         <a
                           href={`#${slugify(heading)}`}
                           onClick={(e) => handleScrollToHeading(e, heading)}
@@ -633,7 +647,7 @@ export default function BlogPost({ onOpenModal }) {
                 </div>
               )}
 
-              <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-[#442D52] via-[#3A2447] to-[#4A2E5C] shadow-[0_10px_30px_rgba(68,45,82,0.16)] text-center">
+              <div className="relative overflow-hidden p-6 rounded-3xl bg-linear-to-br from-[#442D52] via-[#3A2447] to-[#4A2E5C] shadow-[0_10px_30px_rgba(68,45,82,0.16)] text-center">
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute -top-12 -left-12 w-36 h-36 rounded-full bg-[#735D83]/30 blur-2xl"
@@ -691,7 +705,7 @@ export default function BlogPost({ onOpenModal }) {
                   >
                     <Link
                       to={`/blog/${item.slug}`}
-                      className="relative w-full aspect-[16/10] bg-pink-50 block overflow-hidden"
+                      className="relative w-full aspect-16/10 bg-pink-50 block overflow-hidden"
                     >
                       {item.mainImage && (
                         <img
@@ -703,12 +717,12 @@ export default function BlogPost({ onOpenModal }) {
                         />
                       )}
                       {item.category && (
-                        <span className="absolute top-3 left-3 px-3 py-1 bg-white/95 backdrop-blur text-brand-pink text-[10px] uppercase font-bold tracking-wider rounded-full shadow-sm">
+                        <span className="absolute top-3 left-3 px-3 py-1 bg-white/95 backdrop-blur-sm text-brand-pink text-[10px] uppercase font-bold tracking-wider rounded-full shadow-sm">
                           {item.category}
                         </span>
                       )}
                     </Link>
-                    <div className="p-6 flex flex-col flex-grow">
+                    <div className="p-6 flex flex-col grow">
                       {item.publishedAt && (
                         <time
                           dateTime={item.publishedAt}
@@ -724,7 +738,7 @@ export default function BlogPost({ onOpenModal }) {
                       <h3 className="font-['Poppins'] font-medium text-base text-on-background mb-2 line-clamp-2 hover:text-brand-pink transition-colors leading-snug">
                         <Link to={`/blog/${item.slug}`}>{item.title}</Link>
                       </h3>
-                      <p className="font-['Poppins'] text-xs text-on-surface-variant line-clamp-3 mb-5 flex-grow leading-[1.45]">
+                      <p className="font-['Poppins'] text-xs text-on-surface-variant line-clamp-3 mb-5 grow leading-[1.45]">
                         {item.excerpt}
                       </p>
                       <Link

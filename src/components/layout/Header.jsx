@@ -86,6 +86,8 @@ export default function Header({ onOpenModal }) {
                 <Link to="/servicios#ecografias" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Ecografías</Link>
                 <Link to="/servicios#ginecologia" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Ginecología General</Link>
                 <Link to="/servicios#planificacion" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Planificación Familiar</Link>
+                <Link to="/servicios#control-obstetrico" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Control Obstétrico</Link>
+                <Link to="/servicios#salud-sexual" onClick={closeMenu} className="text-sm text-on-surface-variant py-3 border-b border-white">Salud Sexual</Link>
                 <Link to="/servicios#menopausia" onClick={closeMenu} className="text-sm text-on-surface-variant py-3">Menopausia</Link>
               </div>
             )}

@@ -5,8 +5,8 @@ const SERVICES_LINKS = [
   { label: 'Control Prenatal', to: '/servicios#control-prenatal' },
   { label: 'Control Obstétrico', to: '/servicios#control-obstetrico' },
   { label: 'Ecografías Integrales', to: '/servicios#ecografias' },
-  { label: 'Ginecología General', to: '/servicios#ginecologia-general' },
-  { label: 'Planificación Familiar', to: '/servicios#planificacion-familiar' },
+  { label: 'Ginecología General', to: '/servicios#ginecologia' },
+  { label: 'Planificación Familiar', to: '/servicios#planificacion' },
   { label: 'Salud Sexual y Prevención', to: '/servicios#salud-sexual' },
   { label: 'Menopausia', to: '/servicios#menopausia' },
 ];
@@ -174,7 +174,7 @@ export default function Footer() {
                   </a>
 
                   <a
-                    href="https://www.facebook.com/dralubisaymoreno"
+                    href="https://www.facebook.com/profile.php?id=61593076585177"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook de Dra. Lubisay Moreno"

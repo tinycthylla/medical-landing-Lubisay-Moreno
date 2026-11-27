@@ -148,7 +148,7 @@ export default function Locations() {
                 <div className="flex flex-col">
                   <span className="font-bold text-sm text-on-background mb-1">Teléfono</span>
                   <a 
-                    href={`tel:${clinic.phone.replace(/\D/g,'')}`} 
+                    href={`tel:${clinic.phone.split('/')[0].replace(/\D/g, '')}`} 
                     className="text-sm text-on-surface-variant hover:text-brand-purple transition-colors"
                   >
                     {clinic.phone}
@@ -170,7 +170,7 @@ export default function Locations() {
                   <div className="flex flex-col">
                     <span className="font-bold text-sm text-on-background mb-1">WhatsApp</span>
                     <a 
-                      href={`https://wa.me/58${clinic.whatsapp.replace(/\D/g,'')}`} 
+                      href={`https://wa.me/58${clinic.whatsapp.replace(/\D/g, '').replace(/^0/, '')}`} 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="text-sm text-on-surface-variant hover:text-brand-purple transition-colors"

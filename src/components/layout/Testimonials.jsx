@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import fotoLizaveta from '../../assets/img/lizaveta_acevedo.jpg';
 import fotoYoleida from '../../assets/img/yoleida_garcia.jpg';
 import fotoKatiuska from '../../assets/img/katiuska_rodriguez.jpg';
@@ -28,7 +28,7 @@ export default function Testimonials() {
     { name: "Elizabeth de Ponte.", time: "Hace 2 años", image: fotoEliza, quote: "Me ha ayudado muchísimo a regular mis ciclos menstruales y a entender mejor mi cuerpo. Es una doctora joven, actualizada y con excelente trato." },
     { name: "Dinora Rodríguez.", time: "Hace 2 días", image: fotoDinora, quote: "Tengo años atendiéndome con la Dra. Moreno. Es directa al explicar y tiene mucha empatía con sus pacientes. Definitivamente no la cambio por nadie." },
     { name: "Barbara Cisneros.", time: "Hace 2 semanas", image: fotoBarbara, quote: "Fui para un chequeo de rutina y me sorprendió lo completa que fue la evaluación. Te revisa de forma integral y te explica el porqué de cada estudio." },
-    { name: "Yeilys Acosta.", time: "Hace 1 meses", image: fotoYei, quote: "La Dra. Lubisay llevó el control de todo mi embarazo. Sus ecos son súper detallados y siempre nos explicó cada avance con mucha paciencia. Me dio muchísima tranquilidad." },
+    { name: "Yeilys Acosta.", time: "Hace 1 mes", image: fotoYei, quote: "La Dra. Lubisay llevó el control de todo mi embarazo. Sus ecos son súper detallados y siempre nos explicó cada avance con mucha paciencia. Me dio muchísima tranquilidad." },
     { name: "Yorlianys López.", time: "Hace 6 meses", image: fotoYor, quote: "Era mi primera consulta ginecológica y estaba bastante nerviosa. La doctora me hizo sentir cómoda y segura desde el primer momento." }
   ];
 
@@ -64,7 +64,10 @@ export default function Testimonials() {
 
   const maxIndex = reviews.length - itemsPerView;
 
-  const nextSlide = () => setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  const nextSlide = useCallback(
+    () => setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1)),
+    [maxIndex]
+  );
   const prevSlide = () => setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
 
   useEffect(() => {
@@ -75,7 +78,7 @@ export default function Testimonials() {
       }, 6000);
     }
     return () => clearInterval(interval);
-  }, [isHovered, maxIndex]);
+  }, [isHovered, nextSlide]);
 
   return (
     <section id="testimonios" className="scroll-mt-32 w-full py-16 md:py-24 overflow-hidden transition-colors duration-500">
@@ -134,7 +137,7 @@ export default function Testimonials() {
                           <span key={i} className="material-symbols-outlined text-[18px] md:text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                         ))}
                       </div>
-                      <span className="inline-flex items-center gap-1 text-on-surface-variant text-[10px] md:text-[11px] font-medium bg-green-50 text-whatsapp px-2 py-1 rounded-md">
+                      <span className="inline-flex items-center gap-1 text-[10px] md:text-[11px] font-medium bg-green-50 text-whatsapp px-2 py-1 rounded-md">
                         <span className="material-symbols-outlined text-[12px] md:text-[14px]">check_circle</span>
                         Verificada
                       </span>
@@ -186,7 +189,7 @@ export default function Testimonials() {
               <button 
                 key={idx} 
                 onClick={() => setCurrentIndex(idx)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-6 bg-pink-500' : 'bg-pink-200'}`}
+                className={`h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-6 bg-pink-500' : 'w-2 bg-pink-200'}`}
                 aria-label={`Ir a la diapositiva ${idx + 1}`}
               />
             ))}

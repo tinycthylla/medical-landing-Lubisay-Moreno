@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import logoFullColor from '../../assets/icons/logofullcolor.svg';
 
 const SEDES_INFO = {
@@ -94,17 +94,21 @@ export default function BookingModal({ isOpen, onClose }) {
     return new Date(t.getFullYear(), t.getMonth(), 1);
   });
 
+  const handleClose = useCallback(() => {
+    setMobileStep(1);
+    setFormError('');
+    onClose();
+  }, [onClose]);
+
   // Bloquea scroll del fondo y permite cerrar con Escape
   useEffect(() => {
     if (!isOpen) return;
 
-    setMobileStep(1);
-    setFormError('');
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') handleClose();
     };
     window.addEventListener('keydown', handleKeyDown);
 
@@ -112,7 +116,7 @@ export default function BookingModal({ isOpen, onClose }) {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, handleClose]);
 
   if (!isOpen) return null;
 
@@ -174,7 +178,7 @@ export default function BookingModal({ isOpen, onClose }) {
     const whatsappUrl = `https://wa.me/584129360494?text=${encodedText}`;
 
     window.open(whatsappUrl, '_blank');
-    onClose();
+    handleClose();
   };
 
   const selectedSede = formData.sede ? SEDES_INFO[formData.sede] : null;
@@ -183,7 +187,7 @@ export default function BookingModal({ isOpen, onClose }) {
 
   return (
     <div
-      onClick={onClose}
+      onClick={handleClose}
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-brand-purple/50 backdrop-blur-sm"
     >
       <div
@@ -225,7 +229,7 @@ export default function BookingModal({ isOpen, onClose }) {
           <div className="flex items-center justify-end">
             <button
               type="button"
-              onClick={onClose}
+              onClick={handleClose}
               aria-label="Cerrar modal"
               className="h-8 w-8 rounded-full bg-white text-brand-purple flex items-center justify-center shadow-sm hover:bg-brand-purple hover:text-white transition-colors cursor-pointer"
             >

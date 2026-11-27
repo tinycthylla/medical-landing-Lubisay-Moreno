@@ -23,7 +23,7 @@ export default function FAQ() {
     },
     {
       question: "¿Es necesario ir depilada?",
-      answer: "No es necesario que te depiles o rasureces. El vello púbico es natural y no interfiere en absoluto con la evaluación médica, la citología o las ecografías; dejarlo o quitarlo es una decisión estrictamente tuya."
+      answer: "No es necesario que te depiles o rasures. El vello púbico es natural y no interfiere en absoluto con la evaluación médica, la citología o las ecografías; dejarlo o quitarlo es una decisión estrictamente tuya."
     },
     {
       question: "¿Cómo debo vestirme para la consulta?",
