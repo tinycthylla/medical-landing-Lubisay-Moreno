@@ -51,7 +51,7 @@ export default function Locations() {
     
     <div className="flex flex-col px-6 items-center text-center mb-10">
       <div className="flex items-center justify-center mb-4">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 font-label-md text-xs uppercase tracking-wider font-bold shadow-sm">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-pink-100 text-brand-pink font-label-md text-xs uppercase tracking-wider font-bold shadow-sm">
           <span className="material-symbols-outlined text-[16px]">domain</span>
           Consultorios
         </span>
@@ -79,7 +79,7 @@ export default function Locations() {
               {clinic.name}
             </h3>
 
-            <div className="flex flex-col gap-5 mb-8 flex-grow font-body-md">
+            <div className="flex flex-col gap-5 mb-8 grow font-body-md">
               <div className="flex items-start gap-4">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -179,7 +179,7 @@ export default function Locations() {
           <button 
             key={clinic.id} 
             onClick={() => scrollTo(idx)}
-            className={`h-2 rounded-full transition-all duration-300 ${activeIndex === idx ? 'w-6 bg-pink-500' : 'w-2 bg-pink-200'}`}
+            className={`h-2 rounded-full transition-all duration-300 ${activeIndex === idx ? 'w-6 bg-brand-pink' : 'w-2 bg-pink-200'}`}
             aria-label={`Ir a la sede ${idx + 1}`}
           />
         ))}

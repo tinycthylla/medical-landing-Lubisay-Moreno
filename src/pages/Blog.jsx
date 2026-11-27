@@ -95,7 +95,7 @@ export default function Blog({ onOpenModal }) {
   if (isLoading) return <BlogLoader text="Cargando artículos..." />;
 
   return (
-    <main className="flex-grow font-body-md bg-surface-variant/30 min-h-screen">
+    <main className="grow font-body-md min-h-screen">
       <header className="w-full pt-32 md:pt-40 pb-8 md:pb-10 px-6">
         <RevealOnScroll className="max-w-3xl mx-auto text-center flex flex-col items-center">
           <div className="flex flex-col items-center text-center mb-5">
@@ -104,7 +104,7 @@ export default function Blog({ onOpenModal }) {
             </span>
           </div>
 
-          <h1 className="font-['Poppins'] font-bold text-3xl sm:text-4xl text-on-background leading-tight tracking-tight">
+          <h1 className="font-bold text-3xl sm:text-4xl text-on-background leading-tight tracking-tight">
           Descubre nuevos temas y potencia el conocimiento relacionado a tu salud
         </h1>
         </RevealOnScroll>
@@ -116,7 +116,7 @@ export default function Blog({ onOpenModal }) {
             <span className="material-symbols-outlined text-pink-200 text-6xl mb-4">
               edit_document
             </span>
-            <h2 className="font-['Poppins'] text-2xl font-medium text-brand-purple mb-2">
+            <h2 className="text-2xl font-medium text-brand-purple mb-2">
               Próximamente
             </h2>
             <p className="text-on-surface-variant max-w-md mx-auto">
@@ -143,7 +143,7 @@ export default function Blog({ onOpenModal }) {
                     value={searchQuery}
                     onChange={handleSearchChange}
                     placeholder="Buscar tema (ej. VPH, endometriosis, embarazo...)"
-                    className="w-full py-3 pr-10 bg-transparent font-['Poppins'] text-sm text-on-background placeholder:text-on-surface-variant/70 focus:outline-none"
+                    className="w-full py-3 pr-10 bg-transparent text-sm text-on-background placeholder:text-on-surface-variant/70 focus:outline-none"
                   />
                   {searchQuery && (
                     <button
@@ -176,10 +176,10 @@ export default function Blog({ onOpenModal }) {
                         type="button"
                         onClick={() => handleCategoryChange(category)}
                         aria-pressed={isActive}
-                        className={`whitespace-nowrap shrink-0 px-4 py-2 rounded-full font-['Poppins'] text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer border ${
+                        className={`whitespace-nowrap shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer border ${
                           isActive
-                            ? 'bg-pink-50 text-brand-pink border-brand-pink/40 shadow-sm'
-                            : 'bg-white text-brand-purple border-pink-100/80 shadow-sm hover:bg-pink-50 hover:text-brand-pink'
+                            ? 'bg-brand-pink-light text-brand-pink border-brand-pink/40 shadow-sm'
+                            : 'bg-white text-brand-purple border-pink-100/80 shadow-sm hover:bg-brand-pink-light hover:text-brand-pink'
                         }`}
                       >
                         {category}
@@ -192,7 +192,7 @@ export default function Blog({ onOpenModal }) {
 
             {filteredArticles.length === 0 ? (
               <div className="text-center py-14 px-6 bg-white rounded-3xl border border-pink-100/60 shadow-sm max-w-xl mx-auto">
-                <h2 className="font-['Poppins'] text-xl font-medium text-brand-purple mb-2">
+                <h2 className="text-xl font-medium text-brand-purple mb-2">
                   No encontramos artículos con esa búsqueda
                 </h2>
                 <p className="text-sm text-on-surface-variant mb-6">
@@ -201,7 +201,7 @@ export default function Blog({ onOpenModal }) {
                 <button
                   type="button"
                   onClick={handleClearFilters}
-                  className="px-6 py-2.5 rounded-full bg-brand-pink text-white font-['Poppins'] text-xs uppercase tracking-wider font-medium hover:bg-brand-purple transition-colors cursor-pointer"
+                  className="px-6 py-2.5 rounded-full bg-brand-pink text-white text-xs uppercase tracking-wider font-medium hover:bg-brand-purple transition-colors cursor-pointer"
                 >
                   Ver todos los artículos
                 </button>
@@ -215,7 +215,7 @@ export default function Blog({ onOpenModal }) {
                       to={`/blog/${article.slug}`}
                       className="flex flex-col group bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-pink-100/50 p-4"
                     >
-                      <div className="aspect-video rounded-2xl overflow-hidden relative bg-pink-50 mb-4">
+                      <div className="aspect-video rounded-2xl overflow-hidden relative bg-brand-pink-light mb-4">
                         {article.mainImage && (
                           <img
                             alt={article.title}
@@ -230,14 +230,14 @@ export default function Blog({ onOpenModal }) {
                           />
                         )}
                         {article.category && (
-                          <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur text-brand-pink font-label-md text-[10px] uppercase tracking-wider font-bold shadow-sm">
+                          <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-brand-pink font-label-md text-[10px] uppercase tracking-wider font-bold shadow-sm">
                             {article.category}
                           </span>
                         )}
                       </div>
 
-                      <div className="flex flex-col flex-grow items-center text-center px-2 pb-2">
-                        <h2 className="font-['Poppins'] font-medium text-lg text-on-background mb-3 leading-snug line-clamp-2 group-hover:text-brand-pink transition-colors">
+                      <div className="flex flex-col grow items-center text-center px-2 pb-2">
+                        <h2 className="font-medium text-lg text-on-background mb-3 leading-snug line-clamp-2 group-hover:text-brand-pink transition-colors">
                           {article.title}
                         </h2>
 
@@ -261,7 +261,7 @@ export default function Blog({ onOpenModal }) {
                     <button
                       type="button"
                       onClick={() => setVisibleCount((prev) => prev + POSTS_PER_PAGE)}
-                      className="px-8 py-3 rounded-full bg-white text-brand-purple border border-pink-100 shadow-sm font-['Poppins'] text-xs sm:text-sm font-medium hover:bg-pink-50 hover:text-brand-pink transition-all duration-300 cursor-pointer"
+                      className="px-8 py-3 rounded-full bg-white text-brand-purple border border-pink-100 shadow-sm text-xs sm:text-sm font-medium hover:bg-brand-pink-light hover:text-brand-pink transition-all duration-300 cursor-pointer"
                     >
                       Cargar más artículos
                     </button>

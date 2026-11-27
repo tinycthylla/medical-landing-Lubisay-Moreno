@@ -57,9 +57,9 @@ export default function About({ onOpenModal }) {
       <div className="relative w-full">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[340px] bg-brand-pink/15 blur-[120px] rounded-full pointer-events-none" />
 
-        <section className="w-full bg-[#735D83] pt-10 pb-0 md:pt-14 md:pb-0 relative overflow-hidden font-['Poppins']">
+        <section className="w-full bg-brand-grape pt-10 pb-0 md:pt-14 md:pb-0 relative overflow-hidden">
           <div 
-            className={`max-w-[1240px] mx-auto px-4 md:px-8 relative flex flex-col items-center transition-all duration-[1200ms] ease-out transform ${
+            className={`max-w-[1240px] mx-auto px-4 md:px-8 relative flex flex-col items-center transition-all duration-1200 ease-out transform ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
@@ -67,7 +67,7 @@ export default function About({ onOpenModal }) {
           src={SiluetaLogo} 
           alt="" 
           aria-hidden="true"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] sm:w-[70%] md:right-auto md:left-0 lg:left-[0%] md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:w-[250px] lg:w-[500px] opacity-5 brightness-0 invert pointer-events-none select-none z-0"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] sm:w-[70%] md:right-auto md:left-0 lg:left-0 md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:w-[250px] lg:w-[500px] opacity-5 brightness-0 invert pointer-events-none select-none z-0"
         />
             
            <h1 className="relative top-6 md:top-0 text-center text-white text-4xl sm:text-5xl md:text-6xl lg:text-[68px] mb-4 md:mb-4 tracking-tight z-20 leading-tight">
@@ -152,7 +152,7 @@ export default function About({ onOpenModal }) {
               </div>
 
               <div className="hidden md:flex items-center absolute top-[44%] right-[3%] lg:right-[7%] z-20">
-                <svg className="w-16 lg:w-[80px] h-auto fill-white mr-3 -translate-y-1" viewBox="0 0 376.39 162.66">
+                <svg className="w-16 lg:w-20 h-auto fill-white mr-3 -translate-y-1" viewBox="0 0 376.39 162.66">
                   <path d="m376.39,0c-17.56,8.9-41.69,17.77-60.42,19.78l20.12,8.5c-23.39,6.53-48.3,7.72-72.19,3.38-4.15-.75-8.42-1.7-12.56-2.61-13.23-2.92-26.91-5.93-41.01-4.06-6.06.8-12.09,2.86-17.53,5.91-19.25-7.17-39.9-6.36-55.91-4.81-40.71,3.94-73.49,15.88-97.44,35.47-13.95,11.41-25.36,26.68-32.14,43C-.05,122.26-1.9,140.61,1.98,157.61c.69,3.01,3.37,5.06,6.33,5.06.48,0,.96-.05,1.45-.16,3.5-.8,5.69-4.28,4.89-7.78-6.45-28.28,6.82-61.68,33.02-83.11,21.93-17.93,52.36-28.9,90.46-32.59,12.39-1.2,27.77-1.94,42.39,1.68-6.13,6.98-9.67,15.75-8.53,25.35.85,7.12,4.09,13.25,6.96,18.66,12.87,24.32,26.33,26.89,35.36,24.76,13.77-3.25,19.82-18.71,18.53-31.61-1.52-15.17-10.91-29.53-24.96-39.17,1.37-.36,2.76-.63,4.14-.82,11.83-1.57,23.81,1.07,36.5,3.87,4.25.94,8.66,1.91,13.04,2.71,26.62,4.83,54.41,3.34,80.35-4.31,2.39-.7,4.72-1.51,7-2.38l12.41,24.01c.56-18.83,7.54-43.57,15.05-61.77Zm-156.48,79.16c.74,7.35-2.33,16.19-8.58,17.66-8.71,2.05-16.83-10.52-20.89-18.19-2.45-4.62-4.98-9.4-5.54-14.12-.87-7.3,3.09-14.02,9.17-18.91,14.5,7.26,24.47,20.06,25.83,33.56Z"/>
                 </svg>
                 <p className="text-white text-left text-sm lg:text-[17px] leading-snug">
@@ -193,7 +193,7 @@ export default function About({ onOpenModal }) {
         <div className="max-w-[1200px] mx-auto px-6 md:px-8">
           <RevealOnScroll
             threshold={0.15}
-            durationClass="duration-[1200ms]"
+            durationClass="duration-1200"
             hiddenClass="opacity-0 translate-y-12"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -227,7 +227,7 @@ export default function About({ onOpenModal }) {
                       <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
                       <rect width="20" height="14" x="2" y="6" rx="2" />
                     </svg>
-                    <span className="font-['Poppins'] text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-pink leading-none">
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-pink leading-none">
                       Tu salud en manos expertas
                     </span>
                   </div>
@@ -300,16 +300,16 @@ export default function About({ onOpenModal }) {
         </div>
       </section>
 
-      <section className="w-full bg-pink-50 py-20 md:py-24 overflow-hidden" id="filosofia">
+      <section className="w-full bg-brand-pink-light py-20 md:py-24 overflow-hidden" id="filosofia">
         <div className="max-w-[920px] mx-auto px-6 md:px-8">
           
           <RevealOnScroll
             threshold={0.15}
-            durationClass="duration-[1200ms]"
+            durationClass="duration-1200"
             hiddenClass="opacity-0 translate-y-12"
           >
             <div className="text-center max-w-xl mx-auto mb-14 md:mb-16">
-              <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-white border border-brand-pink/30 text-brand-pink font-['Poppins'] text-xs font-bold uppercase tracking-wider shadow-sm mb-3">
+              <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-white border border-brand-pink/30 text-brand-pink text-xs font-bold uppercase tracking-wider shadow-sm mb-3">
                 Mi Esencia
               </span>
               <h2 className="font-body-md text-3xl md:text-4xl text-brand-grape mt-2 font-bold tracking-tight">
@@ -329,7 +329,7 @@ export default function About({ onOpenModal }) {
                 <RevealOnScroll
                   key={item.title}
                   threshold={0.15}
-                  durationClass="duration-[1200ms]"
+                  durationClass="duration-1200"
                   hiddenClass="opacity-0 translate-y-12"
                 >
                   <div
@@ -338,7 +338,7 @@ export default function About({ onOpenModal }) {
                     }`}
                   >
                     <div className="w-full max-w-[360px] md:w-[46%] shrink-0 relative z-0">
-                      <div className="aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-md shadow-pink-200/30 bg-white">
+                      <div className="aspect-4/5 w-full rounded-3xl overflow-hidden shadow-md shadow-pink-200/30 bg-white">
                         <img
                           src={item.image}
                           alt={item.alt}
@@ -352,7 +352,7 @@ export default function About({ onOpenModal }) {
                         isReversed ? 'md:-mr-12' : 'md:-ml-12'
                       }`}
                     >
-                      <h3 className="font-['Poppins'] text-xl md:text-[25px] font-bold text-[#735D83] leading-snug mb-3">
+                      <h3 className="text-xl md:text-[25px] font-bold text-brand-grape leading-snug mb-3">
                         {item.title}
                       </h3>
                       <p className="font-body-md text-sm md:text-[15px] text-on-surface-variant leading-relaxed">

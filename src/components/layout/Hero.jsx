@@ -23,7 +23,7 @@ export default function Hero({ onOpenModal }) {
           <div className="flex flex-col items-center md:items-start gap-3 w-full">
             <button
               onClick={onOpenModal}
-              className="w-full max-w-[280px] md:w-auto py-3.5 px-8 rounded-full bg-whatsapp text-white font-['Poppins'] font-semibold text-sm shadow-md hover:opacity-80 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+              className="w-full max-w-[280px] md:w-auto py-3.5 px-8 rounded-full bg-brand-purple text-white font-semibold text-sm shadow-md hover:opacity-80 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
               type="button"
             >
               <span>Agendar mi cita</span>
@@ -42,11 +42,11 @@ export default function Hero({ onOpenModal }) {
         </div>
 
         <div className="relative w-full max-w-[380px] mx-auto md:max-w-[450px] flex justify-center items-end opacity-0 animate-fade-in-up">
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100%] aspect-square bg-brand-pink opacity-10 rounded-full z-0"></div>
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full aspect-square bg-brand-pink opacity-10 rounded-full z-0"></div>
 
-          <span className="material-symbols-outlined absolute top-10 left-0 text-pink-500 text-3xl z-0 opacity-80 pointer-events-none">add</span>
-          <span className="material-symbols-outlined absolute top-1/4 -right-2 text-pink-500 text-4xl z-0 opacity-80 pointer-events-none">add</span>
-          <span className="material-symbols-outlined absolute bottom-1/4 -left-4 text-pink-500 text-2xl z-0 opacity-80 pointer-events-none">add</span>
+          <span className="material-symbols-outlined absolute top-10 left-0 text-brand-pink text-3xl z-0 opacity-80 pointer-events-none">add</span>
+          <span className="material-symbols-outlined absolute top-1/4 -right-2 text-brand-pink text-4xl z-0 opacity-80 pointer-events-none">add</span>
+          <span className="material-symbols-outlined absolute bottom-1/4 -left-4 text-brand-pink text-2xl z-0 opacity-80 pointer-events-none">add</span>
           <img 
             src={fotoDoctora} 
             alt="Dra. Lubisay Moreno" 
@@ -54,7 +54,7 @@ export default function Hero({ onOpenModal }) {
           />
 
           <div className="absolute top-1/3 -left-2 md:-left-8 z-20 bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-pink-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-500">
+            <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-brand-pink">
               <span className="material-symbols-outlined">verified</span>
             </div>
             <div className="text-left">
@@ -64,7 +64,7 @@ export default function Hero({ onOpenModal }) {
           </div>
 
           <div className="absolute bottom-12 -right-2 md:-right-4 z-20 bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-pink-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-500">
+            <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-brand-pink">
               <span className="material-symbols-outlined">ecg_heart</span>
             </div>
             <div className="text-left">

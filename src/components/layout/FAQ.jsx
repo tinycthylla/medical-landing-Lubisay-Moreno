@@ -34,7 +34,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="scroll-mt-32 w-full px-6 pt-6 pb-16 md:pt-10 md:pb-24 bg-pink-50 transition-colors duration-500">
+    <section id="faq" className="scroll-mt-32 w-full px-6 pt-6 pb-16 md:pt-10 md:pb-24 bg-brand-pink-light transition-colors duration-500">
       <div
         ref={sectionRef}
         className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start ${
@@ -44,7 +44,7 @@ export default function FAQ() {
         
           <div className="flex flex-col items-center md:items-start text-center md:text-left w-full mb-8">
           <div className="flex justify-center md:justify-start w-full mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-pink-100 text-pink-500 font-label-md text-[10px] sm:text-xs uppercase tracking-wider font-bold shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-pink-100 text-brand-pink font-label-md text-[10px] sm:text-xs uppercase tracking-wider font-bold shadow-sm">
           <span className="material-symbols-outlined text-[16px]">auto_awesome</span>
             Preguntas Frecuentes
           </span>
@@ -66,11 +66,11 @@ export default function FAQ() {
                   <span className="font-bold text-on-background pr-4">
                     {faq.question}
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center shrink-0 text-pink-500 group-open:rotate-180 transition-transform duration-300">
+                  <div className="w-8 h-8 rounded-full bg-brand-pink-light flex items-center justify-center shrink-0 text-brand-pink group-open:rotate-180 transition-transform duration-300">
                     <span className="material-symbols-outlined text-[20px]">keyboard_arrow_down</span>
                   </div>
                 </summary>
-                <div className="px-5 pb-5 pt-1 border-t border-pink-50/50 mt-2">
+                <div className="px-5 pb-5 pt-1 border-t border-brand-pink-light/50 mt-2">
                   <p className="text-body-md text-on-surface-variant leading-relaxed pt-2">
                     {faq.answer}
                   </p>
@@ -89,7 +89,7 @@ export default function FAQ() {
             alt="Dra. Lubisay en consulta" 
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-10 text-center md:text-left">
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-10 text-center md:text-left">
             <span className="text-white font-body-md text-2xl font-bold leading-tight drop-shadow-md">
               Atención cercana y empática
             </span>

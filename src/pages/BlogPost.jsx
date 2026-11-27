@@ -63,7 +63,7 @@ export default function BlogPost({ onOpenModal }) {
                 className="w-full rounded-2xl object-cover shadow-sm border border-pink-100"
               />
               {value.caption && (
-                <figcaption className="text-center font-['Poppins'] text-xs text-on-surface-variant mt-2">
+                <figcaption className="text-center text-xs text-on-surface-variant mt-2">
                   {value.caption}
                 </figcaption>
               )}
@@ -77,25 +77,25 @@ export default function BlogPost({ onOpenModal }) {
           return (
             <h2
               id={slugify(text)}
-              className="font-['Poppins'] font-medium text-2xl md:text-[28px] text-brand-purple mt-8 mb-3 scroll-mt-28 leading-snug tracking-tight"
+              className="font-medium text-2xl md:text-[28px] text-brand-purple mt-8 mb-3 scroll-mt-28 leading-snug tracking-tight"
             >
               {children}
             </h2>
           );
         },
         h3: ({ children }) => (
-          <h3 className="font-['Poppins'] font-medium text-xl md:text-[22px] text-on-background mt-6 mb-2.5 leading-snug">
+          <h3 className="font-medium text-xl md:text-[22px] text-on-background mt-6 mb-2.5 leading-snug">
             {children}
           </h3>
         ),
         normal: ({ children }) => (
-          <p className="font-['Poppins'] font-normal text-[15px] text-on-surface-variant leading-[1.45] mb-3.5">
+          <p className="font-normal text-[15px] text-on-surface-variant leading-[1.45] mb-3.5">
             {children}
           </p>
         ),
         blockquote: ({ children }) => (
-          <blockquote className="my-7 p-6 rounded-2xl bg-[#FDF4F8] border-l-4 border-brand-pink text-on-surface-variant italic">
-            <p className="font-['Poppins'] font-medium text-base md:text-[17px] mb-0 leading-[1.45]">
+          <blockquote className="my-7 p-6 rounded-2xl bg-brand-pink-light border-l-4 border-brand-pink text-on-surface-variant italic">
+            <p className="font-medium text-base md:text-[17px] mb-0 leading-[1.45]">
               {children}
             </p>
           </blockquote>
@@ -103,12 +103,12 @@ export default function BlogPost({ onOpenModal }) {
       },
       list: {
         bullet: ({ children }) => (
-          <ul className="list-disc pl-6 mb-4 text-on-surface-variant space-y-1.5 font-['Poppins'] text-[15px] leading-[1.45]">
+          <ul className="list-disc pl-6 mb-4 text-on-surface-variant space-y-1.5 text-[15px] leading-[1.45]">
             {children}
           </ul>
         ),
         number: ({ children }) => (
-          <ol className="list-decimal pl-6 mb-4 text-on-surface-variant space-y-1.5 font-['Poppins'] text-[15px] leading-[1.45]">
+          <ol className="list-decimal pl-6 mb-4 text-on-surface-variant space-y-1.5 text-[15px] leading-[1.45]">
             {children}
           </ol>
         ),
@@ -122,7 +122,7 @@ export default function BlogPost({ onOpenModal }) {
               href={href}
               target={isExternal ? '_blank' : undefined}
               rel={isExternal ? 'noopener noreferrer' : undefined}
-              className="text-brand-pink font-medium underline underline-offset-2 hover:text-[#735D83] transition-colors wrap-break-word"
+              className="text-brand-pink font-medium underline underline-offset-2 hover:text-brand-grape transition-colors wrap-break-word"
             >
               {children}
             </a>
@@ -268,13 +268,13 @@ export default function BlogPost({ onOpenModal }) {
 
   if (!post) {
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center gap-4 px-6 bg-surface-variant/30">
-        <h1 className="font-['Poppins'] font-medium text-2xl text-brand-purple">
+      <main className="min-h-screen flex flex-col items-center justify-center gap-4 px-6">
+        <h1 className="font-medium text-2xl text-brand-purple">
           Artículo no encontrado
         </h1>
         <Link
           to="/blog"
-          className="px-5 py-2.5 rounded-full bg-brand-pink text-white text-sm font-['Poppins'] font-medium hover:bg-brand-purple transition-colors"
+          className="px-5 py-2.5 rounded-full bg-brand-pink text-white text-sm font-medium hover:bg-brand-purple transition-colors"
         >
           Volver al Blog Médico
         </Link>
@@ -323,7 +323,7 @@ export default function BlogPost({ onOpenModal }) {
   };
 
   return (
-    <main className="w-full pt-20 md:pt-24 bg-surface-variant/30 min-h-screen">
+    <main className="w-full pt-20 md:pt-24 min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -404,7 +404,7 @@ export default function BlogPost({ onOpenModal }) {
                   </span>
                 </div>
 
-                <h1 className="font-['Poppins'] font-medium text-3xl sm:text-4xl lg:text-[42px] text-on-background tracking-tight leading-tight">
+                <h1 className="font-medium text-3xl sm:text-4xl lg:text-[42px] text-on-background tracking-tight leading-tight">
                   {post.title}
                 </h1>
               </header>
@@ -430,7 +430,7 @@ export default function BlogPost({ onOpenModal }) {
               </div>
 
               <div className="mt-10 flex flex-wrap items-center gap-5">
-                <span className="font-['Poppins'] text-xs font-medium uppercase tracking-widest text-[#735D83]">
+                <span className="text-xs font-medium uppercase tracking-widest text-brand-grape">
                   Compartir:
                 </span>
 
@@ -441,7 +441,7 @@ export default function BlogPost({ onOpenModal }) {
                     rel="noopener noreferrer"
                     aria-label="Compartir en WhatsApp"
                     title="Compartir en WhatsApp"
-                    className="text-[#735D83] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
+                    className="text-brand-grape hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
                     <WhatsAppIcon className="w-5 h-5 fill-current" />
                   </a>
@@ -452,7 +452,7 @@ export default function BlogPost({ onOpenModal }) {
                     rel="noopener noreferrer"
                     aria-label="Compartir en Facebook"
                     title="Compartir en Facebook"
-                    className="text-[#735D83] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
+                    className="text-brand-grape hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
                     <FacebookIcon className="w-5 h-5 fill-current" />
                   </a>
@@ -463,7 +463,7 @@ export default function BlogPost({ onOpenModal }) {
                     rel="noopener noreferrer"
                     aria-label="Compartir en X"
                     title="Compartir en X"
-                    className="text-[#735D83] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
+                    className="text-brand-grape hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
                     <XIcon className="size-4.5 fill-current" />
                   </a>
@@ -473,7 +473,7 @@ export default function BlogPost({ onOpenModal }) {
                     onClick={handleCopyLink}
                     aria-label="Copiar enlace"
                     title={copied ? '¡Enlace copiado!' : 'Copiar enlace'}
-                    className="inline-flex items-center gap-1.5 text-[#735D83] hover:text-brand-pink hover:-translate-y-0.5 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-brand-grape hover:text-brand-pink hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
                     <span
                       className={`material-symbols-outlined text-[21px] leading-none ${
@@ -483,7 +483,7 @@ export default function BlogPost({ onOpenModal }) {
                       {copied ? 'check' : 'link'}
                     </span>
                     {copied && (
-                      <span className="font-['Poppins'] text-xs font-medium text-brand-pink">
+                      <span className="text-xs font-medium text-brand-pink">
                         Copiado
                       </span>
                     )}
@@ -498,7 +498,7 @@ export default function BlogPost({ onOpenModal }) {
               <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(68,45,82,0.08)] text-center">
                 <Link
                   to="/acerca"
-                  className="block w-full max-w-[210px] aspect-square mx-auto mb-4 group rounded-2xl overflow-hidden bg-pink-50"
+                  className="block w-full max-w-[210px] aspect-square mx-auto mb-4 group rounded-2xl overflow-hidden bg-brand-pink-light"
                 >
                   <img
                     src={FotoLuConsultorio}
@@ -513,7 +513,7 @@ export default function BlogPost({ onOpenModal }) {
                   to="/acerca"
                   className="inline-flex items-center justify-center gap-1.5 group"
                 >
-                  <h2 className="font-['Poppins'] text-lg font-semibold text-[#442D52] group-hover:text-brand-pink transition-colors">
+                  <h2 className="text-lg font-semibold text-brand-purple group-hover:text-brand-pink transition-colors">
                     Dra. Lubisay Moreno
                   </h2>
                   <span
@@ -524,10 +524,10 @@ export default function BlogPost({ onOpenModal }) {
                   </span>
                 </Link>
 
-                <p className="font-['Poppins'] text-xs font-medium text-on-surface-variant mt-0.5">
+                <p className="text-xs font-medium text-on-surface-variant mt-0.5">
                   Ginecóloga y Obstetra
                 </p>
-                <p className="font-['Poppins'] text-xs text-on-surface-variant leading-[1.45] mt-3 mb-4">
+                <p className="text-xs text-on-surface-variant leading-[1.45] mt-3 mb-4">
                   Medicina basada en evidencia con trato cercano, empático y sin tabúes para acompañarte en cada etapa de tu vida.
                 </p>
 
@@ -537,7 +537,7 @@ export default function BlogPost({ onOpenModal }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram de la Dra. Lubisay Moreno"
-                    className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
+                    className="text-brand-purple hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
                     <InstagramIcon className="size-4.5 fill-current" />
                   </a>
@@ -547,7 +547,7 @@ export default function BlogPost({ onOpenModal }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="TikTok de la Dra. Lubisay Moreno"
-                    className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
+                    className="text-brand-purple hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
                     <TikTokIcon className="size-4.5 fill-current" />
                   </a>
@@ -557,7 +557,7 @@ export default function BlogPost({ onOpenModal }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook de la Dra. Lubisay Moreno"
-                    className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
+                    className="text-brand-purple hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
                     <FacebookIcon className="size-4.5 fill-current" />
                   </a>
@@ -567,7 +567,7 @@ export default function BlogPost({ onOpenModal }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="WhatsApp de la Dra. Lubisay Moreno"
-                    className="text-[#442D52] hover:text-brand-pink hover:-translate-y-0.5 transition-all"
+                    className="text-brand-purple hover:text-brand-pink hover:-translate-y-0.5 transition-all"
                   >
                     <WhatsAppIcon className="size-4.5 fill-current" />
                   </a>
@@ -583,16 +583,16 @@ export default function BlogPost({ onOpenModal }) {
 
               {toc.length > 0 && (
                 <div className="hidden lg:block p-6 bg-white rounded-3xl shadow-[0_10px_30px_rgba(68,45,82,0.08)]">
-                  <p className="font-['Poppins'] text-sm font-semibold text-[#442D52] mb-3 px-2">
+                  <p className="text-sm font-semibold text-brand-purple mb-3 px-2">
                     En este artículo
                   </p>
-                  <ul className="space-y-1.5 font-['Poppins'] text-xs">
+                  <ul className="space-y-1.5 text-xs">
                     {toc.map((heading, index) => (
                       <li key={`${slugify(heading)}-${index}`}>
                         <a
                           href={`#${slugify(heading)}`}
                           onClick={(e) => handleScrollToHeading(e, heading)}
-                          className="block py-1.5 px-2 rounded-xl text-on-surface-variant hover:bg-pink-50 hover:text-brand-pink hover:translate-x-1 transition-all duration-300"
+                          className="block py-1.5 px-2 rounded-xl text-on-surface-variant hover:bg-brand-pink-light hover:text-brand-pink hover:translate-x-1 transition-all duration-300"
                         >
                           {heading}
                         </a>
@@ -602,16 +602,16 @@ export default function BlogPost({ onOpenModal }) {
                 </div>
               )}
 
-              <div className="relative overflow-hidden p-6 rounded-3xl bg-linear-to-br from-[#442D52] via-[#3A2447] to-[#4A2E5C] shadow-[0_10px_30px_rgba(68,45,82,0.16)] text-center">
+              <div className="relative overflow-hidden p-6 rounded-3xl bg-linear-to-br from-brand-purple via-[#3A2447] to-[#4A2E5C] shadow-[0_10px_30px_rgba(68,45,82,0.16)] text-center">
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -top-12 -left-12 w-36 h-36 rounded-full bg-[#735D83]/30 blur-2xl"
+                  className="pointer-events-none absolute -top-12 -left-12 w-36 h-36 rounded-full bg-brand-grape/30 blur-2xl"
                 />
                 <div className="relative z-10">
-                  <p className="font-['Poppins'] text-lg font-semibold text-white mb-2 leading-snug">
+                  <p className="text-lg font-semibold text-white mb-2 leading-snug">
                     ¿Tienes dudas sobre este tema?
                   </p>
-                  <p className="font-['Poppins'] text-xs text-white/85 mb-5 leading-[1.5]">
+                  <p className="text-xs text-white/85 mb-5 leading-[1.5]">
                     Agenda tu consulta ginecológica o ecografía en un espacio seguro y sin prisas.
                   </p>
                   <button
@@ -633,19 +633,19 @@ export default function BlogPost({ onOpenModal }) {
             <section className="mt-16 pt-4" aria-labelledby="recent-posts-heading">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
                 <div>
-                  <span className="font-['Poppins'] text-xs uppercase text-brand-pink tracking-widest font-medium">
+                  <span className="text-xs uppercase text-brand-pink tracking-widest font-medium">
                     Sigue Leyendo
                   </span>
                   <h2
                     id="recent-posts-heading"
-                    className="font-['Poppins'] font-medium text-2xl md:text-3xl text-[#735D83] mt-1"
+                    className="font-medium text-2xl md:text-3xl text-brand-grape mt-1"
                   >
                     Últimos Artículos
                   </h2>
                 </div>
                 <Link
                   to="/blog"
-                  className="inline-flex items-center gap-1 font-['Poppins'] text-xs font-medium uppercase tracking-wider text-brand-purple hover:text-brand-pink transition-colors"
+                  className="inline-flex items-center gap-1 text-xs font-medium uppercase tracking-wider text-brand-purple hover:text-brand-pink transition-colors"
                 >
                   Ver todo el blog
                   <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -660,7 +660,7 @@ export default function BlogPost({ onOpenModal }) {
                   >
                     <Link
                       to={`/blog/${item.slug}`}
-                      className="relative w-full aspect-16/10 bg-pink-50 block overflow-hidden"
+                      className="relative w-full aspect-16/10 bg-brand-pink-light block overflow-hidden"
                     >
                       {item.mainImage && (
                         <img
@@ -681,7 +681,7 @@ export default function BlogPost({ onOpenModal }) {
                       {item.publishedAt && (
                         <time
                           dateTime={item.publishedAt}
-                          className="font-['Poppins'] text-[11px] text-on-surface-variant font-medium mb-2"
+                          className="text-[11px] text-on-surface-variant font-medium mb-2"
                         >
                           {new Date(item.publishedAt).toLocaleDateString('es-ES', {
                             month: 'short',
@@ -690,15 +690,15 @@ export default function BlogPost({ onOpenModal }) {
                           })}
                         </time>
                       )}
-                      <h3 className="font-['Poppins'] font-medium text-base text-on-background mb-2 line-clamp-2 hover:text-brand-pink transition-colors leading-snug">
+                      <h3 className="font-medium text-base text-on-background mb-2 line-clamp-2 hover:text-brand-pink transition-colors leading-snug">
                         <Link to={`/blog/${item.slug}`}>{item.title}</Link>
                       </h3>
-                      <p className="font-['Poppins'] text-xs text-on-surface-variant line-clamp-3 mb-5 grow leading-[1.45]">
+                      <p className="text-xs text-on-surface-variant line-clamp-3 mb-5 grow leading-[1.45]">
                         {item.excerpt}
                       </p>
                       <Link
                         to={`/blog/${item.slug}`}
-                        className="inline-flex items-center gap-1.5 font-['Poppins'] font-medium text-xs text-[#735D83] hover:text-brand-pink transition-colors mt-auto"
+                        className="inline-flex items-center gap-1.5 font-medium text-xs text-brand-grape hover:text-brand-pink transition-colors mt-auto"
                       >
                         Leer artículo
                         <span className="material-symbols-outlined text-[14px]">arrow_forward</span>

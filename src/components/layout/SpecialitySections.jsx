@@ -63,7 +63,7 @@ export default function SpecialitySections() {
                   </span>
                 </div>
 
-                <div className="flex flex-col gap-1 mt-2 flex-grow">
+                <div className="flex flex-col gap-1 mt-2 grow">
                   <h3 className={`text-lg font-bold text-on-background font-body-md transition-colors duration-150 ${hoverText}`}>
                     {service.cardTitle}
                   </h3>

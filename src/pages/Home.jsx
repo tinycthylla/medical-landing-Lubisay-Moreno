@@ -25,7 +25,7 @@ export default function Home({ onOpenModal }) {
   }, [hash]);
 
   return (
-    <main className="flex-grow">
+    <main className="grow">
       <Hero onOpenModal={onOpenModal} />
       <SpecialitySections />
       <Testimonials />

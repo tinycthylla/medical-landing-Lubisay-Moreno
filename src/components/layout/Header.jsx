@@ -53,17 +53,17 @@ export default function Header({ onOpenModal }) {
   </div>
 </div>
 
-            <Link to="/acerca" className="text-on-surface-variant hover:text-pink-500 transition-colors font-body-md">Acerca de mí</Link>
-            <Link to="/#testimonios" className="text-on-surface-variant hover:text-pink-500 transition-colors font-body-md">Experiencias</Link>
-            <Link to="/#faq" className="text-on-surface-variant hover:text-pink-500 transition-colors font-body-md">Preguntas</Link>
-            <Link to="/blog" className="text-on-surface-variant hover:text-pink-500 transition-colors font-body-md">Blog</Link>
+            <Link to="/acerca" className="text-on-surface-variant hover:text-brand-pink transition-colors font-body-md">Acerca de mí</Link>
+            <Link to="/#testimonios" className="text-on-surface-variant hover:text-brand-pink transition-colors font-body-md">Experiencias</Link>
+            <Link to="/#faq" className="text-on-surface-variant hover:text-brand-pink transition-colors font-body-md">Preguntas</Link>
+            <Link to="/blog" className="text-on-surface-variant hover:text-brand-pink transition-colors font-body-md">Blog</Link>
           </nav>
         </div>
 
         <div className="shrink-0">
           <button
             onClick={onOpenModal}
-            className="bg-whatsapp text-on-secondary px-4 py-2 md:px-6 md:py-2.5 rounded-full font-['Poppins'] font-semibold hover:opacity-80 transition-all duration-200 flex items-center gap-1 shadow-md"
+            className="bg-brand-purple text-on-secondary px-4 py-2 md:px-6 md:py-2.5 rounded-full font-semibold hover:opacity-80 transition-all duration-200 flex items-center gap-1 shadow-md"
           >
             <span className="hidden md:inline">Agendar mi cita</span>
             <span className="md:hidden text-xs">Agendar cita</span>
@@ -85,8 +85,8 @@ export default function Header({ onOpenModal }) {
             </button>
             
             {isServicesOpen && (
-              <div className="flex flex-col pl-4 mt-2 bg-pink-50 rounded-md">
-                <Link to="/servicios" onClick={closeMenu} className="text-sm font-bold text-pink-500 py-3 border-b border-white">Ver todos los servicios</Link>
+              <div className="flex flex-col pl-4 mt-2 bg-brand-pink-light rounded-md">
+                <Link to="/servicios" onClick={closeMenu} className="text-sm font-bold text-brand-pink py-3 border-b border-white">Ver todos los servicios</Link>
                 {SERVICES.map((service, index) => (
                   <Link
                     key={service.id}
@@ -113,7 +113,7 @@ export default function Header({ onOpenModal }) {
               onOpenModal();
               closeMenu();
             }}
-            className="bg-whatsapp text-on-secondary px-6 py-3 rounded-full font-label-md w-full mt-4 flex items-center justify-center gap-2 shadow-md"
+            className="bg-brand-purple text-on-secondary px-6 py-3 rounded-full font-label-md w-full mt-4 flex items-center justify-center gap-2 shadow-md"
           >
             <span>Agendar mi cita</span>
           </button>

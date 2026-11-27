@@ -13,7 +13,7 @@ export default function BlogLoader({ text = 'Cargando artículos...' }) {
     <div
       role="status"
       aria-live="polite"
-      className="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center bg-surface-variant/30 gap-4"
+      className="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center gap-4"
     >
       <svg
         viewBox="0 0 313.72 343.6"
@@ -59,7 +59,7 @@ export default function BlogLoader({ text = 'Cargando artículos...' }) {
       </svg>
 
       {text && (
-        <p className="font-['Poppins'] text-sm text-brand-purple font-medium">
+        <p className="text-sm text-brand-purple font-medium">
           {text}
         </p>
       )}

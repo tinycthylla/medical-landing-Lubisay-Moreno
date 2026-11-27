@@ -25,16 +25,13 @@ export default {
         },
 
         // Alias legacy mantenidos por compatibilidad
-        "pink-50": "#FCF0F9",
         "pink-100": "#F8D4F0", 
         "pink-300": "#F0A3DF", 
-        "pink-500": "#F385DE",
-        
-        "whatsapp": "#442E54",
         "green-100": "#D1FAE5", 
         "green-200": "#A7F3D0", 
       },
       fontFamily: {
+        sans: ["Poppins", "sans-serif"],
         "body-md": ["Poppins", "sans-serif"],
         "headline-sm": ["Carena", "serif"],
         "label-md": ["Poppins", "sans-serif"],
