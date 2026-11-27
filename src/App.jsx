@@ -10,15 +10,15 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Blog from './pages/Blog';
-import ScrollToTop from './components/ScrollToTop';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import useScrollToTop from './hooks/useScrollToTop';
 
 function App() {
+  useScrollToTop();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="bg-background min-h-screen overflow-x-hidden flex flex-col relative">
-      <ScrollToTop />
       <Header onOpenModal={() => setIsModalOpen(true)} />
 
       <Routes>

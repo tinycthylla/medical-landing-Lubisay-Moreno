@@ -1,5 +1,5 @@
 import { CLINICS_BY_SCHEDULE, DOCTOR_INFO } from '../../data/clinicInfo';
-import { WhatsAppOutlineIcon } from '../UI/Icons';
+import { WhatsAppOutlineIcon } from '../ui/Icons';
 
 export default function CtaDetailed({ onOpenModal }) {
   return (

@@ -1,4 +1,4 @@
-import AnimatedNumber from '../components/AnimatedNumber';
+import AnimatedNumber from '../components/ui/AnimatedNumber';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import Testimonials from '../components/layout/Testimonials';
 import FotoLuDiu from '../assets/img/ludiu2.webp';
@@ -11,8 +11,8 @@ import FotoLuXtremeBike from '../assets/img/lu_xtremebike.webp';
 import FotoLuEquipo from '../assets/img/lu_equipo.webp';
 import { useState, useEffect } from 'react';
 import { DOCTOR_INFO } from '../data/clinicInfo';
-import { CurvedArrowLeftIcon, CurvedArrowRightIcon } from '../components/UI/Icons';
-import RevealOnScroll from '../components/UI/RevealOnScroll';
+import { CurvedArrowLeftIcon, CurvedArrowRightIcon } from '../components/ui/Icons';
+import RevealOnScroll from '../components/ui/RevealOnScroll';
 
 const aboutHighlights = [
   {

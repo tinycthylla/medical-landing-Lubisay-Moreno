@@ -1,6 +1,6 @@
 import fotoConsulta from '../../assets/img/lu_consulta.jpg';
 import { SOCIAL_LINKS } from '../../data/clinicInfo';
-import { WhatsAppOutlineIcon } from '../UI/Icons';
+import { WhatsAppOutlineIcon } from '../ui/Icons';
 import useInView from '../../hooks/useInView';
 
 export default function FAQ() {

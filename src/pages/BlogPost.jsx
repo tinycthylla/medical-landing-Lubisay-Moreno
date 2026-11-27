@@ -5,8 +5,8 @@ import { PortableText } from '@portabletext/react';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import FAQ from '../components/layout/FAQ';
 import FotoLuConsultorio from '../assets/img/lu_consultorio.webp';
-import BlogLoader from '../components/UI/BlogLoader';
-import RevealOnScroll from '../components/UI/RevealOnScroll';
+import BlogLoader from '../components/ui/BlogLoader';
+import RevealOnScroll from '../components/ui/RevealOnScroll';
 import { SOCIAL_LINKS } from '../data/clinicInfo';
 import {
   FacebookIcon,
@@ -14,7 +14,7 @@ import {
   TikTokIcon,
   WhatsAppIcon,
   XIcon,
-} from '../components/UI/Icons';
+} from '../components/ui/Icons';
 
 const slugify = (text) =>
   text

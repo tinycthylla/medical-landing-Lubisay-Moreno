@@ -2,8 +2,8 @@ import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import CtaDetailed from '../components/layout/CtaDetailed';
 import Locations from '../components/layout/Locations';
-import BlogLoader from '../components/UI/BlogLoader';
-import RevealOnScroll from '../components/UI/RevealOnScroll';
+import BlogLoader from '../components/ui/BlogLoader';
+import RevealOnScroll from '../components/ui/RevealOnScroll';
 import { client, urlFor } from '../sanityClient';
 
 const POSTS_PER_PAGE = 6;

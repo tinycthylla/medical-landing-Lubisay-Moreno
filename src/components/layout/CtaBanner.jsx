@@ -1,4 +1,4 @@
-import { WhatsAppOutlineIcon } from '../UI/Icons';
+import { WhatsAppOutlineIcon } from '../ui/Icons';
 import useInView from '../../hooks/useInView';
 
 export default function CtaBanner({ onOpenModal }) {

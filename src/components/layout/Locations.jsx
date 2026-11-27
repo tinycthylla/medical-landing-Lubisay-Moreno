@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { CLINICS } from '../../data/clinicInfo';
-import { WhatsAppOutlineIcon } from '../UI/Icons';
+import { WhatsAppOutlineIcon } from '../ui/Icons';
 import useInView from '../../hooks/useInView';
 
 export default function Locations() {

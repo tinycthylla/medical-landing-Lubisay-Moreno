@@ -7,7 +7,7 @@ import {
   InstagramIcon,
   TikTokIcon,
   WhatsAppIcon,
-} from '../UI/Icons';
+} from '../ui/Icons';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
