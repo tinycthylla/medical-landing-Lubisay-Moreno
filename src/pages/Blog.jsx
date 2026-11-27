@@ -127,7 +127,6 @@ export default function Blog({ onOpenModal }) {
 
   return (
     <main className="flex-grow font-body-md bg-surface-variant/30 min-h-screen">
-      {/* HEADER */}
       <header className="w-full pt-32 md:pt-40 pb-8 md:pb-10 px-6">
         <RevealOnScroll className="max-w-3xl mx-auto text-center flex flex-col items-center">
           <div className="flex flex-col items-center text-center mb-5">
@@ -142,7 +141,6 @@ export default function Blog({ onOpenModal }) {
         </RevealOnScroll>
       </header>
 
-      {/* BUSCADOR, FILTROS Y GRID */}
       <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8 pb-6 md:pb-8">
         {articles.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-3xl border border-pink-100/50 shadow-sm max-w-3xl mx-auto">
@@ -158,9 +156,7 @@ export default function Blog({ onOpenModal }) {
           </div>
         ) : (
           <>
-            {/* Controles: Buscador + Píldoras de Categorías */}
             <RevealOnScroll className="mb-8 md:mb-10 space-y-5">
-              {/* Buscador Responsive */}
               <div className="max-w-lg mx-auto w-full">
                 <label htmlFor="blog-search" className="sr-only">
                   Buscar artículos por tema o palabra clave
@@ -198,7 +194,6 @@ export default function Blog({ onOpenModal }) {
                 </div>
               </div>
 
-              {/* Píldoras de Categoría (scroll horizontal limpio en móvil, centradas en desktop) */}
               {categories.length > 1 && (
                 <nav
                   aria-label="Filtrar artículos por categoría"
@@ -226,7 +221,6 @@ export default function Blog({ onOpenModal }) {
               )}
             </RevealOnScroll>
 
-            {/* Estado sin coincidencias */}
             {filteredArticles.length === 0 ? (
               <div className="text-center py-14 px-6 bg-white rounded-3xl border border-pink-100/60 shadow-sm max-w-xl mx-auto">
                 <h2 className="font-['Poppins'] text-xl font-medium text-brand-purple mb-2">
@@ -252,7 +246,6 @@ export default function Blog({ onOpenModal }) {
                       to={`/blog/${article.slug}`}
                       className="flex flex-col group bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-pink-100/50 p-4"
                     >
-                      {/* Imagen + Etiqueta de categoría (sin ícono ni readTime) */}
                       <div className="aspect-video rounded-2xl overflow-hidden relative bg-pink-50 mb-4">
                         {article.mainImage && (
                           <img
@@ -274,7 +267,6 @@ export default function Blog({ onOpenModal }) {
                         )}
                       </div>
 
-                      {/* Texto */}
                       <div className="flex flex-col flex-grow items-center text-center px-2 pb-2">
                         <h2 className="font-['Poppins'] font-medium text-lg text-on-background mb-3 leading-snug line-clamp-2 group-hover:text-brand-pink transition-colors">
                           {article.title}
@@ -295,7 +287,6 @@ export default function Blog({ onOpenModal }) {
                   ))}
                 </div>
 
-                {/* Botón Cargar Más */}
                 {hasMore && (
                   <div className="mt-10 flex justify-center">
                     <button

@@ -33,7 +33,6 @@ export default function Locations() {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
 
-  // Animación al hacer scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -86,7 +85,6 @@ export default function Locations() {
       `}</style>
 
       <section id="ubicacion" className="w-full py-16 md:pt-8 md:pb-24 overflow-hidden">
-  {/* Contenedor animado */}
   <div ref={sectionRef} className="opacity-0 md:max-w-[1200px] md:mx-auto">
     
     <div className="flex flex-col px-6 items-center text-center mb-10">
@@ -120,8 +118,6 @@ export default function Locations() {
             </h3>
 
             <div className="flex flex-col gap-5 mb-8 flex-grow font-body-md">
-              
-              {/* 1. Bloque de Dirección */}
               <div className="flex items-start gap-4">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -140,7 +136,6 @@ export default function Locations() {
                 </div>
               </div>
 
-              {/* 2. Bloque de Teléfono Local */}
               <div className="flex items-start gap-4">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -161,7 +156,6 @@ export default function Locations() {
                 </div>
               </div>
 
-              {/* 3. Bloque Independiente de WhatsApp */}
               {clinic.whatsapp && (
                 <div className="flex items-start gap-4">
                   <svg 
@@ -187,7 +181,6 @@ export default function Locations() {
                 </div>
               )}
 
-              {/* 4. Bloque de Instagram */}
               <div className="flex items-start gap-4">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -214,7 +207,6 @@ export default function Locations() {
 
             </div>
 
-            {/* Botón inferior limpio sin ícono */}
             <a 
               href={clinic.mapLink}
               target="_blank"

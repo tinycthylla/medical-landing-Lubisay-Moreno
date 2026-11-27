@@ -37,7 +37,6 @@ export default function PrivacyPolicy() {
   return (
     <main className="flex-1 pt-28 pb-16 px-6 bg-white">
       <div className="max-w-3xl mx-auto">
-        {/* Encabezado */}
         <header className="mb-10 pb-8 border-b border-brand-purple/10">
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-brand-pink-light text-brand-purple font-label-md text-xs font-semibold tracking-wide mb-4">
             <span className="material-symbols-outlined text-[15px] text-brand-pink">
@@ -58,7 +57,6 @@ export default function PrivacyPolicy() {
           </p>
         </header>
 
-        {/* Secciones */}
         <div className="space-y-5">
           {SECTIONS.map((section) => (
             <section
@@ -83,7 +81,6 @@ export default function PrivacyPolicy() {
             </section>
           ))}
 
-          {/* Contacto para dudas o eliminación de datos */}
           <section className="p-6 rounded-3xl bg-brand-pink-light/60 border border-brand-purple/10">
             <div className="flex items-start gap-3.5">
               <div className="h-9 w-9 rounded-2xl bg-brand-purple text-white flex items-center justify-center shrink-0 shadow-sm">
@@ -109,7 +106,6 @@ export default function PrivacyPolicy() {
           </section>
         </div>
 
-        {/* Botón volver */}
         <div className="mt-10 pt-6 border-t border-brand-purple/10 flex justify-start">
           <Link
             to="/"

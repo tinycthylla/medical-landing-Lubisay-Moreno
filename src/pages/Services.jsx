@@ -5,7 +5,6 @@ import Locations from '../components/layout/Locations';
 import CtaDetailed from '../components/layout/CtaDetailed';
 
 
-// Imágenes
 import fotoPregnant from '../assets/img/woman_pregnant.webp';
 import fotoEco from '../assets/img/ecography.webp';
 import fotoUterus from '../assets/img/ginecology.webp';
@@ -16,7 +15,6 @@ import FotoMenopause from '../assets/img/menopause.webp';
 import fotoLufilosofia2 from '../assets/img/lufilosofia2.png';
 import fotoLusentada2 from '../assets/img/lu_sentada2.JPG';
 
-// Iconos
 import iconPrenatal from '../assets/icons/icono-prenatal.svg';
 import iconEco from '../assets/icons/icono-eco.svg';
 import iconGineco from '../assets/icons/icono-gineco.svg';
@@ -149,40 +147,27 @@ export default function Services({ onOpenModal }) {
 
   return (
     <main className="flex-grow pt-20 md:pt-24 font-body-md">
-      
-      {/* Hero Servicios */}
   <section className="w-full bg-surface-variant/30 py-12 md:py-16">
   <div 
     data-animate
     className="opacity-0 px-6 md:max-w-[1200px] md:mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center"
   >
-    {/* Columna Imagen*/}
     <div className="relative w-full flex items-center justify-center">
-      
-      {/* Contenedorn*/}
       <div className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[600px] flex items-center justify-center lg:-translate-y-8">
-        
-        {/* Fondo */}
         <div className="absolute inset-x-4 top-8 bottom-4 bg-gray-200/90 rounded-full shadow-inner z-0" />
-        
-        {/* Imagen de la Dra. Lubisay */}
         <img 
           src={fotoLufilosofia2} 
           alt="Dra. Lubisay Moreno en consulta" 
           className=" relative z-10 w-full h-auto object-contain drop-shadow-2xl"
         />
-        
-        {/* Tarjeta flotante inferior */}
         <div className="absolute -bottom-4 -left-2 sm:left-2 lg:-left-6 z-20 bg-white p-4 md:p-5 rounded-2xl shadow-md shadow-pink-200/40 max-w-[280px]">
           <p className="text-sm font-medium text-on-surface-variant leading-snug">
             "Cada consulta es atendida personalmente por la <strong className="text-brand-pink">Dra. Lubisay Moreno</strong>, garantizando un espacio seguro, empático y de la más alta calidad."
           </p>
         </div>
       </div>
-      
     </div>
 
-    {/* Columna Texto*/}
     <div className="flex flex-col justify-center">
       <span className="inline-flex items-center px-3 py-1 rounded-full bg-white border border-pink-100 text-brand-pink font-label-md text-[10px] sm:text-xs uppercase tracking-wider font-bold shadow-sm mb-4 w-fit">
         Tratamiento Personalizado
@@ -223,7 +208,6 @@ export default function Services({ onOpenModal }) {
             </div>
       </section>
 
-      {/*Iconos rápidos*/}
       <section className="w-full bg-surface-variant/30 pt-4 pb-8 md:pt-12 md:pb-20">
         <div className="px-6 md:max-w-[1200px] md:mx-auto">
           
@@ -265,7 +249,6 @@ export default function Services({ onOpenModal }) {
         </div>
       </section>
 
-      {/* Sección de servicios detallados*/}
       <section className="w-full bg-pink-50 pt-8 pb-16 md:pt-12 md:pb-24 overflow-hidden">
         <div className="px-6 md:max-w-[1200px] md:mx-auto">
 
@@ -333,11 +316,8 @@ export default function Services({ onOpenModal }) {
         </div>
       </section>
 
-      {/* Filosofía */}
       <section className="w-full bg-background pt-4 pb-16 md:pt-6 md:pb-20 px-6 overflow-hidden">
         <div data-animate className="opacity-0 md:max-w-[1000px] md:mx-auto flex flex-col-reverse md:grid md:grid-cols-5 gap-8 md:gap-10 lg:gap-16 items-center">
-          
-          {/* Columna Izquierda: Imagen*/}
           <div className="md:col-span-2 relative w-[80%] sm:w-[70%] md:w-full max-w-[320px] md:max-w-none mx-auto aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden bg-white shadow-md shadow-pink-200/40 hover:shadow-lg hover:shadow-pink-200/60 transition-all duration-300">
             <img 
               src={fotoLusentada2} 
@@ -345,8 +325,7 @@ export default function Services({ onOpenModal }) {
               className="w-full h-full object-cover object-top" 
             />
           </div>
-          
-         {/* Columna Derecha: Textos */}
+
           <div className="md:col-span-3 flex flex-col text-center md:text-left font-body-md w-full">
             <div className="mb-4">
               <span className="text-brand-pink font-label-md text-xs font-bold uppercase tracking-[0.2em]">

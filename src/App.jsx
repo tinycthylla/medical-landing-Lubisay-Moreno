@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-// Componentes Globales
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import BookingModal from './components/layout/BookingModal';
 import BlogPost from './pages/BlogPost';
 
-// Páginas
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -20,12 +18,9 @@ function App() {
 
   return (
     <div className="bg-background min-h-screen overflow-x-hidden flex flex-col relative">
-      
-      {/* El Header y el Footer siempre se renderizan, sin importar la página */}
       <ScrollToTop />
       <Header onOpenModal={() => setIsModalOpen(true)} />
-      
-      {/* Aquí es donde cambia el contenido según la URL */}
+
       <Routes>
         <Route path="/" element={<Home onOpenModal={() => setIsModalOpen(true)} />} />
         <Route path="/acerca" element={<About onOpenModal={() => setIsModalOpen(true)} />} />

@@ -31,7 +31,6 @@ export default function Footer() {
 
   return (
     <footer className="w-full relative mt-12">
-      {/* Onda curva superior */}
       <div className="w-full overflow-hidden leading-none -mb-px text-brand-pink-light">
         <svg
           viewBox="0 0 1440 110"
@@ -46,11 +45,9 @@ export default function Footer() {
         </svg>
       </div>
 
-      {/* Cuerpo del Footer */}
       <div className="w-full bg-brand-pink-light pt-8 pb-8 px-6">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12">
-           {/* Columna 1: Logo + Credenciales */}
               <div className="lg:col-span-3 flex flex-col items-start justify-center gap-4">
                 <Link
                   to="/"
@@ -69,7 +66,6 @@ export default function Footer() {
                 </p>
               </div>
 
-            {/* Columna 2: Servicios (los 7) */}
             <div className="lg:col-span-3 flex flex-col gap-4">
               <h4 className="font-body-md font-bold text-sm text-brand-purple tracking-tight">
                 Servicios
@@ -88,7 +84,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Columna 3: Dra. Lubisay Moreno */}
             <div className="lg:col-span-2 flex flex-col gap-4">
               <h4 className="font-body-md font-bold text-sm text-brand-purple tracking-tight">
                 Dra. Lubisay
@@ -112,7 +107,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Columna 4: Contacto + Síguenos */}
             <div className="lg:col-span-4 flex flex-col gap-6">
               <div className="flex flex-col gap-3.5">
                 <h4 className="font-body-md font-bold text-sm text-brand-purple tracking-tight">
@@ -162,13 +156,11 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Síguenos (círculos al estilo de la referencia) */}
               <div className="flex flex-col gap-3">
                 <h4 className="font-body-md font-bold text-sm text-brand-purple tracking-tight">
                   Síguenos
                 </h4>
                 <div className="flex items-center gap-2.5">
-                  {/* Instagram */}
                   <a
                     href="https://www.instagram.com/dra.lubisaymoreno"
                     target="_blank"
@@ -181,7 +173,6 @@ export default function Footer() {
                     </svg>
                   </a>
 
-                  {/* Facebook */}
                   <a
                     href="https://www.facebook.com/dralubisaymoreno"
                     target="_blank"
@@ -194,7 +185,6 @@ export default function Footer() {
                     </svg>
                   </a>
 
-                  {/* TikTok */}
                   <a
                     href="https://www.tiktok.com/@lubimorenoo"
                     target="_blank"
@@ -207,7 +197,6 @@ export default function Footer() {
                     </svg>
                   </a>
 
-                  {/* WhatsApp */}
                   <a
                     href="https://wa.me/584129360494"
                     target="_blank"
@@ -224,7 +213,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Barra inferior: Copyright + Aviso de Privacidad + Firma */}
           <div className="pt-6 border-t border-brand-purple/10 flex flex-col md:flex-row items-center justify-between gap-3 font-body-md text-xs text-brand-grape">
             <p className="text-center md:text-left">
               © {currentYear} Dra. Lubisay Moreno. Ginecología y Obstetricia.

@@ -93,7 +93,6 @@ export default function SpecialitySections() {
       <div ref={sectionRef} className="opacity-0">
         
         <div className="flex flex-col gap-2 md:text-center md:items-center">
-          {/* Etiqueta Salud Femenina */}
           <div className="flex items-center mb-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-pink-100 text-brand-pink font-label-md text-xs uppercase tracking-wider font-bold shadow-sm">
               <span className="material-symbols-outlined text-[16px]">medical_services</span>
@@ -101,7 +100,6 @@ export default function SpecialitySections() {
             </span>
           </div>
           
-          {/* Título y Párrafo */}
           <h2 className="text-3xl md:text-4xl font-body-md font-bold text-on-background">
             Nuestras especialidades
           </h2>
@@ -137,14 +135,12 @@ export default function SpecialitySections() {
                             className={`group relative p-6 rounded-3xl transition-all duration-300 flex flex-col gap-4 cursor-pointer ${cardBg}`}
                           >
                 <div className="flex items-start justify-between">
-                  {/* Ícono sin contenedor circular */}
                   <img 
                     src={service.icon} 
                     alt={`Ícono de ${service.title}`} 
                     className="w-14 h-14 object-contain transition-transform duration-300 group-hover:scale-110" 
                   />
 
-                  {/* Etiqueta superior */}
                   <span className={`text-[10px] px-3 py-1.5 rounded-full font-bold bg-white shadow-sm border uppercase tracking-wider ${badgeTheme}`}>
                     {service.badge}
                   </span>
@@ -159,7 +155,6 @@ export default function SpecialitySections() {
                   </p>
                 </div>
 
-                {/* Botón alargado, redondeado y centrado */}
                 <div className="pt-4 mt-auto w-full">
                   <div className={`w-full py-2.5 rounded-full flex items-center justify-center gap-2 font-label-md font-semibold text-sm transition-all duration-300 shadow-sm group-hover:shadow-md active:scale-[0.99] ${buttonTheme}`}>
                     <span>Explorar servicio</span>

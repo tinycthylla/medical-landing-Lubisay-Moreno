@@ -190,9 +190,8 @@ export default function BookingModal({ isOpen, onClose }) {
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-[420px] md:max-w-[780px] bg-white rounded-3xl shadow-2xl overflow-hidden border border-brand-purple/10"
       >
-        {/* Header compacto */}
         <div className="bg-brand-pink-light/40 px-4 py-3 md:px-7 md:py-3.5 grid grid-cols-[1fr_auto_1fr] items-center gap-2 border-b border-brand-purple/10">
-          {/* Izquierda: Logo (en paso 2 mobile cede el espacio a la flecha de volver) */}
+          {/* En paso 2 mobile el logo cede espacio a la flecha de volver */}
           <div className="flex items-center justify-start">
             {mobileStep === 2 && (
               <button
@@ -214,7 +213,6 @@ export default function BookingModal({ isOpen, onClose }) {
             />
           </div>
 
-          {/* Centro: Título */}
           <div className="text-center">
             <h2 className="font-body-md text-base sm:text-lg md:text-xl font-bold text-brand-purple leading-tight whitespace-nowrap">
               Agendar Cita
@@ -224,7 +222,6 @@ export default function BookingModal({ isOpen, onClose }) {
             </p>
           </div>
 
-          {/* Derecha: Botón cerrar */}
           <div className="flex items-center justify-end">
             <button
               type="button"
@@ -237,17 +234,14 @@ export default function BookingModal({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Cuerpo del formulario */}
         <form onSubmit={handleSubmit} className="p-4 sm:p-5 md:p-6">
           <div className="grid grid-cols-1 md:grid-cols-12 md:gap-6 items-stretch">
-            {/* COLUMNA IZQUIERDA (Desktop) / PASO 1 (Mobile): Sede + Calendario */}
             <div className={`md:col-span-6 flex flex-col justify-between ${mobileStep === 1 ? 'flex' : 'hidden md:flex'}`}>
               <div>
                 <label className="block font-label-md text-xs font-semibold text-brand-purple mb-2">
                   1. Selecciona la sede
                 </label>
 
-                {/* Tarjetas de Sede */}
                 <div className="grid grid-cols-3 gap-2 mb-3">
                   {Object.entries(SEDES_INFO).map(([key, info]) => {
                     const isSelected = formData.sede === key;
@@ -277,7 +271,6 @@ export default function BookingModal({ isOpen, onClose }) {
                   })}
                 </div>
 
-                {/* Horario de referencia */}
                 <div className="mb-3 px-3 py-1.5 rounded-xl bg-brand-pink-light/50 border border-brand-purple/10 flex items-center gap-2 min-h-[30px]">
                   <span className="material-symbols-outlined text-[15px] text-brand-pink shrink-0">
                     {selectedSede ? 'schedule' : 'touch_app'}
@@ -289,9 +282,7 @@ export default function BookingModal({ isOpen, onClose }) {
                   </p>
                 </div>
 
-                {/* Calendario Custom */}
                 <div className="rounded-2xl bg-white border border-brand-purple/10 p-3 shadow-sm">
-                  {/* Navegación del mes */}
                   <div className="flex items-center justify-between mb-2.5">
                     <button
                       type="button"
@@ -317,7 +308,6 @@ export default function BookingModal({ isOpen, onClose }) {
                     </button>
                   </div>
 
-                  {/* Cabecera días de la semana */}
                   <div className="grid grid-cols-7 gap-1 mb-1">
                     {WEEKDAYS_SHORT.map((day) => (
                       <div
@@ -329,7 +319,6 @@ export default function BookingModal({ isOpen, onClose }) {
                     ))}
                   </div>
 
-                  {/* Grilla de días */}
                   <div className="grid grid-cols-7 gap-1">
                     {Array.from({ length: startOffset }).map((_, idx) => (
                       <div key={`empty-${idx}`} className="h-8" />
@@ -368,7 +357,6 @@ export default function BookingModal({ isOpen, onClose }) {
                 </div>
               </div>
 
-              {/* Botón Continuar (Solo Mobile) */}
               <button
                 type="button"
                 disabled={!formData.sede || !formData.fecha}
@@ -380,14 +368,12 @@ export default function BookingModal({ isOpen, onClose }) {
               </button>
             </div>
 
-            {/* COLUMNA DERECHA (Desktop) / PASO 2 (Mobile): Datos + Enviar */}
             <div className={`md:col-span-6 flex flex-col justify-between ${mobileStep === 2 ? 'flex' : 'hidden md:flex'}`}>
               <div className="space-y-3">
                 <label className="hidden md:block font-label-md text-xs font-semibold text-brand-purple">
                   2. Completa tus datos
                 </label>
 
-                {/* Resumen de sede/fecha (siempre visible en paso 2 mobile y cuando ya eligieron en desktop) */}
                 <div className="rounded-2xl bg-brand-pink-light/60 border border-brand-purple/10 px-3.5 py-2.5 flex items-center justify-between gap-2">
                   <div className="min-w-0">
                     <p className="font-label-md text-[11px] font-semibold text-brand-purple truncate">
@@ -408,7 +394,6 @@ export default function BookingModal({ isOpen, onClose }) {
                   </button>
                 </div>
 
-                {/* Nombre y Apellido */}
                 <div>
                   <label className="block font-label-md text-xs font-semibold text-brand-grape mb-1">
                     Nombre y Apellido
@@ -424,7 +409,6 @@ export default function BookingModal({ isOpen, onClose }) {
                   />
                 </div>
 
-                {/* Cédula + Edad en una sola fila */}
                 <div className="grid grid-cols-12 gap-2.5">
                   <div className="col-span-8">
                     <label className="block font-label-md text-xs font-semibold text-brand-grape mb-1">
@@ -459,7 +443,6 @@ export default function BookingModal({ isOpen, onClose }) {
                   </div>
                 </div>
 
-                {/* Motivo de Consulta */}
                 <div>
                   <label className="block font-label-md text-xs font-semibold text-brand-grape mb-1">
                     Motivo de Consulta
@@ -494,7 +477,6 @@ export default function BookingModal({ isOpen, onClose }) {
                 )}
               </div>
 
-              {/* Pie con nota de hora y botón de WhatsApp */}
               <div className="mt-4 pt-1">
                 <p className="text-[11px] font-body-md text-brand-grape text-center mb-2">
                   Coordinarás la hora exacta con la Dra. por WhatsApp

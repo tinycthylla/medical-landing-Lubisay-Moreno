@@ -8,7 +8,6 @@ import Locations from '../components/layout/Locations';
 import CtaBanner from '../components/layout/CtaBanner';
 
 export default function Home({ onOpenModal }) {
-  // Hook para detectar si la URL trae un hash y hacer scroll automático
   const { hash } = useLocation();
 
   useEffect(() => {
@@ -21,7 +20,6 @@ export default function Home({ onOpenModal }) {
         }
       }, 100);
     } else {
-      // Si no hay hash, simplemente vamos al tope de la página
       window.scrollTo(0, 0);
     }
   }, [hash]);

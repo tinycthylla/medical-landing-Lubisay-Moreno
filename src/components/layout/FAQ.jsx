@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import fotoConsulta from '../../assets/img/lu_consulta.jpg';
 
 export default function FAQ() {
@@ -31,7 +31,6 @@ export default function FAQ() {
     }
   ];
 
-  // Lógica de animación al hacer scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,8 +52,6 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="scroll-mt-32 w-full px-6 pt-6 pb-16 md:pt-10 md:pb-24 bg-pink-50 transition-colors duration-500">
-      
-      {/* Contenedor animado */}
       <div ref={sectionRef} className="opacity-0 max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         
           <div className="flex flex-col items-center md:items-start text-center md:text-left w-full mb-8">
@@ -96,8 +93,6 @@ export default function FAQ() {
         </div>
 
        <div className="w-full lg:sticky lg:top-24 flex flex-col p-2 lg:p-4">
-  
-      {/* CONTENEDOR DE LA IMAGEN */}
         <div
           className="relative w-full h-[400px] lg:h-[550px] overflow-hidden bg-white shadow-md shadow-pink-200/40 hover:shadow-lg hover:shadow-pink-200/60 transform transition-all duration-700 hover:scale-[1.02]"
           style={{ borderRadius: '40px 120px 40px 120px' }}>
@@ -106,7 +101,6 @@ export default function FAQ() {
             alt="Dra. Lubisay en consulta" 
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
-          {/* Ajuste de padding (px-8) y text-center para móvil, alineado a la izquierda en PC (md:text-left) */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-10 text-center md:text-left">
             <span className="text-white font-body-md text-2xl font-bold leading-tight drop-shadow-md">
               Atención cercana y empática
@@ -117,11 +111,9 @@ export default function FAQ() {
           </div>
         </div>
 
-  {/* TARJETA DE WHATSAPP */}
   <div className="mt-6 p-5 rounded-3xl bg-white shadow-md shadow-pink-200/40 flex flex-col xl:flex-row items-center justify-between gap-5">
     
     <div className="flex items-center gap-4">
-      {/* Nuevo ícono de WhatsApp en lila oscuro, sin círculo de fondo */}
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 64.63 64.98" 
@@ -141,7 +133,6 @@ export default function FAQ() {
       </div>
     </div>
     
-    {/* Botón */}
     <a 
       href="https://wa.me/584129360494" 
       target="_blank" 
@@ -149,7 +140,6 @@ export default function FAQ() {
       className="group w-full xl:w-auto px-8 py-2.5 rounded-full flex items-center justify-center gap-2 font-label-md font-semibold text-sm transition-all duration-300 shadow-sm hover:shadow-md active:scale-[0.99] bg-brand-purple text-white"
     >
       <span>Preguntar</span>
-      {/* Flechita animada opcional */}
       <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-x-1">
         arrow_forward
       </span>

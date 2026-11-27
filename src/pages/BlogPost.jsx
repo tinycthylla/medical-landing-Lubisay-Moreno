@@ -28,7 +28,7 @@ const setMetaTag = (attr, key, content) => {
   element.setAttribute('content', content);
 };
 
-// Social links
+
 const SOCIAL_LINKS = {
   instagram: 'https://www.instagram.com/dra.lubisaymoreno',
   tiktok: 'https://www.tiktok.com/@lubimorenoo',
@@ -36,7 +36,6 @@ const SOCIAL_LINKS = {
   whatsapp: 'https://wa.me/584129360494',
 };
 
-// Transición de entrada consistente con el resto de la web
 function RevealOnScroll({ children, className = '', delay = 0 }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
@@ -350,7 +349,6 @@ export default function BlogPost({ onOpenModal }) {
       />
 
       <div className="max-w-[1140px] mx-auto px-6 md:px-8 py-8 md:py-12 w-full">
-        {/* Breadcrumb / Ruta de exploración (sin línea inferior, morado del título y activo en rosado) */}
         <RevealOnScroll key={`breadcrumb-${slug}`}>
           <nav aria-label="Ruta de exploración" className="py-3 mb-7">
             <ol className="flex flex-wrap items-center gap-1.5 text-on-background font-label-md text-xs uppercase tracking-wider font-bold">
@@ -394,9 +392,7 @@ export default function BlogPost({ onOpenModal }) {
           </nav>
         </RevealOnScroll>
 
-        {/* Layout Principal de 2 Columnas */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* COLUMNA IZQUIERDA: Artículo */}
           <article className="lg:col-span-8">
             <RevealOnScroll key={`header-${slug}`}>
               <header className="mb-7">
@@ -430,7 +426,6 @@ export default function BlogPost({ onOpenModal }) {
                 </h1>
               </header>
 
-              {/* Imagen Principal Compacta */}
               {post.mainImage && (
                 <figure className="mb-9">
                   <div className="w-full max-w-[740px] aspect-[16/10] max-h-[440px] rounded-3xl overflow-hidden shadow-md border border-pink-100/70 bg-white">
@@ -446,20 +441,17 @@ export default function BlogPost({ onOpenModal }) {
               )}
             </RevealOnScroll>
 
-            {/* Cuerpo del Artículo con transición */}
             <RevealOnScroll key={`body-${slug}`} delay={120}>
               <div className="max-w-[740px]">
                 <PortableText value={post.body} components={textComponents} />
               </div>
 
-              {/* Barra para Compartir */}
               <div className="mt-10 flex flex-wrap items-center gap-5">
                 <span className="font-['Poppins'] text-xs font-medium uppercase tracking-widest text-[#735D83]">
                   Compartir:
                 </span>
 
                 <div className="flex items-center gap-4">
-                  {/* WhatsApp */}
                   <a
                     href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`${post.title} — ${shareUrl}`)}`}
                     target="_blank"
@@ -473,7 +465,6 @@ export default function BlogPost({ onOpenModal }) {
                     </svg>
                   </a>
 
-                  {/* Facebook */}
                   <a
                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
                     target="_blank"
@@ -487,7 +478,6 @@ export default function BlogPost({ onOpenModal }) {
                     </svg>
                   </a>
 
-                  {/* X */}
                   <a
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(shareUrl)}`}
                     target="_blank"
@@ -501,7 +491,6 @@ export default function BlogPost({ onOpenModal }) {
                     </svg>
                   </a>
 
-                  {/* Copiar Enlace */}
                   <button
                     type="button"
                     onClick={handleCopyLink}
@@ -527,12 +516,9 @@ export default function BlogPost({ onOpenModal }) {
             </RevealOnScroll>
           </article>
 
-          {/* COLUMNA DERECHA (Sidebar Sticky): Sobre la Dra. + Índice + Agendar */}
           <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
             <RevealOnScroll key={`sidebar-${slug}`} delay={160} className="space-y-6">
-              {/* Tarjeta Editorial de la Dra. */}
               <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(68,45,82,0.08)] text-center">
-                {/* 1. Foto compacta */}
                 <Link
                   to="/acerca"
                   className="block w-full max-w-[210px] aspect-square mx-auto mb-4 group rounded-2xl overflow-hidden bg-pink-50"
@@ -546,7 +532,6 @@ export default function BlogPost({ onOpenModal }) {
                   />
                 </Link>
 
-                {/* 2. Nombre de la Dra. */}
                 <Link
                   to="/acerca"
                   className="inline-flex items-center justify-center gap-1.5 group"
@@ -562,7 +547,6 @@ export default function BlogPost({ onOpenModal }) {
                   </span>
                 </Link>
 
-                {/* 3. Especialidad y filosofía */}
                 <p className="font-['Poppins'] text-xs font-medium text-on-surface-variant mt-0.5">
                   Ginecóloga y Obstetra
                 </p>
@@ -570,7 +554,6 @@ export default function BlogPost({ onOpenModal }) {
                   Medicina basada en evidencia con trato cercano, empático y sin tabúes para acompañarte en cada etapa de tu vida.
                 </p>
 
-                {/* 4. Redes Sociales */}
                 <div className="flex items-center justify-center gap-5 my-5">
                   <a
                     href={SOCIAL_LINKS.instagram}
@@ -621,7 +604,6 @@ export default function BlogPost({ onOpenModal }) {
                   </a>
                 </div>
 
-                {/* 5. Botón hacia /acerca */}
                 <Link
                   to="/acerca"
                   className="block w-full py-3 px-5 rounded-full bg-brand-purple text-white font-label-md text-sm font-semibold hover:bg-brand-pink transition-colors shadow-sm"
@@ -630,7 +612,6 @@ export default function BlogPost({ onOpenModal }) {
                 </Link>
               </div>
 
-              {/* Índice del Artículo (Solo Desktop — blanco limpio, sin ícono ni borde, scroll suave) */}
               {toc.length > 0 && (
                 <div className="hidden lg:block p-6 bg-white rounded-3xl shadow-[0_10px_30px_rgba(68,45,82,0.08)]">
                   <p className="font-['Poppins'] text-sm font-semibold text-[#442D52] mb-3 px-2">
@@ -652,7 +633,6 @@ export default function BlogPost({ onOpenModal }) {
                 </div>
               )}
 
-              {/* Widget Compacto para Agendar (estilo CTA morado oscuro, sin ícono, botón blanco) */}
               <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-[#442D52] via-[#3A2447] to-[#4A2E5C] shadow-[0_10px_30px_rgba(68,45,82,0.16)] text-center">
                 <div
                   aria-hidden="true"
@@ -679,7 +659,6 @@ export default function BlogPost({ onOpenModal }) {
           </aside>
         </div>
 
-        {/* Últimos Posts Más Recientes */}
         {recentPosts.length > 0 && (
           <RevealOnScroll key={`recent-${slug}`}>
             <section className="mt-16 pt-4" aria-labelledby="recent-posts-heading">
@@ -764,7 +743,6 @@ export default function BlogPost({ onOpenModal }) {
         )}
       </div>
 
-      {/* Componentes Globales Finales con transición */}
       <RevealOnScroll key={`faq-${slug}`}>
         <div className="max-w-[1200px] mx-auto w-full">
           <FAQ />

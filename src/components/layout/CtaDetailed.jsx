@@ -2,14 +2,10 @@ export default function CtaDetailed({ onOpenModal }) {
   return (
     <section className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 border-none" id="contacto">
       <div className="relative rounded-3xl bg-brand-purple text-white p-8 md:p-12 lg:p-14 overflow-hidden shadow-xl shadow-brand-purple/20">
-        
-        {/* Destellos sutiles de fondo */}
         <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-brand-pink/20 pointer-events-none blur-3xl" />
         <div className="absolute left-10 -top-10 w-48 h-48 rounded-full bg-white/10 pointer-events-none blur-2xl" />
         
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          {/* Columna Izquierda: Mensaje y Botones de Acción */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             <span className="text-pink-200 font-label-md text-xs font-bold uppercase tracking-[0.2em] block mb-3">
               Tu Salud Íntima en Manos Expertas
@@ -23,9 +19,7 @@ export default function CtaDetailed({ onOpenModal }) {
               Permíteme acompañarte con calidez, tiempo exclusivo y la más avanzada precisión diagnóstica en un entorno diseñado para tu bienestar y serenidad.
             </p>
 
-            {/* Botones de llamada y WhatsApp en fila */}
             <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-              {/* Botón de Llamar */}
               <a 
                 href="tel:+584129360494"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-brand-purple font-label-md font-semibold text-sm hover:bg-brand-pink-light active:scale-[0.98] transition-all shadow-md hover:shadow-lg"
@@ -34,7 +28,6 @@ export default function CtaDetailed({ onOpenModal }) {
                 <span>+58 412 936 0494</span>
               </a>
 
-              {/* Botón de WhatsApp con el SVG oficial */}
               <button 
                 onClick={onOpenModal}
                 type="button"
@@ -54,11 +47,8 @@ export default function CtaDetailed({ onOpenModal }) {
             </div>
           </div>
           
-          {/* Columna Derecha: Tarjeta de Horarios, Correo y Ubicaciones */}
           <div className="lg:col-span-5 w-full">
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-white/15 flex flex-col gap-5 text-left shadow-inner">
-              
-              {/* Horarios de Consulta */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-pink-200 mt-0.5">
                   <span className="material-symbols-outlined text-[20px]">schedule</span>
@@ -75,7 +65,6 @@ export default function CtaDetailed({ onOpenModal }) {
                 </div>
               </div>
 
-              {/* Consultas y Resultados */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-pink-200 mt-0.5">
                   <span className="material-symbols-outlined text-[20px]">mail</span>
@@ -93,7 +82,6 @@ export default function CtaDetailed({ onOpenModal }) {
                 </div>
               </div>
 
-              {/* Ubicaciones (con enlaces a Google Maps) */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-pink-200 mt-0.5">
                   <span className="material-symbols-outlined text-[20px]">location_on</span>

@@ -7,14 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        // --- 1. FONDOS ESTRUCTURALES ---
         "background": "#F2F2F2",
         "surface": "#ffffff",
-        "on-background": "#442E54", // Ahora los textos oscuros usarán tu morado principal
+        "on-background": "#442E54",
         "on-surface-variant": "#444841",
         "on-secondary": "#ffffff",
 
-        // --- 2. PALETA DE MARCA OFICIAL (Para usar de ahora en adelante) ---
         brand: {
           purple: '#442E54', 
           pink: '#F385DE',   
@@ -26,18 +24,17 @@ export default {
           grape: '#735D83',  
         },
 
-        // --- 3. CLASES VIEJAS (Mapeadas a la nueva paleta para no romper el diseño) ---
-        "pink-50": "#FCF0F9",  // Mapeado a tu nuevo rosa clarito
+        // Alias legacy mantenidos por compatibilidad
+        "pink-50": "#FCF0F9",
         "pink-100": "#F8D4F0", 
         "pink-300": "#F0A3DF", 
-        "pink-500": "#F385DE", // Mapeado a tu nuevo rosa principal
+        "pink-500": "#F385DE",
         
-        "whatsapp": "#442E54", // Mapeado a tu morado principal para que los botones de CTA se integren elegante a la marca desde ya
+        "whatsapp": "#442E54",
         "green-100": "#D1FAE5", 
         "green-200": "#A7F3D0", 
       },
       fontFamily: {
-        // Las fuentes nuevas conectadas
         "body-md": ["Poppins", "sans-serif"],
         "headline-sm": ["Carena", "serif"],
         "label-md": ["Poppins", "sans-serif"],

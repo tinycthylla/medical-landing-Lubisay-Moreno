@@ -18,14 +18,13 @@ function RevealOnScroll({ children }) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Cuando el elemento entra en pantalla, lo hacemos visible
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target); // Detenemos el observer para que la animación solo ocurra una vez
+          observer.unobserve(entry.target);
         }
       },
       {
-        threshold: 0.15, // Se activa cuando el 15% del elemento es visible en pantalla
+        threshold: 0.15,
       }
     );
 
@@ -87,20 +86,15 @@ export default function About({ onOpenModal }) {
   return (
     <main className="pt-20 flex flex-col w-full overflow-hidden font-body-md border-none">
       
-      {/* Top Ambient Glow */}
       <div className="relative w-full">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[340px] bg-brand-pink/15 blur-[120px] rounded-full pointer-events-none" />
 
-        {/* Hero Section: Sobre Mí */}
         <section className="w-full bg-[#735D83] pt-10 pb-0 md:pt-14 md:pb-0 relative overflow-hidden font-['Poppins']">
-          
-          {/* Contenedor animado */}
           <div 
             className={`max-w-[1240px] mx-auto px-4 md:px-8 relative flex flex-col items-center transition-all duration-[1200ms] ease-out transform ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
-            {/* Silueta de fondo*/}
         <img 
           src={SiluetaLogo} 
           alt="" 
@@ -108,16 +102,14 @@ export default function About({ onOpenModal }) {
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] sm:w-[70%] md:right-auto md:left-0 lg:left-[0%] md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:w-[250px] lg:w-[500px] opacity-5 brightness-0 invert pointer-events-none select-none z-0"
         />
             
-            {/* Título Principal*/}
            <h1 className="relative top-6 md:top-0 text-center text-white text-4xl sm:text-5xl md:text-6xl lg:text-[68px] mb-4 md:mb-4 tracking-tight z-20 leading-tight">
               <span className="font-extralight block md:inline">Hola, soy la </span>
               <span className="font-bold italic tracking-normal block md:inline">Dra. Lubisay</span>
             </h1>
 
-            {/* Área central(DESKTOP Y MOBILE)*/}
             <div className="relative w-full h-[430px] sm:h-[400px] md:h-[430px] lg:h-[460px] flex justify-center">
 
-              {/* --- MOBILE: ATRIBUTO IZQUIERDO (Arriba del hombro) --- */}
+              {/* Atributos Mobile */}
               <div className="flex flex-col items-end md:hidden absolute top-[15%] left-[4%] sm:left-[10%] z-20">
                 <p className="text-white text-right text-[11px] sm:text-xs leading-snug">
                   <span className="font-light">Soy medico</span><br />
@@ -128,7 +120,6 @@ export default function About({ onOpenModal }) {
                 </svg>
               </div>
 
-              {/* --- FOTO CENTRAL DE LA DOCTORA (Pegada abajo en mobile y desktop) --- */}
               <div className="absolute left-1/2 bottom-0 -translate-x-1/2 h-[92%] md:h-[105%] w-max z-10 flex justify-center items-end">
               <img 
               alt="Dra. Lubisay Moreno" 
@@ -136,7 +127,6 @@ export default function About({ onOpenModal }) {
               src={FotoLuDiu}/>
               </div>
 
-              {/* --- MOBILE: ATRIBUTO DERECHO (Abajo a la derecha) --- */}
               <div className="flex flex-col items-end md:hidden absolute bottom-[12%] right-[2%] sm:right-[8%] z-20">
                 <p className="text-white text-right text-[11px] sm:text-xs leading-snug mb-1">
                   <span className="font-light italic">Mi trabajo abarca desde</span><br />
@@ -145,15 +135,12 @@ export default function About({ onOpenModal }) {
                   <span className="font-bold">control prenatal</span><br />
                   <span className="font-bold">y la salud hormonal.</span>
                 </p>
-                {/* Arrow 6 Mobile */}
                 <svg className="w-20 sm:w-24 h-auto fill-white mr-20 -mt-2" viewBox="0 0 598.78 347.61">
                   <path d="m598.78,304.41c-12.56-14.04-24.53-36.79-31.61-55.17-6.61,18.54-18.01,41.59-30.21,55.94l22.37-8.41c-9.52,24.6-33.37,39.18-63.28,37.74h-.24s-.24,0-.24,0c-50.44,1.37-123.42-72.15-200.7-149.99-49.16-49.52-99.99-100.72-149-136.58C89.08,6.37,42.85-7.95,4.54,4.14,1.12,5.22-.78,8.88.3,12.3c1.08,3.42,4.73,5.32,8.16,4.24,34.08-10.76,76.52,2.94,129.73,41.88,48.18,35.26,98.64,86.09,147.45,135.25,78.53,79.1,152.74,153.85,208.61,153.85.48,0,.96,0,1.43-.02,1.5.07,2.98.1,4.46.1,18.29,0,34.79-5.17,47.96-15.07,12.24-9.2,20.93-21.89,25.37-36.93l25.32,8.8Z"/>
                 </svg>
               </div>
 
-              {/* ELEMENTOS DESKTOP */}
-
-              {/* 1. Soy médico Ginecólogo y Obstetra (Izquierda Arriba) */}
+              {/* Atributos Desktop */}
               <div className="hidden md:flex items-center absolute top-[8%] left-[10%] lg:left-[15%] z-20">
                 <p className="text-white text-right text-sm lg:text-[17px] leading-snug">
                   <span className="font-light">Soy medico</span><br />
@@ -164,7 +151,6 @@ export default function About({ onOpenModal }) {
                 </svg>
               </div>
 
-              {/* 2. Mi trabajo abarca... (Izquierda Medio) */}
               <div className="hidden md:flex flex-col items-end absolute top-[28%] left-[1%] lg:left-[3%] z-20">
                 <p className="text-white text-right text-sm lg:text-[17px] leading-snug">
                   <span className="font-light italic">Mi trabajo abarca desde </span>
@@ -177,7 +163,6 @@ export default function About({ onOpenModal }) {
                 </svg>
               </div>
 
-              {/* 3. Disfruto la buena música... (Izquierda Abajo) */}
               <div className="hidden md:flex flex-col items-end absolute bottom-[12%] left-[5%] lg:left-[8%] z-20">
                 <p className="text-white text-right text-sm lg:text-[17px] leading-snug">
                   <span className="font-light italic">Disfruto la </span>
@@ -193,7 +178,6 @@ export default function About({ onOpenModal }) {
                 </svg>
               </div>
 
-              {/* 4. Amo entrenar intenso... (Derecha Arriba) */}
               <div className="hidden md:flex items-end absolute top-[12%] right-[1%] lg:right-[3%] z-20">
                 <svg className="w-16 lg:w-[75px] h-auto fill-white mr-2 translate-y-6" viewBox="0 0 361.94 217.12">
                   <path d="m299.09,0l16.9,19.92c-47.94,20.83-71.89,43.04-73.12,67.77-1.15,23.05,17.82,39.57,34.56,54.15,11.72,10.21,22.79,19.86,21.46,27.48-.83,4.78-8.54,16.81-61.9,25.22-49.13,7.74-126.64,10.82-230.38,9.14-3.55-.08-6.55,2.81-6.6,6.39-.06,3.59,2.8,6.55,6.39,6.6,18.36.3,35.9.45,52.63.45,78.47,0,138.88-3.26,179.98-9.74,46.6-7.34,69.7-18.73,72.68-35.83,2.59-14.85-11.17-26.83-25.73-39.52-15.21-13.25-30.94-26.96-30.11-43.7.93-18.7,23.22-38.05,64.57-56.17l.24,25.77c8.98-16.55,26.37-35.5,41.28-48.36-19.69.03-45.23-2.93-62.85-9.57Z"/>
@@ -205,7 +189,6 @@ export default function About({ onOpenModal }) {
                 </p>
               </div>
 
-              {/* 5. Fuera del consultorio... (Derecha Medio) */}
               <div className="hidden md:flex items-center absolute top-[44%] right-[3%] lg:right-[7%] z-20">
                 <svg className="w-16 lg:w-[80px] h-auto fill-white mr-3 -translate-y-1" viewBox="0 0 376.39 162.66">
                   <path d="m376.39,0c-17.56,8.9-41.69,17.77-60.42,19.78l20.12,8.5c-23.39,6.53-48.3,7.72-72.19,3.38-4.15-.75-8.42-1.7-12.56-2.61-13.23-2.92-26.91-5.93-41.01-4.06-6.06.8-12.09,2.86-17.53,5.91-19.25-7.17-39.9-6.36-55.91-4.81-40.71,3.94-73.49,15.88-97.44,35.47-13.95,11.41-25.36,26.68-32.14,43C-.05,122.26-1.9,140.61,1.98,157.61c.69,3.01,3.37,5.06,6.33,5.06.48,0,.96-.05,1.45-.16,3.5-.8,5.69-4.28,4.89-7.78-6.45-28.28,6.82-61.68,33.02-83.11,21.93-17.93,52.36-28.9,90.46-32.59,12.39-1.2,27.77-1.94,42.39,1.68-6.13,6.98-9.67,15.75-8.53,25.35.85,7.12,4.09,13.25,6.96,18.66,12.87,24.32,26.33,26.89,35.36,24.76,13.77-3.25,19.82-18.71,18.53-31.61-1.52-15.17-10.91-29.53-24.96-39.17,1.37-.36,2.76-.63,4.14-.82,11.83-1.57,23.81,1.07,36.5,3.87,4.25.94,8.66,1.91,13.04,2.71,26.62,4.83,54.41,3.34,80.35-4.31,2.39-.7,4.72-1.51,7-2.38l12.41,24.01c.56-18.83,7.54-43.57,15.05-61.77Zm-156.48,79.16c.74,7.35-2.33,16.19-8.58,17.66-8.71,2.05-16.83-10.52-20.89-18.19-2.45-4.62-4.98-9.4-5.54-14.12-.87-7.3,3.09-14.02,9.17-18.91,14.5,7.26,24.47,20.06,25.83,33.56Z"/>
@@ -218,7 +201,6 @@ export default function About({ onOpenModal }) {
                 </p>
               </div>
 
-              {/* 6. Cuidar tu cuerpo por dentro... (Derecha Abajo) */}
               <div className="hidden md:flex items-end absolute bottom-[12%] right-[5%] lg:right-[8%] z-20">
                 <svg className="w-24 lg:w-[115px] h-auto fill-white mr-2 translate-y-4" viewBox="0 0 598.78 347.61">
                   <path d="m598.78,304.41c-12.56-14.04-24.53-36.79-31.61-55.17-6.61,18.54-18.01,41.59-30.21,55.94l22.37-8.41c-9.52,24.6-33.37,39.18-63.28,37.74h-.24s-.24,0-.24,0c-50.44,1.37-123.42-72.15-200.7-149.99-49.16-49.52-99.99-100.72-149-136.58C89.08,6.37,42.85-7.95,4.54,4.14,1.12,5.22-.78,8.88.3,12.3c1.08,3.42,4.73,5.32,8.16,4.24,34.08-10.76,76.52,2.94,129.73,41.88,48.18,35.26,98.64,86.09,147.45,135.25,78.53,79.1,152.74,153.85,208.61,153.85.48,0,.96,0,1.43-.02,1.5.07,2.98.1,4.46.1,18.29,0,34.79-5.17,47.96-15.07,12.24-9.2,20.93-21.89,25.37-36.93l25.32,8.8Z"/>
@@ -232,7 +214,6 @@ export default function About({ onOpenModal }) {
 
             </div>
 
-            {/* Logo y Credenciales médicas (Juntos a la izq en Mobile / Separados en extremos en Desktop) */}
             <div className="w-full absolute bottom-3 left-4 md:bottom-5 md:left-8 md:right-8 md:w-auto flex flex-col md:flex-row md:justify-between md:items-end z-20 pointer-events-none">
               <img 
                 src={LogoSimple} 
@@ -248,32 +229,25 @@ export default function About({ onOpenModal }) {
         </section>
       </div>
 
-      {/* Numbers & Experience Ribbon (Sin bordes duros) */}
       <section className="w-full bg-white py-16 md:py-24 overflow-hidden">
         <div className="max-w-[1200px] mx-auto px-6 md:px-8">
           <RevealOnScroll>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               
-             {/* Columna Izquierda: Texto y Estadísticas */}
           <div className="lg:col-span-7 relative flex flex-col justify-center lg:self-start">
             
-            {/* SVG de Fondo Animado (Corazón) */}
             <div className="absolute top-[-5%] left-[-10%] md:top-[-15%] md:left-[-15%] lg:left-[-25%] w-[80%] md:w-[60%] lg:w-[85%] max-w-[400px] opacity-10 pointer-events-none z-0">
-              {/* Usamos una clase personalizada 'svg-draw' que definiremos en el CSS global */}
               <img 
                 src={IconoHeart2} 
                 alt="" 
-                className="w-full h-auto svg-draw" 
+                className="w-full h-auto" 
               />
             </div>
 
-          {/* Contenedor del contenido (con z-10 para estar sobre el corazón) */}
               <div className="relative z-10">
 
-                {/* Etiqueta / Badge estilo píldora (centrada en mobile, izquierda en desktop) */}
                 <div className="flex justify-center lg:justify-start mb-5">
                   <div className="inline-flex items-center gap-2.5 bg-white border border-brand-pink/30 rounded-full px-4 py-2 shadow-[0_4px_14px_rgba(0,0,0,0.06)]">
-                    {/* Si ya usas lucide-react u otro set de íconos en la otra etiqueta, puedes cambiar este SVG por ese componente */}
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
                       viewBox="0 0 24 24" 
@@ -295,17 +269,14 @@ export default function About({ onOpenModal }) {
                   </div>
                 </div>
 
-                {/* Título en Poppins (centrado en mobile, izquierda en desktop) */}
                 <h2 className="font-body-md text-center lg:text-left text-4xl md:text-5xl lg:text-[54px] font-bold text-brand-grape uppercase tracking-tighter mb-6 leading-tight">
                   Conoce más <br className="hidden md:block" /> acerca de mí
                 </h2>
                 
-                {/* Descripción */}
                 <p className="font-body-md text-base md:text-lg text-on-surface-variant leading-relaxed mb-10 max-w-2xl">
                   Como especialista en ginecología y obstetricia, mi enfoque va más allá de la clínica tradicional. Me dedico a ofrecer un espacio seguro, donde la medicina con rigor científico se encuentra con el trato humano y empático. Creo firmemente en educar y empoderar a cada mujer para que tome las mejores decisiones sobre su salud en todas las etapas de su vida.
                 </p>
 
-                  {/* Grid de Estadísticas / Logros */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 pt-8 border-t border-pink-100/50">
                     <div className="flex flex-col">
                       <span className="font-body-md text-3xl md:text-4xl text-brand-pink font-bold tracking-tight">
@@ -343,14 +314,11 @@ export default function About({ onOpenModal }) {
 
               </div>
 
-              {/* Columna Derecha: Imagen con fondo rosado */}
               <div className="lg:col-span-5 relative mt-10 lg:mt-0 flex justify-center">
                <div className="relative w-full max-w-[340px] sm:max-w-md lg:max-w-[380px] xl:max-w-[420px] mx-auto lg:ml-auto lg:mr-0">
                   
-                  {/* Sombreado desfasado (Fondo rosado claro) */}
                   <div className="absolute inset-0 bg-brand-pink/10 rounded-2xl translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 z-0"></div>
                   
-                  {/* Imagen original pura con bordes redondeados sutiles */}
                   <div className="relative z-10">
                     <img 
                       src={FotoLuConsultorio} 
@@ -368,11 +336,9 @@ export default function About({ onOpenModal }) {
         </div>
       </section>
 
-      {/* Más allá de la consulta (Zigzag compacto) */}
       <section className="w-full bg-pink-50 py-20 md:py-24 overflow-hidden" id="filosofia">
         <div className="max-w-[920px] mx-auto px-6 md:px-8">
           
-          {/* Encabezado de sección */}
           <RevealOnScroll>
             <div className="text-center max-w-xl mx-auto mb-14 md:mb-16">
               <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-white border border-brand-pink/30 text-brand-pink font-['Poppins'] text-xs font-bold uppercase tracking-wider shadow-sm mb-3">
@@ -387,7 +353,6 @@ export default function About({ onOpenModal }) {
             </div>
           </RevealOnScroll>
 
-          {/* Bloques en Zigzag */}
           <div className="flex flex-col gap-12 md:gap-16">
             {aboutHighlights.map((item, index) => {
               const isReversed = index % 2 === 1;
@@ -399,7 +364,6 @@ export default function About({ onOpenModal }) {
                       isReversed ? 'md:flex-row-reverse' : 'md:flex-row'
                     }`}
                   >
-                    {/* Imagen compacta (max 360px para evitar pixelado) */}
                     <div className="w-full max-w-[360px] md:w-[46%] shrink-0 relative z-0">
                       <div className="aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-md shadow-pink-200/30 bg-white">
                         <img
@@ -410,7 +374,6 @@ export default function About({ onOpenModal }) {
                       </div>
                     </div>
 
-                    {/* Tarjeta blanca superpuesta (sin botón) */}
                     <div
                       className={`w-[92%] max-w-[330px] md:max-w-none md:w-[60%] bg-white rounded-3xl p-7 md:p-9 shadow-lg shadow-pink-200/40 relative z-10 -mt-8 md:mt-0 ${
                         isReversed ? 'md:-mr-12' : 'md:-ml-12'

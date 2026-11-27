@@ -80,11 +80,7 @@ export default function Testimonials() {
   return (
     <section id="testimonios" className="scroll-mt-32 w-full py-16 md:py-24 overflow-hidden transition-colors duration-500">
       <div ref={sectionRef} className="opacity-0 w-full max-w-[1300px] mx-auto px-4 md:px-6">
-        
-        {/* Cabecera: */}
         <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-          
-          {/* Etiquetas: */}
           <div className="flex flex-row flex-wrap justify-center items-center gap-2 mb-4">
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white text-pink-500 font-label-md text-[10px] sm:text-xs uppercase tracking-wider font-bold shadow-sm border border-pink-100">
               <span className="material-symbols-outlined text-[14px] sm:text-[16px]">verified</span>
@@ -104,7 +100,6 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Contenedor Principal del Carrusel */}
         <div 
           className="relative w-full"
           onMouseEnter={() => setIsHovered(true)}
@@ -181,7 +176,6 @@ export default function Testimonials() {
           </button>
         </div>
 
-        {/* Controles para Móviles */}
         <div className="flex md:hidden items-center justify-center gap-6 mt-6">
           <button onClick={prevSlide} className="w-10 h-10 rounded-full bg-white shadow-sm border border-pink-100 flex items-center justify-center text-pink-500 active:bg-pink-100 transition-colors">
             <span className="material-symbols-outlined text-xl">chevron_left</span>

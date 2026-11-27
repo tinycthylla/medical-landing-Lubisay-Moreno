@@ -32,11 +32,9 @@ export default function CtaBanner({ onOpenModal }) {
           isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'
         }`}
       >
-        {/* Destellos sutiles de fondo */}
         <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-brand-pink/20 pointer-events-none blur-3xl" />
         <div className="absolute left-10 -top-10 w-48 h-48 rounded-full bg-white/10 pointer-events-none blur-2xl" />
 
-        {/* Contenido centrado */}
         <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
           <h2 className="text-3xl md:text-4xl font-headline-sm font-normal text-white mb-5 leading-tight">
             ¿Lista para priorizar tu salud íntima y maternal?
